@@ -3,3 +3,6 @@
 [user]
   email = shooohei.m@gmail.com
   name = matsuosh
+[color]
+  ui = true
+  diff = true
