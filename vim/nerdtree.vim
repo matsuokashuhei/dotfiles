@@ -16,7 +16,7 @@ let g:NERDTreeQuitOnOpen=0
 " ツリーの外観
 " 0 : 綺麗に表示する。
 " 1 : 普通に表示する。
-let NERDTreeDirArrows=0
+let NERDTreeDirArrows=1
 
 " NERDTreeの幅
 let g:NERDTreeWinSize=30
