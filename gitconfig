@@ -1,8 +1,16 @@
-[core]
-  editor = vim -c \"set fenc=utf-8\"
 [user]
   email = shooohei.m@gmail.com
   name = matsuosh
+
+[alias]
+  st = status
+  co = checkout
+  br = branch
+  ci = commit
+
 [color]
   ui = true
   diff = true
+
+[core]
+  editor = vim -c \"set fenc=utf-8\"
