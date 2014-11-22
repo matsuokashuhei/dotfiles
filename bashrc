@@ -15,11 +15,13 @@ darwin*)
   alias ll='ls -l'
   alias la='ll -a'
   alias h='history'
+  alias c='clear'
   ;;
 linux*)
   alias vi='vim'
   alias ll='ls -l'
   alias la='ll -a'
   alias h='history'
+  alias c='clear'
   ;;
 esac
