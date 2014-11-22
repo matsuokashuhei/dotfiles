@@ -29,5 +29,6 @@ Plugin 'itchyny/lightline.vim'
 "------------------------------------------------
 Plugin 'jistr/vim-nerdtree-tabs.git'
 Plugin 'scrooloose/nerdtree.git'
-source ~/.vim/nerdtree.vim
+"source ~/.vim/nerdtree.vim
+source ~/.vim/nerdtree-tabs.vim
 
