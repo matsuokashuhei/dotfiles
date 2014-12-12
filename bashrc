@@ -8,6 +8,11 @@ fi
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
+# Git
+source .git-completion.bash
+source .git-prompt.sh
+PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+
 # User specific aliases and functions
 case $OSTYPE in
 darwin*)
