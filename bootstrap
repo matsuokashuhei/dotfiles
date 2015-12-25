@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+DOTFILES_HOME=$HOME/dotfiles
+
+print_header() {
+  printf "\e[34m"
+  echo '------------------------------------------------------------------'
+  echo '                      __      __  _____ __                        '
+  echo '                 ____/ /___  / /_/ __(_) /__  _____               '
+  echo '                / __  / __ \/ __/ /_/ / / _ \/ ___/               '
+  echo '               / /_/ / /_/ / /_/ __/ / /  __(__  )                '
+  echo '               \__,_/\____/\__/_/ /_/_/\___/____/                 '
+  echo '                                                                  '
+  echo '                Harder, Better, Faster, Stronger                  '
+  echo '                                                                  '
+  echo '                  github.com/matsuosh/dotfiles                    '
+  echo '                                                                  '
+  echo '------------------------------------------------------------------'
+  printf "\e[0m\n"
+}
+
+make_links() {
+  DEST_DIR=$HOME
+  # Git
+  SRC_DIR=$DOTFILES_HOME/git
+  for file in $(ls -1 $SRC_DIR);
+  do
+    ln -s -f $SRC_DIR/$file $HOME/.$file
+  done
+  # bash
+  ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc
+}
+
+main() {
+  print_header
+  make_links
+}
+
+main
