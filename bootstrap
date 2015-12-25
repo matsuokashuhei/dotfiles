@@ -20,7 +20,7 @@ print_header() {
 }
 
 make_links() {
-  DEST_DIR=$HOME
+
   # Git
   SRC_DIR=$DOTFILES_HOME/git
   for file in $(ls -1 $SRC_DIR);
@@ -28,9 +28,18 @@ make_links() {
     echo "ln -s -f $SRC_DIR/$file $HOME/.$file"
     ln -s -f $SRC_DIR/$file $HOME/.$file
   done
+
+  # Vim
+  SRC_DIR=$DOTFILES_HOME/vim
+  echo "ln -s -f $SRC_DIR/vimrc $HOME/.vimrc"
+  ln -s -f $SRC_DIR/vimrc $HOME/.vimrc
+  echo "ln -s -f $SRC_DIR/vim $HOME/.vim"
+  ln -s -f $SRC_DIR/vim $HOME/.vim
+  
   # bash
   echo "ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc"
   ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc
+
 }
 
 main() {

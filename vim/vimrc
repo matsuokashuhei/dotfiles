@@ -3,6 +3,7 @@ set nocompatible
 "================================================
 " Vundle Initialization
 "================================================
+call system("mkdir -p $HOME/.vim/{snap,undo}")
 source ~/.vim/vundle.vim
 
 "================================================
@@ -82,3 +83,9 @@ set visualbell
 set t_vb=
 set mouse=a
 
+"================================================
+" NERDTREE
+"================================================
+" Windowsでは動かないのでコメントアウトしている。
+"source ~/.vim/nerdtree.vim
+"source ~/.vim/nerdtree-tabs.vim
