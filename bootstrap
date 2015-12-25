@@ -25,9 +25,11 @@ make_links() {
   SRC_DIR=$DOTFILES_HOME/git
   for file in $(ls -1 $SRC_DIR);
   do
+    echo "ln -s -f $SRC_DIR/$file $HOME/.$file"
     ln -s -f $SRC_DIR/$file $HOME/.$file
   done
   # bash
+  echo "ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc"
   ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc
 }
 

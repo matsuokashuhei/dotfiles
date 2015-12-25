@@ -3,14 +3,17 @@
   name = matsuosh
 
 [alias]
-  st = status
+  st = status -s
+  sh = show
+  ft = fetch
+  ad = add
   co = checkout
   br = branch
   ci = commit
 
 [color]
   ui = true
-  diff = true
 
 [core]
   editor = vim -c \"set fenc=utf-8\"
+  excludesfile =$HOME/.gitignore
