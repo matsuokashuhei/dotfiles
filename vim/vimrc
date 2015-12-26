@@ -88,4 +88,4 @@ set mouse=a
 "================================================
 " Windowsでは動かないのでコメントアウトしている。
 "source ~/.vim/nerdtree.vim
-"source ~/.vim/nerdtree-tabs.vim
+source ~/.vim/nerdtree-tabs.vim
