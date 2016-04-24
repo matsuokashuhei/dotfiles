@@ -28,7 +28,7 @@ Temporary Items
 
 
 # Linux
-https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
+#https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
 *~
 
 # KDE directory preferences
