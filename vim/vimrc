@@ -1,91 +1,106 @@
-set nocompatible
+if &compatible
+  set nocompatible
+endif
 
-"================================================
-" Vundle Initialization
-"================================================
-call system("mkdir -p $HOME/.vim/{snap,undo}")
-source ~/.vim/vundle.vim
+" Required:
+set runtimepath^=/home/vagrant/.vim/bundle/neobundle.vim/
 
-"================================================
-" 表示
-"================================================
-set number
-set showcmd
-set showmode
-set laststatus=2
-set cmdheight=2
-set ruler
+" Required:
+call neobundle#begin(expand('/home/vagrant/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+
+" コード補完
+"source ~/.vim/neocomplete.vim
+
+" 静的解析
+source ~/.vim/syntastic.vim
+
+" HTML
+NeoBundle 'tpope/vim-surround'
+" 自動で閉じる
+NeoBundle 'tpope/vim-endwise'
+
+" ドキュメント参照
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'yuku-t/vim-ref-ri'
+
+" メソッド定義元へのジャンプ
+NeoBundle 'szw/vim-tags'
+
+" NERDTree
+source ~/.vim/nerdtree.vim
+
+"----------------------------
+" テーマ
+"----------------------------
+NeoBundle 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+
+
+
+
+
+
+
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
 
 syntax on
+color dracula
 
-"================================================
-" カーソルの移動
-"================================================
-set backspace=indent,eol,start
-set nostartofline
+set encoding     =utf-8             " エンコード
+set fileencoding =utf-8             " ファイルのエンコード
 
-"================================================
-" ファイルの操作
-"================================================
-set confirm
-set hidden
-set autoread
+set noswapfile                      " .swapファイルを作らない
+set nowritebackup                   " バックアップファイルを作らない
+set nobackup                        " バックアップをしない
 
-set noswapfile
-set nobackup
-set nowb
+set autoindent                      " オートインデント
+set shiftwidth   =2                 " インデントにしたときのスペースの文字数
+set expandtab                       " タブをスペースにする
+set softtabstop  =2                 " タブをスペースにするときの文字数
+set shiftround                      " インデントをオプション 'shiftwidth' の値の倍数に丸める。 コマンド \">\"と \"<\" に適用される。Insertモードでの CTRL-T と CTRL-D では、インデントは常に 'shiftwidth' の倍数に丸められる
 
-"================================================
-" 補完
-"================================================
-set wildmenu
+set backspace    =indent,eol,start  " Make backspace work as you would expect.
+set hidden                          " Switch between buffers without having to save first.
+set laststatus   =2                 " Always show statusline.
+set display      =lastline          " Show as much as possible of the last line.
 
-"================================================
-" 検索・置換
-"================================================
-set hlsearch
-nnoremap <C-L> :nohl<CR><C-L>
-set incsearch
+set showmatch                       " 括弧のハイライト
+
+" 検索
+set incsearch                       " Highlight while searching with / or ?.
 set ignorecase
 set smartcase
+set hlsearch                        " Keep matches highlighted.
 
-"================================================
-" タブ・インデント
-"================================================
-set autoindent
-set smartindent
-set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
+set mouse       =a                  " マウスモード
 
-filetype plugin on
-filetype indent on
+set number                          " 行番号
+set vb t_vb     =                   " ビープ音
+set novisualbell
 
-"================================================
-" ウィンドウ
-"================================================
-"source ~/.vim/tab.vim
+" Vim wiki
+" http://vimwiki.net/?FrontPage
 
-
-"================================================
-" 折りたたみ
-"================================================
-set foldmethod=syntax
-set foldlevel=100
-
-"================================================
-" その他
-"================================================
-set history=1000
-set visualbell
-set t_vb=
-set mouse=a
-
-"================================================
-" NERDTREE
-"================================================
-" Windowsでは動かないのでコメントアウトしている。
-"source ~/.vim/nerdtree.vim
-source ~/.vim/nerdtree-tabs.vim
+" Powerline
+source ~/.vim/powerline.vim
