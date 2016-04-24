@@ -37,8 +37,8 @@ make_links() {
   ln -s -f $SRC_DIR/vim $HOME/.vim
   
   # bash
-  echo "ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc"
-  ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc
+  #echo "ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc"
+  #ln -s -f $DOTFILES_HOME/bash/bashrc $HOME/.bashrc
 
 }
 
