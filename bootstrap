@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES_HOME=$HOME/dotfiles
+DOTFILES_HOME=$HOME/.dotfiles
 
 print_header() {
   printf "\e[34m"
