@@ -22,6 +22,9 @@ NeoBundle 'flazz/vim-colorschemes'
 " コード補完
 "source ~/.vim/neocomplete.vim
 
+" シンタックス
+NeoBundle 'sheerun/vim-polyglot'
+
 " 静的解析
 source ~/.vim/syntastic.vim
 
