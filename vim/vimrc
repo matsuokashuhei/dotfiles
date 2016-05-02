@@ -34,7 +34,6 @@ source ~/.vim/syntastic.vim
 NeoBundle 'tpope/vim-surround'
 " 自動で閉じる
 NeoBundle 'tpope/vim-endwise'
-NeoBundle 'amirh/HTML-AutoCloseTag'
 
 " インデント
 NeoBundle 'Yggdroot/indentLine'
