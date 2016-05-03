@@ -1,79 +1,27 @@
-if &compatible
-  set nocompatible
-endif
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" Required:
-set runtimepath^=~/.vim/bundle/neobundle.vim/
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle'))
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-endwise'
+Plugin 'thinca/vim-ref'
+Plugin 'yuku-t/vim-ref-ri'
+Plugin 'szw/vim-tags'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-"NeoBundle 'Shougo/neosnippet.vim'
-"NeoBundle 'Shougo/neosnippet-snippets'
-"NeoBundle 'tpope/vim-fugitive'
-
-" http://qiita.com/oahiroaki/items/d71337fb9d28303a54a8
-NeoBundle 'ctrlpvim/ctrlp.vim'
-"NeoBundle 'flazz/vim-colorschemes'
-
-" コード補完
-"source ~/.vim/neocomplete.vim
-
-" シンタックス
-NeoBundle 'sheerun/vim-polyglot'
-
-" 静的解析
 source ~/.vim/syntastic.vim
-
-" HTML
-NeoBundle 'tpope/vim-surround'
-" 自動で閉じる
-NeoBundle 'tpope/vim-endwise'
-
-" インデント
-NeoBundle 'Yggdroot/indentLine'
-let g:indentLine_char = '·'
-let g:indentLine_char = '˖'
-let g:indentLine_color_term = 240
-
-" ドキュメント参照
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'yuku-t/vim-ref-ri'
-
-" メソッド定義元へのジャンプ
-NeoBundle 'szw/vim-tags'
-
-" NERDTree
+source ~/.vim/indentline.vim
 source ~/.vim/nerdtree.vim
 
-"----------------------------
-" テーマ
-"----------------------------
-NeoBundle 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 
-
-
-
-
-
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" Required:
-call neobundle#end()
-
-" Required:
+call vundle#end()
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 syntax on
 color dracula

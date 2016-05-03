@@ -1,5 +1,5 @@
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs.git'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs.git'
 " カラーの有無
 " 0 : なし
 " 1 : あり
