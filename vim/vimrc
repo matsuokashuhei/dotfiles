@@ -13,6 +13,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'thinca/vim-ref'
 Plugin 'yuku-t/vim-ref-ri'
 Plugin 'szw/vim-tags'
+Plugin 'lilydjwg/colorizer'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 
 source ~/.vim/syntastic.vim
@@ -64,3 +65,9 @@ set novisualbell
 " Powerline
 source ~/.vim/powerline.vim
 
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+augroup END
