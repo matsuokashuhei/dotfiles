@@ -1,0 +1,16 @@
+# git prompt support
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+source $HOME/.git-prompt.sh
+#GIT_PS1_SHOWDIRTYSTATE=1
+#GIT_PS1_SHOWUPSTREAM=1
+#GIT_PS1_SHOWUNTRACKEDFILES=
+#GIT_PS1_SHOWSTASHSTATE=1
+PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+
+# alias
+alias ls='ls --color'
+alias ll='ls -l'
+alias la='ll -a'
+alias h='history'
+alias c='clear'
+alias vi='vim'
