@@ -14,3 +14,7 @@ alias la='ll -a'
 alias h='history'
 alias c='clear'
 alias vi='vim'
+
+
+alias rake='bundle exec rake'
+alias rails='bundle exec rails'
