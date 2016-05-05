@@ -21,6 +21,7 @@ source ~/.vim/syntastic.vim
 source ~/.vim/indentline.vim
 source ~/.vim/nerdtree.vim
 
+source ~/.vim/js.vim
 
 call vundle#end()
 filetype plugin indent on
