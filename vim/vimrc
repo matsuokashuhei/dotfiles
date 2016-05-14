@@ -9,17 +9,18 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-endwise'
-Plugin 'thinca/vim-ref'
-Plugin 'yuku-t/vim-ref-ri'
-Plugin 'szw/vim-tags'
 Plugin 'lilydjwg/colorizer'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'docunext/closetag.vim'
 
 source ~/.vim/syntastic.vim
 source ~/.vim/indentline.vim
 source ~/.vim/nerdtree.vim
+source ~/.vim/tagbar.vim
+source ~/.vim/ctags.vim
+source ~/.vim/rails.vim
 
 source ~/.vim/js.vim
 
@@ -66,10 +67,3 @@ set novisualbell
 
 " Powerline
 source ~/.vim/powerline.vim
-
-augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
-augroup END
