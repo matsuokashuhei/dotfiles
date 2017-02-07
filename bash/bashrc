@@ -14,3 +14,5 @@ alias la='ll -a'
 alias h='history'
 alias c='clear'
 alias vi='vim'
+
+export JAVA_HOME=`/usr/libexec/java_home`
