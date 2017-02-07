@@ -29,15 +29,15 @@ make_links() {
     ln -s -f $SRC_DIR/$file $HOME/.$file
   done
 
-  # Vim
-  SRC_DIR=$DOTFILES_HOME/vim
-  echo "ln -s -f $SRC_DIR/vimrc $HOME/.vimrc"
-  ln -s -f $SRC_DIR/vimrc $HOME/.vimrc
-  if [ ! -d $HOME/.vim ]; then
-    echo "ln -s -f $SRC_DIR/vim $HOME/.vim"
-    ln -s -f $SRC_DIR/vim $HOME/.vim
-  fi
-  
+  # # Vim
+  # SRC_DIR=$DOTFILES_HOME/vim
+  # echo "ln -s -f $SRC_DIR/vimrc $HOME/.vimrc"
+  # ln -s -f $SRC_DIR/vimrc $HOME/.vimrc
+  # if [ ! -d $HOME/.vim ]; then
+  #   echo "ln -s -f $SRC_DIR/vim $HOME/.vim"
+  #   ln -s -f $SRC_DIR/vim $HOME/.vim
+  # fi
+
   grep 'source $HOME/.dotfiles/bash/bashrc' $HOME/.bashrc > /dev/null
   if [ $? -ne 0 ]; then
     echo 'source $HOME/.dotfiles/bash/bashrc >> $HOME/.bashrc'
