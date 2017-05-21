@@ -1,18 +1,26 @@
-# git prompt support
-# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-source $HOME/.git-prompt.sh
-#GIT_PS1_SHOWDIRTYSTATE=1
-#GIT_PS1_SHOWUPSTREAM=1
-#GIT_PS1_SHOWUNTRACKEDFILES=
-#GIT_PS1_SHOWSTASHSTATE=1
-PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+# PATH
+export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+
+# bash-completion
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
+# Powerline
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+
+# bash-git-prompt
+#if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+#    __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
+#    source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
+#fi
 
 # alias
-alias ls='ls --color'
+alias ls='ls -G'
 alias ll='ls -l'
 alias la='ll -a'
 alias h='history'
 alias c='clear'
 alias vi='vim'
-
-export JAVA_HOME=`/usr/libexec/java_home`
