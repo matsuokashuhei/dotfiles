@@ -1,6 +1,6 @@
 [user]
   email = matsuokashuheiii@gmail.com
-  name = matsuokashuhei
+	name = matsuokashuhei
 
 [alias]
   st = status -s
