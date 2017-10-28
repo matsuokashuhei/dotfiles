@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash -eu
 
-DOTFILES_HOME=$HOME/.dotfiles
+DOTFILES_HOME=.dotfiles
 
 print_header() {
   printf "\e[34m"
@@ -13,42 +13,32 @@ print_header() {
   echo '                                                                  '
   echo '                Harder, Better, Faster, Stronger                  '
   echo '                                                                  '
-  echo '                  github.com/matsuosh/dotfiles                    '
+  echo '                  github.com/matsuokashuhei/dotfiles              '
   echo '                                                                  '
   echo '------------------------------------------------------------------'
   printf "\e[0m\n"
 }
 
-make_links() {
+# bash_profile
+DOTFILE=$HOME/.bash_profile
+if [ -f $DOTFILE ];
+then
+  cp $DOTFILE ${DOTFILE}-backup-$(date '+%Y%m%d')
+fi
+ln -fs $DOTFILES_HOME/bash/bash_profile $DOTFILE
 
-  # Git
-  SRC_DIR=$DOTFILES_HOME/git
-  for file in $(ls -1 $SRC_DIR);
-  do
-    echo "ln -s -f $SRC_DIR/$file $HOME/.$file"
-    ln -s -f $SRC_DIR/$file $HOME/.$file
-  done
+# gitconfig
+DOTFILE=$HOME/.gitconfig
+if [ -f $DOTFILE ];
+then
+  cp $DOTFILE ${DOTFILE}-backup-$(date '+%Y%m%d')
+fi
+ln -fs $DOTFILES_HOME/git/gitconfig $DOTFILE
 
-  # # Vim
-  # SRC_DIR=$DOTFILES_HOME/vim
-  # echo "ln -s -f $SRC_DIR/vimrc $HOME/.vimrc"
-  # ln -s -f $SRC_DIR/vimrc $HOME/.vimrc
-  # if [ ! -d $HOME/.vim ]; then
-  #   echo "ln -s -f $SRC_DIR/vim $HOME/.vim"
-  #   ln -s -f $SRC_DIR/vim $HOME/.vim
-  # fi
-
-  grep 'source $HOME/.dotfiles/bash/bashrc' $HOME/.bashrc > /dev/null
-  if [ $? -ne 0 ]; then
-    echo 'source $HOME/.dotfiles/bash/bashrc >> $HOME/.bashrc'
-    echo 'source $HOME/.dotfiles/bash/bashrc' >> $HOME/.bashrc
-  fi
-
-}
-
-main() {
-  print_header
-  make_links
-}
-
-main
+# gitignore
+DOTFILE=$HOME/.gitignore
+if [ -f $DOTFILE ];
+then
+  cp $DOTFILE ${DOTFILE}-backup-$(date '+%Y%m%d')
+fi
+ln -fs $DOTFILES_HOME/git/gitignore $DOTFILE
