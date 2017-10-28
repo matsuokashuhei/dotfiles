@@ -1,5 +1,4 @@
-# OS X
-# https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+# General
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -18,6 +17,7 @@ Icon
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -25,25 +25,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-
-# Linux
-#https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
-*~
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-
-# Vim
-# https://github.com/github/gitignore/blob/master/Global/Vim.gitignore
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
-*.un~
-Session.vim
-.netrwhist
-*~
-
