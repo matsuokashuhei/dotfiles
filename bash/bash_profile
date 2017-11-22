@@ -1,15 +1,27 @@
 # bash-completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+if [ -f /usr/local/etc/bash_completion ]
+then
+  . /usr/local/etc/bash_completion
+fi
 
 # python
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+if [ -d /usr/local/opt/python/libexec/bin ]
+then
+  export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+fi
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+if [ -d $HOME/.nvm ]
+then
+  export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
+fi
 
 # rbenv
-eval "$(rbenv init -)"
+if [ $(which rbenv) ]
+then
+  eval "$(rbenv init -)"
+fi
 
 # powerline
 powerline-daemon -q
