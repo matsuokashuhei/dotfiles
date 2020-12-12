@@ -1,5 +1,5 @@
 [user]
-  email = matsuokashuheiii@gmail.com
+	email = matsuokashuheiii@gmail.com
 	name = matsuokashuhei
 
 [alias]
@@ -19,4 +19,4 @@
 
 [core]
   editor = vim -c \"set fenc=utf-8\"
-  excludesfile =$HOME/.gitignore
+  excludesfile =$HOME/.config/git/ignore
