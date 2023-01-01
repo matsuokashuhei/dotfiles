@@ -1,22 +1,34 @@
 [user]
 	email = matsuokashuheiii@gmail.com
-	name = matsuokashuhei
+	name = Shuhei Matsuoka
 
 [alias]
-  st = status -s
-  sh = show
-  ft = fetch
-  ad = add
-  co = checkout
-  br = branch
-  ci = commit
-  df = diff --ignore-all-space
-  prune = fetch --prune
-  undo = reset --soft HEAD^
+	st = status -s
+	sh = show
+	ft = fetch
+	ad = add
+	co = checkout
+	br = branch
+	ci = commit
+	df = diff --ignore-all-space
+	prune = fetch --prune
+	undo = reset --soft HEAD^
 
 [color]
-  ui = true
+	ui = true
 
 [core]
-  editor = vim -c \"set fenc=utf-8\"
-  excludesfile =$HOME/.config/git/ignore
+	editor = vim -c \"set fenc=utf-8\"
+	excludesfile =$HOME/.config/git/ignore
+
+[init]
+	defaultBranch = main
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
+[pull]
+        rebase = false
