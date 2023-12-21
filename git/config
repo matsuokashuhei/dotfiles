@@ -1,6 +1,6 @@
 [user]
 	email = matsuokashuheiii@gmail.com
-	name = Shuhei Matsuoka
+	name = matsuokashuhei
 
 [alias]
 	st = status -s
@@ -20,6 +20,8 @@
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 	excludesfile =$HOME/.config/git/ignore
+	# https://github.com/microsoft/vscode-remote-release/issues/1134
+	filemode = false
 
 [init]
 	defaultBranch = main
@@ -31,4 +33,4 @@
 	clean = git-lfs clean -- %f
 
 [pull]
-        rebase = false
+    rebase = false
