@@ -2,7 +2,7 @@
 
 ```
 git clone https://github.com/matsuokashuhei/dotfiles.git $HOME/.dotfiles
-./$HOME/.dotfiles/bootstrap.sh
+$HOME/.dotfiles/bootstrap.sh
 ```
 
 [bootstrap.sh](https://github.com/matsuokashuhei/dotfiles/blob/master/bootstrap.sh) will make following files:
