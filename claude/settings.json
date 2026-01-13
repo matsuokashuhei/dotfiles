@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh issue view:*)",
+      "Bash(xcodebuild:*)",
+      "WebFetch(domain:docs.claude.ai)",
+      "WebFetch(domain:github.com)"
+    ],
+    "defaultMode": "plan"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Blow.aiff"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "sh \"$HOME\"/.claude/statusline.sh"
+  },
+  "model": "sonnet"
+}
