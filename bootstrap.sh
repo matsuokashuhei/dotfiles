@@ -11,3 +11,7 @@ do
 done
 
 ln -s $HOME/.config/git/config $HOME/.gitconfig
+
+# Ghostty
+mkdir -p $HOME/.config/ghostty
+ln -s $DOTFILES_HOME/ghostty/config $HOME/.config/ghostty/config
