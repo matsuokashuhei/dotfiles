@@ -33,3 +33,7 @@ do
     ln -s $DOTFILES_HOME/claude/$file $HOME/.claude/$file
   fi
 done
+
+# Ghostty
+mkdir -p $HOME/.config/ghostty
+ln -s $DOTFILES_HOME/ghostty/config $HOME/.config/ghostty/config
