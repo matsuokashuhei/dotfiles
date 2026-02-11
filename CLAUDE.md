@@ -1,63 +1,63 @@
 # dotfiles
 
-macOS 開発環境の dotfiles リポジトリ。シンボリックリンクで各設定ファイルを管理する。
+Dotfiles repository for macOS development environment. Configuration files are managed via symlinks.
 
-## リポジトリ構造
+## Repository Structure
 
 ```
-├── install.sh          # インストールスクリプト（シンボリックリンク作成・statusline セットアップ）
-├── update.sh             # statusline 更新スクリプト
-├── bash/bash_profile     # Bash シェル設定（レガシー、install.sh 未対応）
-├── claude/settings.json  # Claude Code CLI 設定
-├── ghostty/config        # Ghostty ターミナル設定
-├── git/config            # Git ユーザー設定・エイリアス
-└── git/ignore            # グローバル gitignore（macOS 固有ファイル除外）
+├── install.sh          # Install script (creates symlinks & sets up statusline)
+├── update.sh             # Statusline update script
+├── bash/bash_profile     # Bash shell config (legacy, not handled by install.sh)
+├── claude/settings.json  # Claude Code CLI settings
+├── ghostty/config        # Ghostty terminal config
+├── git/config            # Git user settings & aliases
+└── git/ignore            # Global gitignore (excludes macOS-specific files)
 ```
 
-## インストール
+## Installation
 
 ```bash
 git clone https://github.com/matsuokashuhei/dotfiles.git $HOME/.dotfiles
 $HOME/.dotfiles/install.sh
 ```
 
-### install.sh が作成するシンボリックリンク
+### Symlinks Created by install.sh
 
-| ソース | リンク先 |
+| Source | Target |
 |--------|----------|
 | `git/config` | `~/.config/git/config` |
 | `git/ignore` | `~/.config/git/ignore` |
 | `claude/settings.json` | `~/.claude/settings.json` |
 | `ghostty/config` | `~/.config/ghostty/config` |
 
-加えて、[usedhonda/statusline](https://github.com/usedhonda/statusline) を `~/.dotfiles/repos/statusline` にクローンし、`statusline.py` を `~/.claude/statusline.py` にコピーする。
+Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
 
-## Statusline の更新
+## Updating Statusline
 
 ```bash
 $HOME/.dotfiles/update.sh
 ```
 
-`repos/statusline` を `git pull` して最新の `statusline.py` を `~/.claude/statusline.py` に上書きコピーする。
+Runs `git pull` on `repos/statusline` and overwrites `~/.claude/statusline.py` with the latest `statusline.py`.
 
-## 開発規約
+## Development Guidelines
 
-### 新しい設定ファイルの追加手順
+### Adding a New Configuration File
 
-1. リポジトリ直下にアプリ名のディレクトリを作成（例: `zsh/`）
-2. 設定ファイルを配置（例: `zsh/zshrc`）
-3. `install.sh` にシンボリックリンク作成処理を追加（既存パターンに従う）
+1. Create an app-named directory at the repository root (e.g., `zsh/`)
+2. Place the configuration file inside (e.g., `zsh/zshrc`)
+3. Add symlink creation logic to `install.sh` (follow the existing pattern)
 
-`install.sh` の追加パターン:
+`install.sh` addition pattern:
 
 ```bash
-# <アプリ名>
-SRC_DIR=$DOTFILES_HOME/<アプリ名>
-DEST_DIR=<リンク先ディレクトリ>
+# <app-name>
+SRC_DIR=$DOTFILES_HOME/<app-name>
+DEST_DIR=<target-directory>
 
 mkdir -p $DEST_DIR
 
-for file in <ファイル名>
+for file in <file-name>
 do
   if [ -f $DEST_DIR/$file ]; then
     echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
@@ -68,14 +68,14 @@ do
 done
 ```
 
-### Git ブランチ戦略
+### Git Branch Strategy
 
-- メインブランチ: `master`
-- feature branch → Pull Request → master にマージ
+- Main branch: `master`
+- feature branch → Pull Request → merge into master
 
-## 注意事項
+## Notes
 
-- `install.sh` は既存ファイルを上書きしない（存在チェックあり）
-- `bash/bash_profile` は `install.sh` に含まれていない（レガシー）
-- macOS 固有の環境前提（Homebrew、`afplay` など）
-- Claude Code の設定で `defaultMode: "plan"`、`language: "japanese"` が有効
+- `install.sh` does not overwrite existing files (includes existence checks)
+- `bash/bash_profile` is not included in `install.sh` (legacy)
+- Assumes a macOS-specific environment (Homebrew, `afplay`, etc.)
+- Claude Code settings have `defaultMode: "plan"` and `language: "English and Japanese are displayed side by side"` enabled
