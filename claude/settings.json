@@ -40,19 +40,6 @@
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
   },
-  "language": "English and Japanese are displayed side by side",
-  "enabledPlugins": [
-    "frontend-design@claude-plugins-official",
-    "github@claude-plugins-official",
-    "feature-dev@claude-plugins-official",
-    "code-review@claude-plugins-official",
-    "commit-commands@claude-plugins-official",
-    "pr-review-toolkit@claude-plugins-official",
-    "hookify@claude-plugins-official",
-    "swift-lsp@claude-plugins-official",
-    "document-skills@anthropic-agent-skills",
-    "example-skills@anthropic-agent-skills",
-    "deslop@kuu-marketplace",
-    "superpowers@superpowers-marketplace"
-  ]
+  "enabledPlugins": {},
+  "language": "English and Japanese are displayed side by side"
 }
