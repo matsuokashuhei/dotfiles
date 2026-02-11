@@ -32,5 +32,9 @@
       }
     ]
   },
-  "language": "English"
+  "language": "English and Japanese are displayed side by side",
+  "statusLine": {
+    "type": "command",
+    "command": "python3 ~/.claude/statusline.py"
+  }
 }
