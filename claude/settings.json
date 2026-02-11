@@ -52,6 +52,7 @@
     "swift-lsp@claude-plugins-official",
     "document-skills@anthropic-agent-skills",
     "example-skills@anthropic-agent-skills",
-    "deslop@kuu-marketplace"
+    "deslop@kuu-marketplace",
+    "superpowers@superpowers-marketplace"
   ]
 }
