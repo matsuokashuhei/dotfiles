@@ -17,22 +17,6 @@ do
   fi
 done
 
-# Claude
-SRC_DIR=$DOTFILES_HOME/claude
-DEST_DIR=$HOME/.claude
-
-mkdir -p $DEST_DIR
-
-for file in settings.json
-do
-  if [ -f $DEST_DIR/$file ]; then
-    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
-  else
-    echo "installing $file to $DEST_DIR/"
-    ln -s $SRC_DIR/$file $DEST_DIR/$file
-  fi
-done
-
 # Ghostty
 SRC_DIR=$DOTFILES_HOME/ghostty
 DEST_DIR=$HOME/.config/ghostty
