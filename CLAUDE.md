@@ -5,10 +5,15 @@ Dotfiles repository for macOS development environment. Configuration files are m
 ## Repository Structure
 
 ```
-├── install.sh          # Install script (creates symlinks & sets up statusline)
+├── install.sh            # Install script (creates symlinks & sets up statusline)
 ├── update.sh             # Statusline update script
 ├── bash/bash_profile     # Bash shell config (legacy, not handled by install.sh)
-├── claude/settings.json  # Claude Code CLI settings
+├── claude/
+│   ├── settings.json     # Claude Code CLI settings
+│   ├── agents/           # Custom agent definitions (9 agents)
+│   ├── commands/         # Slash command definitions (9 commands)
+│   ├── rules/            # Coding rules & guidelines (8 rules)
+│   └── skills/           # Skill definitions (5 files + 4 subdirectories)
 ├── ghostty/config        # Ghostty terminal config
 ├── git/config            # Git user settings & aliases
 └── git/ignore            # Global gitignore (excludes macOS-specific files)
@@ -28,6 +33,10 @@ $HOME/.dotfiles/install.sh
 | `git/config` | `~/.config/git/config` |
 | `git/ignore` | `~/.config/git/ignore` |
 | `claude/settings.json` | `~/.claude/settings.json` |
+| `claude/agents/` | `~/.claude/agents/` |
+| `claude/commands/` | `~/.claude/commands/` |
+| `claude/rules/` | `~/.claude/rules/` |
+| `claude/skills/` | `~/.claude/skills/` |
 | `ghostty/config` | `~/.config/ghostty/config` |
 
 Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
@@ -67,6 +76,17 @@ do
   fi
 done
 ```
+
+### Adding Claude Code Agents, Skills, Rules, or Commands
+
+Since entire directories are symlinked, simply add new `.md` files to the appropriate directory under `claude/`:
+
+- `claude/agents/` — Agent definitions (e.g., `my-agent.md`)
+- `claude/commands/` — Slash command definitions (e.g., `my-command.md`)
+- `claude/rules/` — Coding rules & guidelines (e.g., `my-rule.md`)
+- `claude/skills/` — Skills (either `my-skill.md` or `my-skill/SKILL.md` for complex skills)
+
+No changes to `install.sh` are needed — new files are automatically available via the directory symlink.
 
 ### Git Branch Strategy
 

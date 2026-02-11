@@ -49,6 +49,17 @@ do
   fi
 done
 
+# Claude directories (agents, skills, rules, commands)
+for dir in agents skills rules commands
+do
+  if [ -e $DEST_DIR/$dir ] || [ -L $DEST_DIR/$dir ]; then
+    echo "$DEST_DIR/$dir already exists, aborting to avoid overwriting."
+  else
+    echo "installing $dir to $DEST_DIR/"
+    ln -s $SRC_DIR/$dir $DEST_DIR/$dir
+  fi
+done
+
 # Statusline (usedhonda/statusline)
 STATUSLINE_REPO=$DOTFILES_HOME/repos/statusline
 STATUSLINE_DEST=$HOME/.claude/statusline.py
