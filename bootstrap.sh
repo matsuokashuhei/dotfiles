@@ -3,36 +3,48 @@
 DOTFILES_HOME=$HOME/.dotfiles
 
 # Git
-mkdir -p $HOME/.config/git
+SRC_DIR=$DOTFILES_HOME/git
+DEST_DIR=$HOME/.config/git
+
+mkdir -p $DEST_DIR
 
 for file in config ignore
 do
-  if [ -f $HOME/.config/git/$file ]; then
-    echo "$HOME/.config/git/$file already exists, aborting to avoid overwriting."
+  if [ -f $DEST_DIR/$file ]; then
+    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
   else
-    ln -s $DOTFILES_HOME/git/$file $HOME/.config/git/$file
+    ln -s $SRC_DIR/$file $DEST_DIR/$file
   fi
 done
 
-if [ -f $HOME/.gitconfig ]; then
-  echo "$HOME/.gitconfig already exists, aborting to avoid overwriting."
-else
-  echo "installing .gitconfig to $HOME/ .gitconfig"
-  ln -s $HOME/.config/git/config $HOME/.gitconfig
-fi
-
 # Claude
-mkdir -p $HOME/.config/claude
+SRC_DIR=$DOTFILES_HOME/claude
+DEST_DIR=$HOME/.claude
 
+mkdir -p $DEST_DIR
+
+for file in settings.json
 do
-  if [ -f $HOME/.claude/$file ]; then
-    echo "$HOME/.claude/$file already exists, aborting to avoid overwriting."
+  if [ -f $DEST_DIR/$file ]; then
+    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
   else
-    eecho "installing $file to $HOME/.claude/"
-    ln -s $DOTFILES_HOME/claude/$file $HOME/.claude/$file
+    echo "installing $file to $DEST_DIR/"
+    ln -s $SRC_DIR/$file $DEST_DIR/$file
   fi
 done
 
 # Ghostty
-mkdir -p $HOME/.config/ghostty
-ln -s $DOTFILES_HOME/ghostty/config $HOME/.config/ghostty/config
+SRC_DIR=$DOTFILES_HOME/ghostty
+DEST_DIR=$HOME/.config/ghostty
+
+mkdir -p $DEST_DIR
+
+for file in config
+do
+  if [ -f $DEST_DIR/$file ]; then
+    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
+  else
+    echo "installing $file to $DEST_DIR/"
+    ln -s $SRC_DIR/$file $DEST_DIR/$file
+  fi
+done
