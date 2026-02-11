@@ -20,9 +20,5 @@
       }
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "sh \"$HOME\"/.claude/statusline.sh"
-  },
   "model": "sonnet"
 }

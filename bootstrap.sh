@@ -24,7 +24,6 @@ fi
 # Claude
 mkdir -p $HOME/.config/claude
 
-for file in settings.json statusline.sh
 do
   if [ -f $HOME/.claude/$file ]; then
     echo "$HOME/.claude/$file already exists, aborting to avoid overwriting."
