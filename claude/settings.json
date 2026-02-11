@@ -1,10 +1,22 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(gh issue view:*)",
+      "Bash(gh repo view:*)",
+      "Bash(git branch:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git status:*)",
+      "Bash(git show:*)",
+      "Bash(ls:*)",
       "Bash(xcodebuild:*)",
       "WebFetch(domain:docs.claude.ai)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "defaultMode": "plan"
   },
@@ -20,5 +32,5 @@
       }
     ]
   },
-  "model": "sonnet"
+  "language": "English"
 }
