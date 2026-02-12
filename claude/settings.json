@@ -40,6 +40,16 @@
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
   },
-  "enabledPlugins": {},
+  "extraKnownMarketplaces": {
+    "everything-claude-code": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/everything-claude-code"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "everything-claude-code@everything-claude-code": true
+  },
   "language": "English and Japanese are displayed side by side"
 }

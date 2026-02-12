@@ -5,14 +5,14 @@ Dotfiles repository for macOS development environment. Configuration files are m
 ## Repository Structure
 
 ```
-├── install.sh            # Install script (creates symlinks & sets up statusline)
-├── update.sh             # Statusline update script
+├── install.sh            # Install script (creates symlinks & sets up plugins)
+├── update.sh             # Update script (statusline + everything-claude-code)
 ├── bash/bash_profile     # Bash shell config (legacy, not handled by install.sh)
 ├── claude/
 │   ├── settings.json     # Claude Code CLI settings
 │   ├── agents/           # Custom agent definitions (9 agents)
 │   ├── commands/         # Slash command definitions (9 commands)
-│   ├── rules/            # Coding rules & guidelines (8 rules)
+│   ├── rules/            # Coding rules & guidelines (8 rules + copied from ECC)
 │   └── skills/           # Skill definitions (5 files + 4 subdirectories)
 ├── ghostty/config        # Ghostty terminal config
 ├── git/config            # Git user settings & aliases
@@ -41,13 +41,15 @@ $HOME/.dotfiles/install.sh
 
 Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
 
-## Updating Statusline
+[affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) is cloned to `~/.dotfiles/repos/everything-claude-code`, and its common rules are copied to `claude/rules/`. The plugin itself (agents, skills, commands) is enabled via `settings.json`. Copied rule files are gitignored.
+
+## Updating
 
 ```bash
 $HOME/.dotfiles/update.sh
 ```
 
-Runs `git pull` on `repos/statusline` and overwrites `~/.claude/statusline.py` with the latest `statusline.py`.
+Runs `git pull` on `repos/statusline` and `repos/everything-claude-code`, then overwrites `~/.claude/statusline.py` and `claude/rules/*.md` with the latest versions.
 
 ## Development Guidelines
 

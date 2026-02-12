@@ -76,3 +76,27 @@ else
   echo "installing statusline.py to $HOME/.claude/"
   cp $STATUSLINE_REPO/statusline.py $STATUSLINE_DEST
 fi
+
+# Everything Claude Code (affaan-m/everything-claude-code)
+ECC_REPO=$DOTFILES_HOME/repos/everything-claude-code
+ECC_RULES_DEST=$DOTFILES_HOME/claude/rules
+
+if [ ! -d $ECC_REPO ]; then
+  echo "Cloning affaan-m/everything-claude-code..."
+  mkdir -p $DOTFILES_HOME/repos
+  git clone https://github.com/affaan-m/everything-claude-code.git $ECC_REPO
+fi
+
+# Copy common rules (plugin system cannot distribute rules)
+if [ -d $ECC_REPO/rules/common ]; then
+  for file in $ECC_REPO/rules/common/*.md
+  do
+    filename=$(basename $file)
+    if [ -f $ECC_RULES_DEST/$filename ]; then
+      echo "$ECC_RULES_DEST/$filename already exists, aborting to avoid overwriting."
+    else
+      echo "installing $filename to $ECC_RULES_DEST/"
+      cp $file $ECC_RULES_DEST/$filename
+    fi
+  done
+fi
