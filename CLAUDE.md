@@ -95,8 +95,8 @@ No changes to `install.sh` are needed — new files are automatically available 
 
 ### Git Branch Strategy
 
-- Main branch: `master`
-- feature branch → Pull Request → merge into master
+- Main branch: `main`
+- feature branch → Pull Request → merge into main
 
 ## Notes
 
