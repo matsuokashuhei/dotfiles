@@ -4,11 +4,13 @@
   },
   "permissions": {
     "allow": [
+      "Bash(brew bundle check:*)",
       "Bash(cat:*)",
       "Bash(diff:*)",
       "Bash(gh issue view:*)",
       "Bash(gh repo view:*)",
       "Bash(git branch:*)",
+      "Bash(git checkout:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git ls-files:*)",

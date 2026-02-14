@@ -60,6 +60,14 @@ do
   fi
 done
 
+# Homebrew (Brewfile)
+if command -v brew &>/dev/null; then
+  echo "Installing Homebrew packages from Brewfile..."
+  brew bundle install --file=$DOTFILES_HOME/Brewfile
+else
+  echo "brew not found, skipping Brewfile install."
+fi
+
 # Statusline (usedhonda/statusline)
 STATUSLINE_REPO=$DOTFILES_HOME/repos/statusline
 STATUSLINE_DEST=$HOME/.claude/statusline.py

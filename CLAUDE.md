@@ -7,6 +7,7 @@ Dotfiles repository for macOS development environment. Configuration files are m
 ```
 ├── install.sh            # Install script (creates symlinks & sets up plugins)
 ├── update.sh             # Update script (statusline + everything-claude-code)
+├── Brewfile              # Homebrew bundle (formulae, casks, fonts)
 ├── bash/bash_profile     # Bash shell config (legacy, not handled by install.sh)
 ├── claude/
 │   ├── settings.json     # Claude Code CLI settings
@@ -42,6 +43,8 @@ $HOME/.dotfiles/install.sh
 Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
 
 [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) is cloned to `~/.dotfiles/repos/everything-claude-code`, and its common rules are copied to `claude/rules/`. The plugin itself (agents, skills, commands) is enabled via `settings.json`. Copied rule files are gitignored.
+
+If `brew` is available, `install.sh` also runs `brew bundle install --file=Brewfile` to install all Homebrew packages.
 
 ## Updating
 
