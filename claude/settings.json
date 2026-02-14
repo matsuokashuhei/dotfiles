@@ -17,6 +17,7 @@
       "Bash(find:*)",
       "Bash(ls:*)",
       "Bash(xcodebuild:*)",
+      "WebFetch(domain:api.github.com)",
       "WebFetch(domain:docs.claude.ai)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
@@ -25,6 +26,28 @@
     "defaultMode": "plan"
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c 'import sys,json;print(json.load(sys.stdin).get(\"file_path\",\"\"))' 2>/dev/null) || true; case \"$FILE\" in \"$HOME\"/.config/git/*|\"$HOME\"/.config/ghostty/*|\"$HOME\"/.claude/settings.json) echo 'BLOCK: Edit the source in ~/.dotfiles/ instead of the symlink target' >&2; exit 2;; esac"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c 'import sys,json;print(json.load(sys.stdin).get(\"file_path\",\"\"))' 2>/dev/null) || true; case \"$FILE\" in *.sh) bash -n \"$FILE\";; esac"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
@@ -40,16 +63,46 @@
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
   },
+  "enabledPlugins": {
+    "everything-claude-code@everything-claude-code": true,
+    "superpowers@superpowers-marketplace": false,
+    "document-skills@anthropic-agent-skills": true,
+    "example-skills@anthropic-agent-skills": false,
+    "claude-code-setup@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true
+  },
   "extraKnownMarketplaces": {
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
     "everything-claude-code": {
       "source": {
         "source": "github",
         "repo": "affaan-m/everything-claude-code"
       }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
     }
-  },
-  "enabledPlugins": {
-    "everything-claude-code@everything-claude-code": true
   },
   "language": "English and Japanese are displayed side by side"
 }

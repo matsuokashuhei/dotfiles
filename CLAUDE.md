@@ -10,10 +10,10 @@ Dotfiles repository for macOS development environment. Configuration files are m
 ├── bash/bash_profile     # Bash shell config (legacy, not handled by install.sh)
 ├── claude/
 │   ├── settings.json     # Claude Code CLI settings
-│   ├── agents/           # Custom agent definitions (9 agents)
-│   ├── commands/         # Slash command definitions (9 commands)
-│   ├── rules/            # Coding rules & guidelines (8 rules + copied from ECC)
-│   └── skills/           # Skill definitions (5 files + 4 subdirectories)
+│   ├── agents/           # Custom agent definitions
+│   ├── commands/         # Slash command definitions
+│   ├── rules/            # Coding rules & guidelines (copied from ECC, gitignored)
+│   └── skills/           # Skill definitions (add-config, learned/)
 ├── ghostty/config        # Ghostty terminal config
 ├── git/config            # Git user settings & aliases
 └── git/ignore            # Global gitignore (excludes macOS-specific files)
@@ -101,3 +101,21 @@ No changes to `install.sh` are needed — new files are automatically available 
 - `bash/bash_profile` is not included in `install.sh` (legacy)
 - Assumes a macOS-specific environment (Homebrew, `afplay`, etc.)
 - Claude Code settings have `defaultMode: "plan"` and `language: "English and Japanese are displayed side by side"` enabled
+
+### Hooks
+
+Configured in `claude/settings.json`:
+
+| Hook | Trigger | Action |
+|------|---------|--------|
+| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.claude/settings.json`) |
+| PostToolUse | Edit/Write | Runs `bash -n` syntax check on `.sh` files |
+| Stop | Session end | Plays notification sound (`Blow.aiff`) |
+
+### Gitignored Paths
+
+| Pattern | Reason |
+|---------|--------|
+| `repos/` | External cloned repositories |
+| `claude/rules/*.md` | Copied from everything-claude-code (not authored here) |
+| `.claude/settings.local.json` | Machine-specific local settings |
