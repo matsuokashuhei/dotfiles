@@ -33,6 +33,22 @@ do
   fi
 done
 
+# Lazygit
+SRC_DIR=$DOTFILES_HOME/lazygit
+DEST_DIR=$HOME/.config/lazygit
+
+mkdir -p $DEST_DIR
+
+for file in config.yml
+do
+  if [ -f $DEST_DIR/$file ]; then
+    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
+  else
+    echo "installing $file to $DEST_DIR/"
+    ln -s $SRC_DIR/$file $DEST_DIR/$file
+  fi
+done
+
 # Starship
 SRC_DIR=$DOTFILES_HOME/starship
 DEST=$HOME/.config/starship.toml
