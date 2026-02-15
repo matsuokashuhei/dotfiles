@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# Pre-commit hook for this repository.
+# Bypass with: git commit --no-verify
+
+set -euo pipefail
+
+ERRORS=0
+
+error() {
+  echo "ERROR: $1"
+  ERRORS=$((ERRORS + 1))
+}
+
+# Shell syntax checks
+for file in install.sh update.sh; do
+  if ! bash -n "$file"; then
+    error "$file has syntax errors"
+  fi
+done
+
+# Brewfile validation
+if command -v brew &>/dev/null; then
+  if ! brew bundle check --file=Brewfile 2>/dev/null; then
+    error "Brewfile check failed (missing packages?)"
+  fi
+else
+  echo "WARNING: brew not found, skipping Brewfile check"
+fi
+
+if [ "$ERRORS" -gt 0 ]; then
+  echo ""
+  echo "$ERRORS error(s) found. Commit aborted."
+  exit 1
+fi

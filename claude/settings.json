@@ -4,6 +4,7 @@
   },
   "permissions": {
     "allow": [
+      "Bash(bash -n:*)",
       "Bash(brew bundle check:*)",
       "Bash(cat:*)",
       "Bash(diff:*)",
@@ -21,6 +22,8 @@
       "Bash(git status:*)",
       "Bash(find:*)",
       "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(xargs:*)",
       "Bash(xcodebuild:*)",
       "WebFetch(domain:api.github.com)",
       "WebFetch(domain:docs.claude.ai)",
