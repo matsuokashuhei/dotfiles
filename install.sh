@@ -33,6 +33,17 @@ do
   fi
 done
 
+# Starship
+SRC_DIR=$DOTFILES_HOME/starship
+DEST=$HOME/.config/starship.toml
+
+if [ -f $DEST ]; then
+  echo "$DEST already exists, aborting to avoid overwriting."
+else
+  echo "installing starship.toml to ~/.config/"
+  ln -s $SRC_DIR/starship.toml $DEST
+fi
+
 # Claude
 SRC_DIR=$DOTFILES_HOME/claude
 DEST_DIR=$HOME/.claude

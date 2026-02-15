@@ -17,7 +17,8 @@ Dotfiles repository for macOS development environment. Configuration files are m
 │   └── skills/           # Skill definitions (add-config, learned/)
 ├── ghostty/config        # Ghostty terminal config
 ├── git/config            # Git user settings & aliases
-└── git/ignore            # Global gitignore (excludes macOS-specific files)
+├── git/ignore            # Global gitignore (excludes macOS-specific files)
+└── starship/starship.toml # Starship prompt config
 ```
 
 ## Installation
@@ -39,6 +40,7 @@ $HOME/.dotfiles/install.sh
 | `claude/rules/` | `~/.claude/rules/` |
 | `claude/skills/` | `~/.claude/skills/` |
 | `ghostty/config` | `~/.config/ghostty/config` |
+| `starship/starship.toml` | `~/.config/starship.toml` |
 
 Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
 
@@ -111,7 +113,7 @@ Configured in `claude/settings.json`:
 
 | Hook | Trigger | Action |
 |------|---------|--------|
-| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.claude/settings.json`) |
+| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.config/starship.toml`, `~/.claude/settings.json`) |
 | PostToolUse | Edit/Write | Runs `bash -n` syntax check on `.sh` files |
 | Stop | Session end | Plays notification sound (`Blow.aiff`) |
 

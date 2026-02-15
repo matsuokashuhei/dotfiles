@@ -16,9 +16,10 @@ Dotfiles repository for macOS development environment. Configuration files are m
 │   ├── rules/            # Coding rules & guidelines (copied from ECC, gitignored)
 │   └── skills/           # Skill definitions (add-config, learned/)
 ├── ghostty/config        # Ghostty terminal config
-└── git/
-    ├── config            # Git user settings & aliases
-    └── ignore            # Global gitignore (excludes macOS-specific files)
+├── git/
+│   ├── config            # Git user settings & aliases
+│   └── ignore            # Global gitignore (excludes macOS-specific files)
+└── starship/starship.toml # Starship prompt config
 ```
 
 ## Installation
@@ -40,6 +41,7 @@ $HOME/.dotfiles/install.sh
 | `claude/rules/` | `~/.claude/rules/` |
 | `claude/skills/` | `~/.claude/skills/` |
 | `ghostty/config` | `~/.config/ghostty/config` |
+| `starship/starship.toml` | `~/.config/starship.toml` |
 
 Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
 
