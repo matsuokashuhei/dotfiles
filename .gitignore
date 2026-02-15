@@ -1,3 +1,2 @@
 repos/
-claude/rules/*.md
 .claude/settings.local.json
