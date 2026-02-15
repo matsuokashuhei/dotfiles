@@ -106,6 +106,9 @@ No changes to `install.sh` are needed — new files are automatically available 
 - `bash/bash_profile` is not included in `install.sh` (legacy)
 - Assumes a macOS-specific environment (Homebrew, `afplay`, etc.)
 - Claude Code settings have `defaultMode: "plan"` and `language: "English and Japanese are displayed side by side"` enabled
+- **NEVER use `git -C`** — Always run git commands from the working directory directly. Do not use `git -C <path>` to specify a different directory. This flag bypasses hook-based permission controls.
+  - OK: `git show 7e2fd89:install.sh`
+  - NG: `git -C /Users/matsuokashuhei/.dotfiles show 7e2fd89:install.sh`
 
 ### Hooks
 
