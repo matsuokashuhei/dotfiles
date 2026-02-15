@@ -1,6 +1,7 @@
 brew "gh"
 brew "git"
 brew "jq"
+brew "lazygit"
 brew "nvm"
 brew "starship"
 brew "tmux"
