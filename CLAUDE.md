@@ -10,6 +10,7 @@ Dotfiles repository for macOS development environment. Configuration files are m
 ├── Brewfile              # Homebrew bundle (formulae, casks, fonts)
 ├── bash/bash_profile     # Bash shell config (legacy, not handled by install.sh)
 ├── claude/
+│   ├── CLAUDE.md         # User-level Claude Code instructions
 │   ├── settings.json     # Claude Code CLI settings
 │   ├── agents/           # Custom agent definitions
 │   ├── commands/         # Slash command definitions
@@ -35,6 +36,7 @@ $HOME/.dotfiles/install.sh
 |--------|----------|
 | `git/config` | `~/.config/git/config` |
 | `git/ignore` | `~/.config/git/ignore` |
+| `claude/CLAUDE.md` | `~/.claude/CLAUDE.md` |
 | `claude/settings.json` | `~/.claude/settings.json` |
 | `claude/agents/` | `~/.claude/agents/` |
 | `claude/commands/` | `~/.claude/commands/` |
@@ -118,7 +120,7 @@ Configured in `claude/settings.json`:
 
 | Hook | Trigger | Action |
 |------|---------|--------|
-| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.config/lazygit/`, `~/.config/starship.toml`, `~/.claude/settings.json`) |
+| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.config/lazygit/`, `~/.config/starship.toml`, `~/.claude/settings.json`, `~/.claude/CLAUDE.md`) |
 | PostToolUse | Edit/Write | Runs `bash -n` syntax check on `.sh` files |
 | Stop | Session end | Plays notification sound (`Blow.aiff`) |
 
