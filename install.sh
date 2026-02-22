@@ -66,7 +66,7 @@ DEST_DIR=$HOME/.claude
 
 mkdir -p $DEST_DIR
 
-for file in settings.json
+for file in settings.json CLAUDE.md
 do
   if [ -f $DEST_DIR/$file ]; then
     echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
