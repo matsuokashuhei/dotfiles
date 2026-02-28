@@ -98,23 +98,12 @@
     "command": "python3 ~/.claude/statusline.py"
   },
   "enabledPlugins": {
-    "everything-claude-code@everything-claude-code": true,
-    "document-skills@anthropic-agent-skills": true,
+    "everything-claude-code@everything-claude-code": false,
+    "document-skills@anthropic-agent-skills": false,
     "example-skills@anthropic-agent-skills": false
   },
   "extraKnownMarketplaces": {
-    "anthropic-agent-skills": {
-      "source": {
-        "source": "github",
-        "repo": "anthropics/skills"
-      }
-    },
-    "everything-claude-code": {
-      "source": {
-        "source": "github",
-        "repo": "affaan-m/everything-claude-code"
-      }
-    }
   },
-  "language": "English and Japanese are displayed side by side"
+  "language": "English and Japanese are displayed side by side",
+  "includeCoAuthoredBy": true
 }
