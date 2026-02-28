@@ -146,3 +146,115 @@ if [ -d $ECC_REPO/rules/common ]; then
     fi
   done
 fi
+
+# Claude Plugins Official (anthropics/claude-plugins-official)
+CPO_REPO=$DOTFILES_HOME/repos/claude-plugins-official
+CPO_PLUGINS=$CPO_REPO/plugins
+
+if [ ! -d $CPO_REPO ]; then
+  echo "Cloning anthropics/claude-plugins-official..."
+  mkdir -p $DOTFILES_HOME/repos
+  git clone https://github.com/anthropics/claude-plugins-official.git $CPO_REPO
+fi
+
+# Superpowers (obra/superpowers) — external plugin referenced by CPO
+SP_REPO=$DOTFILES_HOME/repos/superpowers
+
+if [ ! -d $SP_REPO ]; then
+  echo "Cloning obra/superpowers..."
+  mkdir -p $DOTFILES_HOME/repos
+  git clone https://github.com/obra/superpowers.git $SP_REPO
+fi
+
+# Helper: copy agent with plugin prefix to avoid name collisions
+# Usage: copy_agent <source_file> <plugin_name>
+copy_agent() {
+  local src=$1
+  local plugin=$2
+  local agent_name=$(basename $src)
+  local dest=$DOTFILES_HOME/claude/agents/${plugin}--${agent_name}
+  if [ -f $dest ]; then
+    echo "$dest already exists, aborting to avoid overwriting."
+  else
+    echo "installing ${plugin}--${agent_name} to claude/agents/"
+    cp $src $dest
+  fi
+}
+
+# Helper: copy command (no prefix needed — no conflicts)
+# Usage: copy_command <source_file>
+copy_command() {
+  local src=$1
+  local filename=$(basename $src)
+  local dest=$DOTFILES_HOME/claude/commands/$filename
+  if [ -f $dest ]; then
+    echo "$dest already exists, aborting to avoid overwriting."
+  else
+    echo "installing $filename to claude/commands/"
+    cp $src $dest
+  fi
+}
+
+# Helper: copy skill directory
+# Usage: copy_skill <source_dir>
+copy_skill() {
+  local src=$1
+  local dirname=$(basename $src)
+  local dest=$DOTFILES_HOME/claude/skills/$dirname
+  if [ -d $dest ]; then
+    echo "$dest already exists, aborting to avoid overwriting."
+  else
+    echo "installing skill $dirname to claude/skills/"
+    cp -r $src $dest
+  fi
+}
+
+# CPO agents (prefixed with plugin name)
+copy_agent $CPO_PLUGINS/code-simplifier/agents/code-simplifier.md code-simplifier
+copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/code-reviewer.md pr-review-toolkit
+copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/code-simplifier.md pr-review-toolkit
+copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/comment-analyzer.md pr-review-toolkit
+copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/pr-test-analyzer.md pr-review-toolkit
+copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/silent-failure-hunter.md pr-review-toolkit
+copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/type-design-analyzer.md pr-review-toolkit
+copy_agent $CPO_PLUGINS/feature-dev/agents/code-architect.md feature-dev
+copy_agent $CPO_PLUGINS/feature-dev/agents/code-explorer.md feature-dev
+copy_agent $CPO_PLUGINS/feature-dev/agents/code-reviewer.md feature-dev
+
+# Superpowers agent (prefixed)
+copy_agent $SP_REPO/agents/code-reviewer.md superpowers
+
+# CPO commands
+copy_command $CPO_PLUGINS/commit-commands/commands/clean_gone.md
+copy_command $CPO_PLUGINS/commit-commands/commands/commit-push-pr.md
+copy_command $CPO_PLUGINS/commit-commands/commands/commit.md
+copy_command $CPO_PLUGINS/code-review/commands/code-review.md
+copy_command $CPO_PLUGINS/pr-review-toolkit/commands/review-pr.md
+copy_command $CPO_PLUGINS/claude-md-management/commands/revise-claude-md.md
+copy_command $CPO_PLUGINS/feature-dev/commands/feature-dev.md
+
+# Superpowers commands
+copy_command $SP_REPO/commands/brainstorm.md
+copy_command $SP_REPO/commands/execute-plan.md
+copy_command $SP_REPO/commands/write-plan.md
+
+# CPO skills
+copy_skill $CPO_PLUGINS/claude-code-setup/skills/claude-automation-recommender
+copy_skill $CPO_PLUGINS/claude-md-management/skills/claude-md-improver
+
+# Superpowers skills (14 directories)
+for skill_dir in $SP_REPO/skills/*/
+do
+  copy_skill $skill_dir
+done
+
+# CPO hooks
+HOOKS_DEST=$DOTFILES_HOME/claude/hooks
+
+# security-guidance hook
+if [ -f $HOOKS_DEST/security_reminder_hook.py ]; then
+  echo "$HOOKS_DEST/security_reminder_hook.py already exists, aborting to avoid overwriting."
+else
+  echo "installing security_reminder_hook.py to claude/hooks/"
+  cp $CPO_PLUGINS/security-guidance/hooks/security_reminder_hook.py $HOOKS_DEST/security_reminder_hook.py
+fi
