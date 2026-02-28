@@ -60,6 +60,17 @@ else
   ln -s $SRC_DIR/starship.toml $DEST
 fi
 
+# Neovim (LazyVim)
+SRC_DIR=$DOTFILES_HOME/nvim
+DEST=$HOME/.config/nvim
+
+if [ -e $DEST ] || [ -L $DEST ]; then
+  echo "$DEST already exists, aborting to avoid overwriting."
+else
+  echo "installing nvim config to ~/.config/nvim"
+  ln -s $SRC_DIR $DEST
+fi
+
 # Claude
 SRC_DIR=$DOTFILES_HOME/claude
 DEST_DIR=$HOME/.claude

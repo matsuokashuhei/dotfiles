@@ -20,6 +20,15 @@ Dotfiles repository for macOS development environment. Configuration files are m
 ├── git/config            # Git user settings & aliases
 ├── git/ignore            # Global gitignore (excludes macOS-specific files)
 ├── lazygit/config.yml    # Lazygit TUI config
+├── nvim/                 # Neovim (LazyVim) config
+│   ├── init.lua
+│   ├── lazy-lock.json
+│   ├── lazyvim.json
+│   ├── .neoconf.json
+│   ├── stylua.toml
+│   └── lua/
+│       ├── config/       # LazyVim core config (lazy, options, keymaps, autocmds)
+│       └── plugins/      # Plugin specs
 └── starship/starship.toml # Starship prompt config
 ```
 
@@ -44,6 +53,7 @@ $HOME/.dotfiles/install.sh
 | `claude/skills/` | `~/.claude/skills/` |
 | `ghostty/config` | `~/.config/ghostty/config` |
 | `lazygit/config.yml` | `~/.config/lazygit/config.yml` |
+| `nvim/` | `~/.config/nvim` |
 | `starship/starship.toml` | `~/.config/starship.toml` |
 
 Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
@@ -120,7 +130,7 @@ Configured in `claude/settings.json`:
 
 | Hook | Trigger | Action |
 |------|---------|--------|
-| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.config/lazygit/`, `~/.config/starship.toml`, `~/.claude/settings.json`, `~/.claude/CLAUDE.md`) |
+| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.config/lazygit/`, `~/.config/nvim/`, `~/.config/starship.toml`, `~/.claude/settings.json`, `~/.claude/CLAUDE.md`) |
 | PostToolUse | Edit/Write | Runs `bash -n` syntax check on `.sh` files |
 | Stop | Session end | Plays notification sound (`Blow.aiff`) |
 
