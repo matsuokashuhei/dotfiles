@@ -133,17 +133,11 @@ if [ ! -d $ECC_REPO ]; then
   git clone https://github.com/affaan-m/everything-claude-code.git $ECC_REPO
 fi
 
-# Copy common rules (plugin system cannot distribute rules)
+# Copy common rules (prefixed to avoid collision with user rules)
 if [ -d $ECC_REPO/rules/common ]; then
   for file in $ECC_REPO/rules/common/*.md
   do
-    filename=$(basename $file)
-    if [ -f $ECC_RULES_DEST/$filename ]; then
-      echo "$ECC_RULES_DEST/$filename already exists, aborting to avoid overwriting."
-    else
-      echo "installing $filename to $ECC_RULES_DEST/"
-      cp $file $ECC_RULES_DEST/$filename
-    fi
+    copy_rule $file everything-claude-code
   done
 fi
 
@@ -181,16 +175,17 @@ copy_agent() {
   fi
 }
 
-# Helper: copy command (no prefix needed — no conflicts)
-# Usage: copy_command <source_file>
+# Helper: copy command with plugin prefix to avoid name collisions
+# Usage: copy_command <source_file> <plugin_name>
 copy_command() {
   local src=$1
-  local filename=$(basename $src)
-  local dest=$DOTFILES_HOME/claude/commands/$filename
+  local plugin=$2
+  local cmd_name=$(basename $src)
+  local dest=$DOTFILES_HOME/claude/commands/${plugin}--${cmd_name}
   if [ -f $dest ]; then
     echo "$dest already exists, aborting to avoid overwriting."
   else
-    echo "installing $filename to claude/commands/"
+    echo "installing ${plugin}--${cmd_name} to claude/commands/"
     cp $src $dest
   fi
 }
@@ -209,6 +204,21 @@ copy_skill() {
   fi
 }
 
+# Helper: copy rule with plugin prefix to avoid name collisions
+# Usage: copy_rule <source_file> <plugin_name>
+copy_rule() {
+  local src=$1
+  local plugin=$2
+  local rule_name=$(basename $src)
+  local dest=$DOTFILES_HOME/claude/rules/${plugin}--${rule_name}
+  if [ -f $dest ]; then
+    echo "$dest already exists, aborting to avoid overwriting."
+  else
+    echo "installing ${plugin}--${rule_name} to claude/rules/"
+    cp $src $dest
+  fi
+}
+
 # CPO agents (prefixed with plugin name)
 copy_agent $CPO_PLUGINS/code-simplifier/agents/code-simplifier.md code-simplifier
 copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/code-reviewer.md pr-review-toolkit
@@ -224,19 +234,19 @@ copy_agent $CPO_PLUGINS/feature-dev/agents/code-reviewer.md feature-dev
 # Superpowers agent (prefixed)
 copy_agent $SP_REPO/agents/code-reviewer.md superpowers
 
-# CPO commands
-copy_command $CPO_PLUGINS/commit-commands/commands/clean_gone.md
-copy_command $CPO_PLUGINS/commit-commands/commands/commit-push-pr.md
-copy_command $CPO_PLUGINS/commit-commands/commands/commit.md
-copy_command $CPO_PLUGINS/code-review/commands/code-review.md
-copy_command $CPO_PLUGINS/pr-review-toolkit/commands/review-pr.md
-copy_command $CPO_PLUGINS/claude-md-management/commands/revise-claude-md.md
-copy_command $CPO_PLUGINS/feature-dev/commands/feature-dev.md
+# CPO commands (prefixed with plugin name)
+copy_command $CPO_PLUGINS/commit-commands/commands/clean_gone.md commit-commands
+copy_command $CPO_PLUGINS/commit-commands/commands/commit-push-pr.md commit-commands
+copy_command $CPO_PLUGINS/commit-commands/commands/commit.md commit-commands
+copy_command $CPO_PLUGINS/code-review/commands/code-review.md code-review
+copy_command $CPO_PLUGINS/pr-review-toolkit/commands/review-pr.md pr-review-toolkit
+copy_command $CPO_PLUGINS/claude-md-management/commands/revise-claude-md.md claude-md-management
+copy_command $CPO_PLUGINS/feature-dev/commands/feature-dev.md feature-dev
 
-# Superpowers commands
-copy_command $SP_REPO/commands/brainstorm.md
-copy_command $SP_REPO/commands/execute-plan.md
-copy_command $SP_REPO/commands/write-plan.md
+# Superpowers commands (prefixed)
+copy_command $SP_REPO/commands/brainstorm.md superpowers
+copy_command $SP_REPO/commands/execute-plan.md superpowers
+copy_command $SP_REPO/commands/write-plan.md superpowers
 
 # CPO skills
 copy_skill $CPO_PLUGINS/claude-code-setup/skills/claude-automation-recommender
