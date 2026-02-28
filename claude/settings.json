@@ -8,11 +8,15 @@
       "Bash(brew bundle check:*)",
       "Bash(cat:*)",
       "Bash(diff:*)",
+      "Bash(find:*)",
       "Bash(gh issue view:*)",
       "Bash(gh repo view:*)",
       "Bash(git add:*)",
       "Bash(git branch:*)",
       "Bash(git checkout:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git clone:*)",
+      "Bash(git config:*)",
       "Bash(git diff:*)",
       "Bash(git fetch:*)",
       "Bash(git log:*)",
@@ -20,9 +24,10 @@
       "Bash(git pull:*)",
       "Bash(git show:*)",
       "Bash(git status:*)",
-      "Bash(find:*)",
+      "Bash(head:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
+      "Bash(wc:*)",
       "Bash(xargs:*)",
       "Bash(xcodebuild:*)",
       "WebFetch(domain:api.github.com)",
@@ -41,6 +46,15 @@
           {
             "type": "command",
             "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c 'import sys,json;print(json.load(sys.stdin).get(\"file_path\",\"\"))' 2>/dev/null) || true; case \"$FILE\" in \"$HOME\"/.config/git/*|\"$HOME\"/.config/ghostty/*|\"$HOME\"/.config/lazygit/*|\"$HOME\"/.config/nvim/*|\"$HOME\"/.config/starship.toml|\"$HOME\"/.claude/settings.json|\"$HOME\"/.claude/CLAUDE.md) echo 'BLOCK: Edit the source in ~/.dotfiles/ instead of the symlink target' >&2; exit 2;; esac"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $HOME/.dotfiles/claude/hooks/security_reminder_hook.py"
           }
         ]
       }
@@ -65,6 +79,18 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.dotfiles/claude/hooks/superpowers-session-start",
+            "async": false
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -72,46 +98,12 @@
     "command": "python3 ~/.claude/statusline.py"
   },
   "enabledPlugins": {
-    "everything-claude-code@everything-claude-code": true,
-    "superpowers@superpowers-marketplace": false,
-    "document-skills@anthropic-agent-skills": true,
-    "example-skills@anthropic-agent-skills": false,
-    "claude-code-setup@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "security-guidance@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "everything-claude-code@everything-claude-code": false,
+    "document-skills@anthropic-agent-skills": false,
+    "example-skills@anthropic-agent-skills": false
   },
   "extraKnownMarketplaces": {
-    "anthropic-agent-skills": {
-      "source": {
-        "source": "github",
-        "repo": "anthropics/skills"
-      }
-    },
-    "claude-plugins-official": {
-      "source": {
-        "source": "github",
-        "repo": "anthropics/claude-plugins-official"
-      }
-    },
-    "everything-claude-code": {
-      "source": {
-        "source": "github",
-        "repo": "affaan-m/everything-claude-code"
-      }
-    },
-    "superpowers-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "obra/superpowers-marketplace"
-      }
-    }
   },
-  "language": "English and Japanese are displayed side by side"
+  "language": "English and Japanese are displayed side by side",
+  "includeCoAuthoredBy": true
 }

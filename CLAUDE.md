@@ -6,16 +6,17 @@ Dotfiles repository for macOS development environment. Configuration files are m
 
 ```
 ├── install.sh            # Install script (creates symlinks & sets up plugins)
-├── update.sh             # Update script (statusline + everything-claude-code)
+├── update.sh             # Update script (statusline, ECC, CPO, superpowers)
 ├── Brewfile              # Homebrew bundle (formulae, casks, fonts)
 ├── bash/bash_profile     # Bash shell config (legacy, not handled by install.sh)
 ├── claude/
 │   ├── CLAUDE.md         # User-level Claude Code instructions
 │   ├── settings.json     # Claude Code CLI settings
-│   ├── agents/           # Custom agent definitions
-│   ├── commands/         # Slash command definitions
-│   ├── rules/            # Coding rules & guidelines (copied from ECC, gitignored)
-│   └── skills/           # Skill definitions (add-config, learned/)
+│   ├── agents/           # Custom + copied agent definitions ({plugin}--{agent}.md)
+│   ├── commands/         # Custom + copied slash commands ({plugin}--{cmd}.md)
+│   ├── hooks/            # Hook scripts (security reminder, session-start)
+│   ├── rules/            # Custom rules + copied ECC rules ({plugin}--{rule}.md)
+│   └── skills/           # Custom + copied skill definitions
 ├── ghostty/config        # Ghostty terminal config
 ├── git/config            # Git user settings & aliases
 ├── git/ignore            # Global gitignore (excludes macOS-specific files)
@@ -56,9 +57,18 @@ $HOME/.dotfiles/install.sh
 | `nvim/` | `~/.config/nvim` |
 | `starship/starship.toml` | `~/.config/starship.toml` |
 
-Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
+Additionally, the following repositories are cloned to `~/.dotfiles/repos/` and their assets copied:
 
-[affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) is cloned to `~/.dotfiles/repos/everything-claude-code`, and its common rules are copied to `claude/rules/`. The plugin itself (agents, skills, commands) is enabled via `settings.json`. Copied rule files are gitignored.
+| Repository | Clone Path | What's Copied |
+|------------|-----------|--------------|
+| [usedhonda/statusline](https://github.com/usedhonda/statusline) | `repos/statusline` | `statusline.py` → `~/.claude/statusline.py` |
+| [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) | `repos/everything-claude-code` | `rules/common/*.md` → `claude/rules/everything-claude-code--{name}.md`. Plugin (agents, skills, commands) still loaded via `settings.json` |
+| [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | `repos/claude-plugins-official` | Agents, commands, skills, hooks → `claude/` (see below) |
+| [obra/superpowers](https://github.com/obra/superpowers) | `repos/superpowers` | Agents, commands, skills → `claude/` (see below) |
+
+**Naming convention for copied assets:** Copied agent, command, and rule files use `{plugin}--{name}.md` prefix to avoid name collisions (e.g., `pr-review-toolkit--code-reviewer.md`, `commit-commands--commit.md`, `everything-claude-code--coding-style.md`). Skills use original directory names.
+
+**Hooks directory:** `claude/hooks/` contains hook scripts referenced directly from `settings.json` (not symlinked, not a plugin). Includes `security_reminder_hook.py` (from CPO security-guidance) and `superpowers-session-start` (adapted from obra/superpowers).
 
 If `brew` is available, `install.sh` also runs `brew bundle install --file=Brewfile` to install all Homebrew packages.
 
@@ -68,7 +78,7 @@ If `brew` is available, `install.sh` also runs `brew bundle install --file=Brewf
 $HOME/.dotfiles/update.sh
 ```
 
-Runs `git pull` on `repos/statusline` and `repos/everything-claude-code`, then overwrites `~/.claude/statusline.py` and `claude/rules/*.md` with the latest versions.
+Runs `git pull` on all four repos (`repos/statusline`, `repos/everything-claude-code`, `repos/claude-plugins-official`, `repos/superpowers`), then overwrites all copied files (statusline, rules, agents, commands, skills, hooks) with the latest versions.
 
 ## Development Guidelines
 
@@ -131,7 +141,9 @@ Configured in `claude/settings.json`:
 | Hook | Trigger | Action |
 |------|---------|--------|
 | PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.config/lazygit/`, `~/.config/nvim/`, `~/.config/starship.toml`, `~/.claude/settings.json`, `~/.claude/CLAUDE.md`) |
+| PreToolUse | Edit/Write | Security reminder hook (`claude/hooks/security_reminder_hook.py`) — warns about XSS, injection, unsafe patterns |
 | PostToolUse | Edit/Write | Runs `bash -n` syntax check on `.sh` files |
+| SessionStart | startup/resume/clear/compact | Injects superpowers using-superpowers skill as context (`claude/hooks/superpowers-session-start`) |
 | Stop | Session end | Plays notification sound (`Blow.aiff`) |
 
 ### Gitignored Paths
@@ -139,5 +151,9 @@ Configured in `claude/settings.json`:
 | Pattern | Reason |
 |---------|--------|
 | `repos/` | External cloned repositories |
-| `claude/rules/*.md` | Copied from everything-claude-code (not authored here) |
+| `claude/rules/everything-claude-code--{name}.md` | Copied from everything-claude-code (8 rule files) |
+| `claude/agents/*--*.md` | Copied from CPO/superpowers (prefixed agents) |
+| `claude/commands/{plugin}--{name}.md` | Copied from CPO/superpowers (10 command files) |
+| `claude/skills/{name}/` | Copied from CPO/superpowers (16 skill directories) |
+| `claude/hooks/security_reminder_hook.py` | Copied from CPO security-guidance |
 | `.claude/settings.local.json` | Machine-specific local settings |
