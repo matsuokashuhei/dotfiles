@@ -1,2 +1,35 @@
 repos/
 .claude/settings.local.json
+
+# everything-claude-code rules (copied by install.sh/update.sh)
+claude/rules/*.md
+
+# claude-plugins-official + superpowers (copied by install.sh/update.sh)
+claude/agents/*--*.md
+claude/commands/clean_gone.md
+claude/commands/commit-push-pr.md
+claude/commands/commit.md
+claude/commands/code-review.md
+claude/commands/review-pr.md
+claude/commands/revise-claude-md.md
+claude/commands/feature-dev.md
+claude/commands/brainstorm.md
+claude/commands/execute-plan.md
+claude/commands/write-plan.md
+claude/skills/claude-automation-recommender/
+claude/skills/claude-md-improver/
+claude/skills/brainstorming/
+claude/skills/dispatching-parallel-agents/
+claude/skills/executing-plans/
+claude/skills/finishing-a-development-branch/
+claude/skills/receiving-code-review/
+claude/skills/requesting-code-review/
+claude/skills/subagent-driven-development/
+claude/skills/systematic-debugging/
+claude/skills/test-driven-development/
+claude/skills/using-git-worktrees/
+claude/skills/using-superpowers/
+claude/skills/verification-before-completion/
+claude/skills/writing-plans/
+claude/skills/writing-skills/
+claude/hooks/security_reminder_hook.py
