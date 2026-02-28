@@ -4,12 +4,14 @@ repos/
 # everything-claude-code rules (copied by install.sh/update.sh)
 claude/rules/everything-claude-code--agents.md
 claude/rules/everything-claude-code--coding-style.md
+claude/rules/everything-claude-code--development-workflow.md
 claude/rules/everything-claude-code--git-workflow.md
 claude/rules/everything-claude-code--hooks.md
 claude/rules/everything-claude-code--patterns.md
 claude/rules/everything-claude-code--performance.md
 claude/rules/everything-claude-code--security.md
 claude/rules/everything-claude-code--testing.md
+
 
 # claude-plugins-official + superpowers (copied by install.sh/update.sh)
 claude/agents/code-simplifier--code-simplifier.md
