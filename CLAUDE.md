@@ -13,9 +13,9 @@ Dotfiles repository for macOS development environment. Configuration files are m
 │   ├── CLAUDE.md         # User-level Claude Code instructions
 │   ├── settings.json     # Claude Code CLI settings
 │   ├── agents/           # Custom + copied agent definitions ({plugin}--{agent}.md)
-│   ├── commands/         # Custom + copied slash commands
+│   ├── commands/         # Custom + copied slash commands ({plugin}--{cmd}.md)
 │   ├── hooks/            # Hook scripts (security reminder, session-start)
-│   ├── rules/            # Coding rules & guidelines (copied from ECC, gitignored)
+│   ├── rules/            # Custom rules + copied ECC rules ({plugin}--{rule}.md)
 │   └── skills/           # Custom + copied skill definitions
 ├── ghostty/config        # Ghostty terminal config
 ├── git/config            # Git user settings & aliases
@@ -62,11 +62,11 @@ Additionally, the following repositories are cloned to `~/.dotfiles/repos/` and 
 | Repository | Clone Path | What's Copied |
 |------------|-----------|--------------|
 | [usedhonda/statusline](https://github.com/usedhonda/statusline) | `repos/statusline` | `statusline.py` → `~/.claude/statusline.py` |
-| [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) | `repos/everything-claude-code` | `rules/common/*.md` → `claude/rules/`. Plugin (agents, skills, commands) still loaded via `settings.json` |
+| [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) | `repos/everything-claude-code` | `rules/common/*.md` → `claude/rules/everything-claude-code--{name}.md`. Plugin (agents, skills, commands) still loaded via `settings.json` |
 | [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | `repos/claude-plugins-official` | Agents, commands, skills, hooks → `claude/` (see below) |
 | [obra/superpowers](https://github.com/obra/superpowers) | `repos/superpowers` | Agents, commands, skills → `claude/` (see below) |
 
-**Agent naming convention:** Copied agent files use `{plugin}--{agent}.md` prefix to avoid name collisions (e.g., `pr-review-toolkit--code-reviewer.md`, `feature-dev--code-reviewer.md`). Commands and skills have no conflicts and use original names.
+**Naming convention for copied assets:** Copied agent, command, and rule files use `{plugin}--{name}.md` prefix to avoid name collisions (e.g., `pr-review-toolkit--code-reviewer.md`, `commit-commands--commit.md`, `everything-claude-code--coding-style.md`). Skills use original directory names.
 
 **Hooks directory:** `claude/hooks/` contains hook scripts referenced directly from `settings.json` (not symlinked, not a plugin). Includes `security_reminder_hook.py` (from CPO security-guidance) and `superpowers-session-start` (adapted from obra/superpowers).
 
@@ -151,9 +151,9 @@ Configured in `claude/settings.json`:
 | Pattern | Reason |
 |---------|--------|
 | `repos/` | External cloned repositories |
-| `claude/rules/*.md` | Copied from everything-claude-code (not authored here) |
+| `claude/rules/everything-claude-code--{name}.md` | Copied from everything-claude-code (8 rule files) |
 | `claude/agents/*--*.md` | Copied from CPO/superpowers (prefixed agents) |
-| `claude/commands/{name}.md` | Copied from CPO/superpowers (10 command files) |
+| `claude/commands/{plugin}--{name}.md` | Copied from CPO/superpowers (10 command files) |
 | `claude/skills/{name}/` | Copied from CPO/superpowers (16 skill directories) |
 | `claude/hooks/security_reminder_hook.py` | Copied from CPO security-guidance |
 | `.claude/settings.local.json` | Machine-specific local settings |

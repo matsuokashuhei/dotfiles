@@ -2,7 +2,14 @@ repos/
 .claude/settings.local.json
 
 # everything-claude-code rules (copied by install.sh/update.sh)
-claude/rules/*.md
+claude/rules/everything-claude-code--agents.md
+claude/rules/everything-claude-code--coding-style.md
+claude/rules/everything-claude-code--git-workflow.md
+claude/rules/everything-claude-code--hooks.md
+claude/rules/everything-claude-code--patterns.md
+claude/rules/everything-claude-code--performance.md
+claude/rules/everything-claude-code--security.md
+claude/rules/everything-claude-code--testing.md
 
 # claude-plugins-official + superpowers (copied by install.sh/update.sh)
 claude/agents/code-simplifier--code-simplifier.md
@@ -16,16 +23,16 @@ claude/agents/feature-dev--code-architect.md
 claude/agents/feature-dev--code-explorer.md
 claude/agents/feature-dev--code-reviewer.md
 claude/agents/superpowers--code-reviewer.md
-claude/commands/clean_gone.md
-claude/commands/commit-push-pr.md
-claude/commands/commit.md
-claude/commands/code-review.md
-claude/commands/review-pr.md
-claude/commands/revise-claude-md.md
-claude/commands/feature-dev.md
-claude/commands/brainstorm.md
-claude/commands/execute-plan.md
-claude/commands/write-plan.md
+claude/commands/commit-commands--clean_gone.md
+claude/commands/commit-commands--commit-push-pr.md
+claude/commands/commit-commands--commit.md
+claude/commands/code-review--code-review.md
+claude/commands/pr-review-toolkit--review-pr.md
+claude/commands/claude-md-management--revise-claude-md.md
+claude/commands/feature-dev--feature-dev.md
+claude/commands/superpowers--brainstorm.md
+claude/commands/superpowers--execute-plan.md
+claude/commands/superpowers--write-plan.md
 claude/skills/claude-automation-recommender/
 claude/skills/claude-md-improver/
 claude/skills/brainstorming/

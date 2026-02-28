@@ -27,7 +27,11 @@ fi
 
 echo "Updating everything-claude-code..."
 (cd $ECC_REPO && git pull)
-cp $ECC_REPO/rules/common/*.md $ECC_RULES_DEST/
+for file in $ECC_REPO/rules/common/*.md
+do
+  rule_name=$(basename $file)
+  cp $file $ECC_RULES_DEST/everything-claude-code--${rule_name}
+done
 echo "everything-claude-code rules updated successfully."
 
 # Claude Plugins Official (anthropics/claude-plugins-official)
@@ -74,19 +78,19 @@ cp $CPO_PLUGINS/feature-dev/agents/code-reviewer.md $AGENTS_DEST/feature-dev--co
 # Superpowers agent (prefixed)
 cp $SP_REPO/agents/code-reviewer.md $AGENTS_DEST/superpowers--code-reviewer.md
 
-# CPO commands
-cp $CPO_PLUGINS/commit-commands/commands/clean_gone.md $COMMANDS_DEST/
-cp $CPO_PLUGINS/commit-commands/commands/commit-push-pr.md $COMMANDS_DEST/
-cp $CPO_PLUGINS/commit-commands/commands/commit.md $COMMANDS_DEST/
-cp $CPO_PLUGINS/code-review/commands/code-review.md $COMMANDS_DEST/
-cp $CPO_PLUGINS/pr-review-toolkit/commands/review-pr.md $COMMANDS_DEST/
-cp $CPO_PLUGINS/claude-md-management/commands/revise-claude-md.md $COMMANDS_DEST/
-cp $CPO_PLUGINS/feature-dev/commands/feature-dev.md $COMMANDS_DEST/
+# CPO commands (prefixed)
+cp $CPO_PLUGINS/commit-commands/commands/clean_gone.md $COMMANDS_DEST/commit-commands--clean_gone.md
+cp $CPO_PLUGINS/commit-commands/commands/commit-push-pr.md $COMMANDS_DEST/commit-commands--commit-push-pr.md
+cp $CPO_PLUGINS/commit-commands/commands/commit.md $COMMANDS_DEST/commit-commands--commit.md
+cp $CPO_PLUGINS/code-review/commands/code-review.md $COMMANDS_DEST/code-review--code-review.md
+cp $CPO_PLUGINS/pr-review-toolkit/commands/review-pr.md $COMMANDS_DEST/pr-review-toolkit--review-pr.md
+cp $CPO_PLUGINS/claude-md-management/commands/revise-claude-md.md $COMMANDS_DEST/claude-md-management--revise-claude-md.md
+cp $CPO_PLUGINS/feature-dev/commands/feature-dev.md $COMMANDS_DEST/feature-dev--feature-dev.md
 
-# Superpowers commands
-cp $SP_REPO/commands/brainstorm.md $COMMANDS_DEST/
-cp $SP_REPO/commands/execute-plan.md $COMMANDS_DEST/
-cp $SP_REPO/commands/write-plan.md $COMMANDS_DEST/
+# Superpowers commands (prefixed)
+cp $SP_REPO/commands/brainstorm.md $COMMANDS_DEST/superpowers--brainstorm.md
+cp $SP_REPO/commands/execute-plan.md $COMMANDS_DEST/superpowers--execute-plan.md
+cp $SP_REPO/commands/write-plan.md $COMMANDS_DEST/superpowers--write-plan.md
 
 # CPO skills (remove existing, then copy fresh)
 rm -rf $SKILLS_DEST/claude-automation-recommender
