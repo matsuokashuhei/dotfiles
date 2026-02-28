@@ -5,7 +5,17 @@ repos/
 claude/rules/*.md
 
 # claude-plugins-official + superpowers (copied by install.sh/update.sh)
-claude/agents/*--*.md
+claude/agents/code-simplifier--code-simplifier.md
+claude/agents/pr-review-toolkit--code-reviewer.md
+claude/agents/pr-review-toolkit--code-simplifier.md
+claude/agents/pr-review-toolkit--comment-analyzer.md
+claude/agents/pr-review-toolkit--pr-test-analyzer.md
+claude/agents/pr-review-toolkit--silent-failure-hunter.md
+claude/agents/pr-review-toolkit--type-design-analyzer.md
+claude/agents/feature-dev--code-architect.md
+claude/agents/feature-dev--code-explorer.md
+claude/agents/feature-dev--code-reviewer.md
+claude/agents/superpowers--code-reviewer.md
 claude/commands/clean_gone.md
 claude/commands/commit-push-pr.md
 claude/commands/commit.md
