@@ -2,6 +2,7 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
+  "includeCoAuthoredBy": true,
   "permissions": {
     "allow": [
       "Bash(bash -n:*)",
@@ -97,13 +98,7 @@
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
   },
-  "enabledPlugins": {
-    "everything-claude-code@everything-claude-code": false,
-    "document-skills@anthropic-agent-skills": false,
-    "example-skills@anthropic-agent-skills": false
-  },
-  "extraKnownMarketplaces": {
-  },
-  "language": "English and Japanese are displayed side by side",
-  "includeCoAuthoredBy": true
+  "enabledPlugins": {},
+  "extraKnownMarketplaces": {},
+  "language": "English and Japanese are displayed side by side"
 }
