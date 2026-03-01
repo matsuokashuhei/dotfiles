@@ -50,3 +50,8 @@ Go fix failing CI tests without being told how
 **Simplicity First**: Make every change as simple as possible. Impact minimal code.
 **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
 **Minimal Impact**: Changes should only touch what's necessary. Avoid introducing bugs.
+
+## Output Style
+
+**Diagrams**: Use Mermaid syntax for diagrams when writing Markdown. In other contexts, use the most suitable format.
+**English Level**: Write English at CEFR B1 level — use simple, clear sentences with common vocabulary. Avoid complex grammar and advanced vocabulary.
