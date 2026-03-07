@@ -139,43 +139,6 @@ else
   cp $STATUSLINE_REPO/statusline.py $STATUSLINE_DEST
 fi
 
-# Everything Claude Code (affaan-m/everything-claude-code)
-ECC_REPO=$DOTFILES_HOME/repos/everything-claude-code
-ECC_RULES_DEST=$DOTFILES_HOME/claude/rules
-
-if [ ! -d $ECC_REPO ]; then
-  echo "Cloning affaan-m/everything-claude-code..."
-  mkdir -p $DOTFILES_HOME/repos
-  git clone https://github.com/affaan-m/everything-claude-code.git $ECC_REPO
-fi
-
-# Copy common rules (prefixed to avoid collision with user rules)
-if [ -d $ECC_REPO/rules/common ]; then
-  for file in $ECC_REPO/rules/common/*.md
-  do
-    copy_rule $file everything-claude-code
-  done
-fi
-
-# Claude Plugins Official (anthropics/claude-plugins-official)
-CPO_REPO=$DOTFILES_HOME/repos/claude-plugins-official
-CPO_PLUGINS=$CPO_REPO/plugins
-
-if [ ! -d $CPO_REPO ]; then
-  echo "Cloning anthropics/claude-plugins-official..."
-  mkdir -p $DOTFILES_HOME/repos
-  git clone https://github.com/anthropics/claude-plugins-official.git $CPO_REPO
-fi
-
-# Superpowers (obra/superpowers) — external plugin referenced by CPO
-SP_REPO=$DOTFILES_HOME/repos/superpowers
-
-if [ ! -d $SP_REPO ]; then
-  echo "Cloning obra/superpowers..."
-  mkdir -p $DOTFILES_HOME/repos
-  git clone https://github.com/obra/superpowers.git $SP_REPO
-fi
-
 # Helper: copy agent with plugin prefix to avoid name collisions
 # Usage: copy_agent <source_file> <plugin_name>
 copy_agent() {
@@ -234,6 +197,43 @@ copy_rule() {
     cp $src $dest
   fi
 }
+
+# Everything Claude Code (affaan-m/everything-claude-code)
+ECC_REPO=$DOTFILES_HOME/repos/everything-claude-code
+ECC_RULES_DEST=$DOTFILES_HOME/claude/rules
+
+if [ ! -d $ECC_REPO ]; then
+  echo "Cloning affaan-m/everything-claude-code..."
+  mkdir -p $DOTFILES_HOME/repos
+  git clone https://github.com/affaan-m/everything-claude-code.git $ECC_REPO
+fi
+
+# Copy common rules (prefixed to avoid collision with user rules)
+if [ -d $ECC_REPO/rules/common ]; then
+  for file in $ECC_REPO/rules/common/*.md
+  do
+    copy_rule $file everything-claude-code
+  done
+fi
+
+# Claude Plugins Official (anthropics/claude-plugins-official)
+CPO_REPO=$DOTFILES_HOME/repos/claude-plugins-official
+CPO_PLUGINS=$CPO_REPO/plugins
+
+if [ ! -d $CPO_REPO ]; then
+  echo "Cloning anthropics/claude-plugins-official..."
+  mkdir -p $DOTFILES_HOME/repos
+  git clone https://github.com/anthropics/claude-plugins-official.git $CPO_REPO
+fi
+
+# Superpowers (obra/superpowers) — external plugin referenced by CPO
+SP_REPO=$DOTFILES_HOME/repos/superpowers
+
+if [ ! -d $SP_REPO ]; then
+  echo "Cloning obra/superpowers..."
+  mkdir -p $DOTFILES_HOME/repos
+  git clone https://github.com/obra/superpowers.git $SP_REPO
+fi
 
 # CPO agents (prefixed with plugin name)
 copy_agent $CPO_PLUGINS/code-simplifier/agents/code-simplifier.md code-simplifier
