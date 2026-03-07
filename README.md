@@ -1,69 +1,75 @@
 # dotfiles
 
-Dotfiles repository for macOS development environment. Configuration files are managed via symlinks.
+macOS dotfiles managed by [chezmoi](https://www.chezmoi.io/). Configuration files are **copied** (not symlinked) to `$HOME`.
 
 ## Repository Structure
 
 ```
-├── install.sh            # Install script (creates symlinks & sets up plugins)
-├── update.sh             # Update script (statusline + everything-claude-code)
-├── Brewfile              # Homebrew bundle (formulae, casks, fonts)
-├── bash/bash_profile     # Bash shell config (legacy, not handled by install.sh)
-├── claude/
-│   ├── settings.json     # Claude Code CLI settings
-│   ├── agents/           # Custom agent definitions
-│   ├── commands/         # Slash command definitions
-│   ├── rules/            # Coding rules & guidelines (copied from ECC, gitignored)
-│   └── skills/           # Skill definitions (add-config, learned/)
-├── ghostty/config        # Ghostty terminal config
-├── git/
-│   ├── config            # Git user settings & aliases
-│   └── ignore            # Global gitignore (excludes macOS-specific files)
-└── starship/starship.toml # Starship prompt config
+.chezmoi.toml.tmpl                      # chezmoi config template (prompts for user data)
+.chezmoiignore                          # files excluded from chezmoi apply
+dot_Brewfile.tmpl                       # Homebrew bundle (conditional casks by machineType)
+run_onchange_install-packages.sh.tmpl   # auto-runs brew bundle when Brewfile changes
+dot_config/
+  ghostty/config                        # Ghostty terminal config
+  git/
+    config.tmpl                         # Git user settings (templated with email/name)
+    ignore                              # Global gitignore
+  lazygit/config.yml                    # Lazygit config
+  nvim/                                 # Neovim (LazyVim) config
+    init.lua
+    lua/config/                         # autocmds, keymaps, options
+    lua/plugins/                        # plugin specs
+  starship.toml                         # Starship prompt config
+  zed/settings.json                     # Zed editor config
 ```
+
+## Prerequisites
+
+- [Homebrew](https://brew.sh/)
+- [chezmoi](https://www.chezmoi.io/) (`brew install chezmoi`)
 
 ## Installation
 
 ```bash
-git clone https://github.com/matsuokashuhei/dotfiles.git $HOME/.dotfiles
-$HOME/.dotfiles/install.sh
+chezmoi init https://github.com/matsuokashuhei/dotfiles.git --source=$HOME/.dotfiles
+chezmoi apply
 ```
 
-### Symlinks Created by install.sh
+On first run, chezmoi prompts for three values:
 
-| Source | Target |
-|--------|----------|
-| `git/config` | `~/.config/git/config` |
-| `git/ignore` | `~/.config/git/ignore` |
-| `claude/settings.json` | `~/.claude/settings.json` |
-| `claude/agents/` | `~/.claude/agents/` |
-| `claude/commands/` | `~/.claude/commands/` |
-| `claude/rules/` | `~/.claude/rules/` |
-| `claude/skills/` | `~/.claude/skills/` |
-| `ghostty/config` | `~/.config/ghostty/config` |
-| `starship/starship.toml` | `~/.config/starship.toml` |
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `email` | Git email address | `you@example.com` |
+| `name` | Git user name | `Your Name` |
+| `machineType` | `"personal"` or `"work"` | Controls which Brewfile casks are installed |
 
-Additionally, [usedhonda/statusline](https://github.com/usedhonda/statusline) is cloned to `~/.dotfiles/repos/statusline`, and `statusline.py` is copied to `~/.claude/statusline.py`.
+These values are stored in `~/.config/chezmoi/chezmoi.toml` and reused on subsequent runs.
 
-[affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) is cloned to `~/.dotfiles/repos/everything-claude-code`, and its common rules are copied to `claude/rules/`. The plugin itself (agents, skills, commands) is enabled via `settings.json`. Copied rule files are gitignored.
+## Chezmoi Conventions
 
-If `brew` is available, `install.sh` also runs `brew bundle install --file=Brewfile` to install all Homebrew packages.
+| Convention | Meaning |
+|------------|---------|
+| `dot_` prefix | Becomes `.` in target (e.g., `dot_config/` -> `.config/`) |
+| `.tmpl` suffix | File is a Go template processed by chezmoi |
+| `run_onchange_` prefix | Script re-runs automatically when its content changes |
 
 ## Updating
 
+After pulling changes from the repository:
+
 ```bash
-$HOME/.dotfiles/update.sh
+chezmoi apply
 ```
 
-Runs `git pull` on `repos/statusline` and `repos/everything-claude-code`, then overwrites `~/.claude/statusline.py` and `claude/rules/*.md` with the latest versions.
+This copies updated config files to `$HOME`. If `dot_Brewfile.tmpl` changed, `run_onchange_install-packages.sh.tmpl` automatically runs `brew bundle install`.
 
 ## Notes
 
-- `install.sh` does not overwrite existing files (includes existence checks)
-- `bash/bash_profile` is not included in `install.sh` (legacy)
-- Assumes a macOS-specific environment (Homebrew, `afplay`, etc.)
-- Claude Code settings have `defaultMode: "plan"` and `language: "English and Japanese are displayed side by side"` enabled
+- Assumes macOS (Homebrew, macOS-specific Brewfile casks)
+- `machineType` controls conditional casks in `dot_Brewfile.tmpl` (e.g., work-only apps)
+- Claude Code config (`~/.claude/`) is managed directly, not through this repo
+- Neovim `lazy-lock.json` is generated by lazy.nvim and not tracked
 
 ## Contributing
 
-See [CLAUDE.md](CLAUDE.md) for development guidelines, hooks, gitignored paths, and other contributor details.
+See [CLAUDE.md](CLAUDE.md) for development guidelines and contributor details.

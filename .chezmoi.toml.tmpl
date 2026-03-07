@@ -2,6 +2,8 @@
 {{- $name := promptStringOnce . "name" "Git user name" -}}
 {{- $machineType := promptChoiceOnce . "machineType" "Machine type" (list "personal" "work") -}}
 
+sourceDir = {{ joinPath .chezmoi.homeDir ".dotfiles" | quote }}
+
 [data]
     email = {{ $email | quote }}
     name = {{ $name | quote }}
