@@ -9,7 +9,6 @@ macOS dotfiles managed by chezmoi. Config files are copied (not symlinked) to `$
 - IMPORTANT: `chezmoi add` to add new files, or create manually with correct naming
 
 # Template data
-- `email`, `name`: used in `dot_config/git/config.tmpl`
 - `machineType` (`"personal"` | `"work"`): controls Brewfile casks in `dot_Brewfile.tmpl`
 
 # What is NOT managed here

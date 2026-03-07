@@ -12,7 +12,7 @@ run_onchange_install-packages.sh.tmpl   # auto-runs brew bundle when Brewfile ch
 dot_config/
   ghostty/config                        # Ghostty terminal config
   git/
-    config.tmpl                         # Git user settings (templated with email/name)
+    config.tmpl                         # Git user settings
     ignore                              # Global gitignore
   lazygit/config.yml                    # Lazygit config
   nvim/                                 # Neovim (LazyVim) config
@@ -31,16 +31,14 @@ dot_config/
 ## Installation
 
 ```bash
-chezmoi init https://github.com/matsuokashuhei/dotfiles.git --source=$HOME/.dotfiles
+chezmoi init https://github.com/matsuokashuhei/dotfiles.git
 chezmoi apply
 ```
 
-On first run, chezmoi prompts for three values:
+On first run, chezmoi prompts for:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `email` | Git email address | `you@example.com` |
-| `name` | Git user name | `Your Name` |
 | `machineType` | `"personal"` or `"work"` | Controls which Brewfile casks are installed |
 
 These values are stored in `~/.config/chezmoi/chezmoi.toml` and reused on subsequent runs.
