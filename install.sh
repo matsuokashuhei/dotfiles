@@ -1,287 +1,203 @@
 #!/bin/bash -eu
 
-DOTFILES_HOME=$HOME/.dotfiles
+DOTFILES_HOME="$HOME/.dotfiles"
+
+# --- Helper functions ---
+
+# Usage: link_files <src_dir> <dest_dir> <file1> [file2 ...]
+link_files() {
+  local src_dir="$1"; shift
+  local dest_dir="$1"; shift
+  mkdir -p "$dest_dir"
+  for file in "$@"; do
+    if [ -e "$dest_dir/$file" ] || [ -L "$dest_dir/$file" ]; then
+      echo "$dest_dir/$file already exists, aborting to avoid overwriting."
+    else
+      echo "installing $file to $dest_dir/"
+      ln -s "$src_dir/$file" "$dest_dir/$file"
+    fi
+  done
+}
+
+# Usage: link_dotfiles <src_dir> <dest_dir> <file1> [file2 ...]
+# Same as link_files but prepends "." to destination filename
+link_dotfiles() {
+  local src_dir="$1"; shift
+  local dest_dir="$1"; shift
+  for file in "$@"; do
+    if [ -e "$dest_dir/.$file" ] || [ -L "$dest_dir/.$file" ]; then
+      echo "$dest_dir/.$file already exists, aborting to avoid overwriting."
+    else
+      echo "installing .$file to $dest_dir/"
+      ln -s "$src_dir/$file" "$dest_dir/.$file"
+    fi
+  done
+}
+
+# Usage: link_single <src> <dest>
+link_single() {
+  local src="$1"
+  local dest="$2"
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    echo "$dest already exists, aborting to avoid overwriting."
+  else
+    echo "installing $(basename "$src") to $(dirname "$dest")/"
+    ln -s "$src" "$dest"
+  fi
+}
+
+# Usage: copy_prefixed <src_file> <plugin_name> <dest_dir>
+copy_prefixed() {
+  local src="$1"
+  local plugin="$2"
+  local dest_dir="$3"
+  local name
+  name=$(basename "$src")
+  local dest="$dest_dir/${plugin}--${name}"
+  if [ -f "$dest" ]; then
+    echo "$dest already exists, aborting to avoid overwriting."
+  else
+    echo "installing ${plugin}--${name} to $dest_dir/"
+    cp "$src" "$dest"
+  fi
+}
+
+# Usage: copy_skill <source_dir>
+copy_skill() {
+  local src="$1"
+  local dirname
+  dirname=$(basename "$src")
+  local dest="$DOTFILES_HOME/claude/skills/$dirname"
+  if [ -d "$dest" ]; then
+    echo "$dest already exists, aborting to avoid overwriting."
+  else
+    echo "installing skill $dirname to claude/skills/"
+    cp -r "$src" "$dest"
+  fi
+}
+
+# Usage: clone_repo <url> <dest_dir>
+clone_repo() {
+  local url="$1"
+  local dest="$2"
+  if [ ! -d "$dest" ]; then
+    echo "Cloning $url..."
+    git clone "$url" "$dest"
+  fi
+}
+
+# --- Symlinks ---
 
 # Git
-SRC_DIR=$DOTFILES_HOME/git
-DEST_DIR=$HOME/.config/git
+link_files "$DOTFILES_HOME/git" "$HOME/.config/git" config ignore
 
-mkdir -p $DEST_DIR
-
-for file in config ignore
-do
-  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
-    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
-  else
-    echo "installing $file to $DEST_DIR/"
-    ln -s $SRC_DIR/$file $DEST_DIR/$file
-  fi
-done
+# Zsh
+link_dotfiles "$DOTFILES_HOME/zsh" "$HOME" zshrc zprofile
 
 # Ghostty
-SRC_DIR=$DOTFILES_HOME/ghostty
-DEST_DIR=$HOME/.config/ghostty
-
-mkdir -p $DEST_DIR
-
-for file in config
-do
-  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
-    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
-  else
-    echo "installing $file to $DEST_DIR/"
-    ln -s $SRC_DIR/$file $DEST_DIR/$file
-  fi
-done
+link_files "$DOTFILES_HOME/ghostty" "$HOME/.config/ghostty" config
 
 # Lazygit
-SRC_DIR=$DOTFILES_HOME/lazygit
-DEST_DIR=$HOME/.config/lazygit
-
-mkdir -p $DEST_DIR
-
-for file in config.yml
-do
-  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
-    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
-  else
-    echo "installing $file to $DEST_DIR/"
-    ln -s $SRC_DIR/$file $DEST_DIR/$file
-  fi
-done
+link_files "$DOTFILES_HOME/lazygit" "$HOME/.config/lazygit" config.yml
 
 # Starship
-SRC_DIR=$DOTFILES_HOME/starship
-DEST=$HOME/.config/starship.toml
-
-if [ -e $DEST ] || [ -L $DEST ]; then
-  echo "$DEST already exists, aborting to avoid overwriting."
-else
-  echo "installing starship.toml to ~/.config/"
-  ln -s $SRC_DIR/starship.toml $DEST
-fi
+link_single "$DOTFILES_HOME/starship/starship.toml" "$HOME/.config/starship.toml"
 
 # Zed
-SRC_DIR=$DOTFILES_HOME/zed
-DEST_DIR=$HOME/.config/zed
-
-mkdir -p $DEST_DIR
-
-for file in settings.json
-do
-  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
-    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
-  else
-    echo "installing $file to $DEST_DIR/"
-    ln -s $SRC_DIR/$file $DEST_DIR/$file
-  fi
-done
+link_files "$DOTFILES_HOME/zed" "$HOME/.config/zed" settings.json
 
 # Neovim (LazyVim)
-SRC_DIR=$DOTFILES_HOME/nvim
-DEST=$HOME/.config/nvim
-
-if [ -e $DEST ] || [ -L $DEST ]; then
-  echo "$DEST already exists, aborting to avoid overwriting."
-else
-  echo "installing nvim config to ~/.config/nvim"
-  ln -s $SRC_DIR $DEST
-fi
+link_single "$DOTFILES_HOME/nvim" "$HOME/.config/nvim"
 
 # Claude
-SRC_DIR=$DOTFILES_HOME/claude
-DEST_DIR=$HOME/.claude
-
-mkdir -p $DEST_DIR
-
-for file in settings.json CLAUDE.md
-do
-  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
-    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
-  else
-    echo "installing $file to $DEST_DIR/"
-    ln -s $SRC_DIR/$file $DEST_DIR/$file
-  fi
-done
+link_files "$DOTFILES_HOME/claude" "$HOME/.claude" settings.json CLAUDE.md
 
 # Claude directories (agents, skills, rules, commands)
-for dir in agents skills rules commands
-do
-  if [ -e $DEST_DIR/$dir ] || [ -L $DEST_DIR/$dir ]; then
-    echo "$DEST_DIR/$dir already exists, aborting to avoid overwriting."
-  else
-    echo "installing $dir to $DEST_DIR/"
-    ln -s $SRC_DIR/$dir $DEST_DIR/$dir
-  fi
+for dir in agents skills rules commands; do
+  link_single "$DOTFILES_HOME/claude/$dir" "$HOME/.claude/$dir"
 done
 
 # Homebrew (Brewfile)
 if command -v brew &>/dev/null; then
   echo "Installing Homebrew packages from Brewfile..."
-  brew bundle install --file=$DOTFILES_HOME/Brewfile
+  brew bundle install --file="$DOTFILES_HOME/Brewfile"
 else
   echo "brew not found, skipping Brewfile install."
 fi
 
-# Statusline (usedhonda/statusline)
-STATUSLINE_REPO=$DOTFILES_HOME/repos/statusline
-STATUSLINE_DEST=$HOME/.claude/statusline.py
+# --- External repos ---
 
-if [ ! -d $STATUSLINE_REPO ]; then
-  echo "Cloning usedhonda/statusline..."
-  mkdir -p $DOTFILES_HOME/repos
-  git clone https://github.com/usedhonda/statusline.git $STATUSLINE_REPO
-fi
+mkdir -p "$DOTFILES_HOME/repos"
 
-if [ -f $STATUSLINE_DEST ]; then
+clone_repo https://github.com/usedhonda/statusline.git "$DOTFILES_HOME/repos/statusline"
+clone_repo https://github.com/affaan-m/everything-claude-code.git "$DOTFILES_HOME/repos/everything-claude-code"
+clone_repo https://github.com/anthropics/claude-plugins-official.git "$DOTFILES_HOME/repos/claude-plugins-official"
+clone_repo https://github.com/obra/superpowers.git "$DOTFILES_HOME/repos/superpowers"
+
+# Statusline
+STATUSLINE_DEST="$HOME/.claude/statusline.py"
+if [ -f "$STATUSLINE_DEST" ]; then
   echo "$STATUSLINE_DEST already exists, aborting to avoid overwriting."
 else
   echo "installing statusline.py to $HOME/.claude/"
-  cp $STATUSLINE_REPO/statusline.py $STATUSLINE_DEST
+  cp "$DOTFILES_HOME/repos/statusline/statusline.py" "$STATUSLINE_DEST"
 fi
 
-# Helper: copy agent with plugin prefix to avoid name collisions
-# Usage: copy_agent <source_file> <plugin_name>
-copy_agent() {
-  local src=$1
-  local plugin=$2
-  local agent_name=$(basename $src)
-  local dest=$DOTFILES_HOME/claude/agents/${plugin}--${agent_name}
-  if [ -f $dest ]; then
-    echo "$dest already exists, aborting to avoid overwriting."
-  else
-    echo "installing ${plugin}--${agent_name} to claude/agents/"
-    cp $src $dest
-  fi
-}
-
-# Helper: copy command with plugin prefix to avoid name collisions
-# Usage: copy_command <source_file> <plugin_name>
-copy_command() {
-  local src=$1
-  local plugin=$2
-  local cmd_name=$(basename $src)
-  local dest=$DOTFILES_HOME/claude/commands/${plugin}--${cmd_name}
-  if [ -f $dest ]; then
-    echo "$dest already exists, aborting to avoid overwriting."
-  else
-    echo "installing ${plugin}--${cmd_name} to claude/commands/"
-    cp $src $dest
-  fi
-}
-
-# Helper: copy skill directory
-# Usage: copy_skill <source_dir>
-copy_skill() {
-  local src=$1
-  local dirname=$(basename $src)
-  local dest=$DOTFILES_HOME/claude/skills/$dirname
-  if [ -d $dest ]; then
-    echo "$dest already exists, aborting to avoid overwriting."
-  else
-    echo "installing skill $dirname to claude/skills/"
-    cp -r $src $dest
-  fi
-}
-
-# Helper: copy rule with plugin prefix to avoid name collisions
-# Usage: copy_rule <source_file> <plugin_name>
-copy_rule() {
-  local src=$1
-  local plugin=$2
-  local rule_name=$(basename $src)
-  local dest=$DOTFILES_HOME/claude/rules/${plugin}--${rule_name}
-  if [ -f $dest ]; then
-    echo "$dest already exists, aborting to avoid overwriting."
-  else
-    echo "installing ${plugin}--${rule_name} to claude/rules/"
-    cp $src $dest
-  fi
-}
-
-# Everything Claude Code (affaan-m/everything-claude-code)
-ECC_REPO=$DOTFILES_HOME/repos/everything-claude-code
-ECC_RULES_DEST=$DOTFILES_HOME/claude/rules
-
-if [ ! -d $ECC_REPO ]; then
-  echo "Cloning affaan-m/everything-claude-code..."
-  mkdir -p $DOTFILES_HOME/repos
-  git clone https://github.com/affaan-m/everything-claude-code.git $ECC_REPO
-fi
-
-# Copy common rules (prefixed to avoid collision with user rules)
-if [ -d $ECC_REPO/rules/common ]; then
-  for file in $ECC_REPO/rules/common/*.md
-  do
-    copy_rule $file everything-claude-code
+# Everything Claude Code rules
+ECC_REPO="$DOTFILES_HOME/repos/everything-claude-code"
+if [ -d "$ECC_REPO/rules/common" ]; then
+  for file in "$ECC_REPO/rules/common"/*.md; do
+    copy_prefixed "$file" everything-claude-code "$DOTFILES_HOME/claude/rules"
   done
 fi
 
-# Claude Plugins Official (anthropics/claude-plugins-official)
-CPO_REPO=$DOTFILES_HOME/repos/claude-plugins-official
-CPO_PLUGINS=$CPO_REPO/plugins
+# Claude Plugins Official + Superpowers
+CPO_PLUGINS="$DOTFILES_HOME/repos/claude-plugins-official/plugins"
+SP_REPO="$DOTFILES_HOME/repos/superpowers"
 
-if [ ! -d $CPO_REPO ]; then
-  echo "Cloning anthropics/claude-plugins-official..."
-  mkdir -p $DOTFILES_HOME/repos
-  git clone https://github.com/anthropics/claude-plugins-official.git $CPO_REPO
-fi
+# CPO agents
+copy_prefixed "$CPO_PLUGINS/code-simplifier/agents/code-simplifier.md" code-simplifier "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/pr-review-toolkit/agents/code-reviewer.md" pr-review-toolkit "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/pr-review-toolkit/agents/code-simplifier.md" pr-review-toolkit "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/pr-review-toolkit/agents/comment-analyzer.md" pr-review-toolkit "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/pr-review-toolkit/agents/pr-test-analyzer.md" pr-review-toolkit "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/pr-review-toolkit/agents/silent-failure-hunter.md" pr-review-toolkit "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/pr-review-toolkit/agents/type-design-analyzer.md" pr-review-toolkit "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/feature-dev/agents/code-architect.md" feature-dev "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/feature-dev/agents/code-explorer.md" feature-dev "$DOTFILES_HOME/claude/agents"
+copy_prefixed "$CPO_PLUGINS/feature-dev/agents/code-reviewer.md" feature-dev "$DOTFILES_HOME/claude/agents"
 
-# Superpowers (obra/superpowers) — external plugin referenced by CPO
-SP_REPO=$DOTFILES_HOME/repos/superpowers
+# Superpowers agent
+copy_prefixed "$SP_REPO/agents/code-reviewer.md" superpowers "$DOTFILES_HOME/claude/agents"
 
-if [ ! -d $SP_REPO ]; then
-  echo "Cloning obra/superpowers..."
-  mkdir -p $DOTFILES_HOME/repos
-  git clone https://github.com/obra/superpowers.git $SP_REPO
-fi
+# CPO commands
+copy_prefixed "$CPO_PLUGINS/commit-commands/commands/clean_gone.md" commit-commands "$DOTFILES_HOME/claude/commands"
+copy_prefixed "$CPO_PLUGINS/commit-commands/commands/commit-push-pr.md" commit-commands "$DOTFILES_HOME/claude/commands"
+copy_prefixed "$CPO_PLUGINS/commit-commands/commands/commit.md" commit-commands "$DOTFILES_HOME/claude/commands"
+copy_prefixed "$CPO_PLUGINS/code-review/commands/code-review.md" code-review "$DOTFILES_HOME/claude/commands"
+copy_prefixed "$CPO_PLUGINS/pr-review-toolkit/commands/review-pr.md" pr-review-toolkit "$DOTFILES_HOME/claude/commands"
+copy_prefixed "$CPO_PLUGINS/claude-md-management/commands/revise-claude-md.md" claude-md-management "$DOTFILES_HOME/claude/commands"
+copy_prefixed "$CPO_PLUGINS/feature-dev/commands/feature-dev.md" feature-dev "$DOTFILES_HOME/claude/commands"
 
-# CPO agents (prefixed with plugin name)
-copy_agent $CPO_PLUGINS/code-simplifier/agents/code-simplifier.md code-simplifier
-copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/code-reviewer.md pr-review-toolkit
-copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/code-simplifier.md pr-review-toolkit
-copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/comment-analyzer.md pr-review-toolkit
-copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/pr-test-analyzer.md pr-review-toolkit
-copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/silent-failure-hunter.md pr-review-toolkit
-copy_agent $CPO_PLUGINS/pr-review-toolkit/agents/type-design-analyzer.md pr-review-toolkit
-copy_agent $CPO_PLUGINS/feature-dev/agents/code-architect.md feature-dev
-copy_agent $CPO_PLUGINS/feature-dev/agents/code-explorer.md feature-dev
-copy_agent $CPO_PLUGINS/feature-dev/agents/code-reviewer.md feature-dev
-
-# Superpowers agent (prefixed)
-copy_agent $SP_REPO/agents/code-reviewer.md superpowers
-
-# CPO commands (prefixed with plugin name)
-copy_command $CPO_PLUGINS/commit-commands/commands/clean_gone.md commit-commands
-copy_command $CPO_PLUGINS/commit-commands/commands/commit-push-pr.md commit-commands
-copy_command $CPO_PLUGINS/commit-commands/commands/commit.md commit-commands
-copy_command $CPO_PLUGINS/code-review/commands/code-review.md code-review
-copy_command $CPO_PLUGINS/pr-review-toolkit/commands/review-pr.md pr-review-toolkit
-copy_command $CPO_PLUGINS/claude-md-management/commands/revise-claude-md.md claude-md-management
-copy_command $CPO_PLUGINS/feature-dev/commands/feature-dev.md feature-dev
-
-# Superpowers commands (prefixed)
-copy_command $SP_REPO/commands/brainstorm.md superpowers
-copy_command $SP_REPO/commands/execute-plan.md superpowers
-copy_command $SP_REPO/commands/write-plan.md superpowers
+# Superpowers commands
+copy_prefixed "$SP_REPO/commands/brainstorm.md" superpowers "$DOTFILES_HOME/claude/commands"
+copy_prefixed "$SP_REPO/commands/execute-plan.md" superpowers "$DOTFILES_HOME/claude/commands"
+copy_prefixed "$SP_REPO/commands/write-plan.md" superpowers "$DOTFILES_HOME/claude/commands"
 
 # CPO skills
-copy_skill $CPO_PLUGINS/claude-code-setup/skills/claude-automation-recommender
-copy_skill $CPO_PLUGINS/claude-md-management/skills/claude-md-improver
+copy_skill "$CPO_PLUGINS/claude-code-setup/skills/claude-automation-recommender"
+copy_skill "$CPO_PLUGINS/claude-md-management/skills/claude-md-improver"
 
-# Superpowers skills (14 directories)
-for skill_dir in $SP_REPO/skills/*/
-do
-  copy_skill $skill_dir
+# Superpowers skills
+for skill_dir in "$SP_REPO/skills"/*/; do
+  copy_skill "$skill_dir"
 done
 
 # CPO hooks
-HOOKS_DEST=$DOTFILES_HOME/claude/hooks
-
-# security-guidance hook
-if [ -f $HOOKS_DEST/security_reminder_hook.py ]; then
+HOOKS_DEST="$DOTFILES_HOME/claude/hooks"
+if [ -f "$HOOKS_DEST/security_reminder_hook.py" ]; then
   echo "$HOOKS_DEST/security_reminder_hook.py already exists, aborting to avoid overwriting."
 else
   echo "installing security_reminder_hook.py to claude/hooks/"
-  cp $CPO_PLUGINS/security-guidance/hooks/security_reminder_hook.py $HOOKS_DEST/security_reminder_hook.py
+  cp "$CPO_PLUGINS/security-guidance/hooks/security_reminder_hook.py" "$HOOKS_DEST/security_reminder_hook.py"
 fi
