@@ -1,6 +1,6 @@
 [user]
-	email = {{ .email }}
-	name = {{ .name }}
+	email = matsuokashuheiii@gmail.com
+	name = matsuokashuhei
 
 [alias]
 	st = status -s
@@ -20,17 +20,9 @@
 [core]
 	editor = vim -c "set fenc=utf-8"
 	excludesfile = ~/.config/git/ignore
-	# https://github.com/microsoft/vscode-remote-release/issues/1134
-	filemode = false
 
 [init]
 	defaultBranch = main
-
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
 
 [pull]
     rebase = false
