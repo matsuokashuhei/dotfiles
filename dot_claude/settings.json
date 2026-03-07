@@ -1,0 +1,63 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "includeCoAuthoredBy": true,
+  "permissions": {
+    "allow": [
+      "Bash(bash -n:*)",
+      "Bash(brew bundle check:*)",
+      "Bash(cat:*)",
+      "Bash(diff:*)",
+      "Bash(find:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh repo view:*)",
+      "Bash(git add:*)",
+      "Bash(git branch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git clone:*)",
+      "Bash(git config:*)",
+      "Bash(git diff:*)",
+      "Bash(git fetch:*)",
+      "Bash(git log:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git pull:*)",
+      "Bash(git show:*)",
+      "Bash(git status:*)",
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(wc:*)",
+      "Bash(xargs:*)",
+      "Bash(xcodebuild:*)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:docs.claude.ai)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch"
+    ],
+    "defaultMode": "plan"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Blow.aiff"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "python3 ~/.claude/statusline.py"
+  },
+  "enabledPlugins": {},
+  "extraKnownMarketplaces": {},
+  "language": "English and Japanese are displayed side by side",
+  "effortLevel": "high"
+}

@@ -1,0 +1,5 @@
+[".claude/statusline.py"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/usedhonda/statusline/main/statusline.py"
+    executable = true
+    refreshPeriod = "168h"
