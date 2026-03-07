@@ -1,29 +1,29 @@
-# テーマ
+# Theme
 theme = tokyonight
 
-# フォント
+# Font
 font-family = "IBM Plex Mono"
-font-family = "IBM Plex Sans JP"
+# font-family = "IBM Plex Sans JP"
 font-size = 13
 font-thicken = true
 
-# 背景透過
+# Background transparency
 background-opacity = 0.80
 background-blur-radius = 20
 
-# 非アクティブペインを暗く
+# Dim unfocused pane
 unfocused-split-opacity = 0.6
 
-# カーソル
+# Cursor
 cursor-opacity = 0.8
 cursor-color = ffffff
 
-# ウィンドウ
+# Window
 window-padding-x = 4
 window-padding-y = 4
 window-padding-balance = true
 window-save-state = always
 
-# macOS 設定
+# macOS settings
 macos-titlebar-style = tabs
 macos-option-as-alt = true

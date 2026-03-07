@@ -1,6 +1,6 @@
 [user]
-	email = matsuokashuheiii@gmail.com
-	name = matsuokashuhei
+	email = {{ .email }}
+	name = {{ .name }}
 
 [alias]
 	st = status -s
@@ -18,8 +18,8 @@
 	ui = true
 
 [core]
-	editor = vim -c \"set fenc=utf-8\"
-	excludesfile =$HOME/.config/git/ignore
+	editor = vim -c "set fenc=utf-8"
+	excludesfile = ~/.config/git/ignore
 	# https://github.com/microsoft/vscode-remote-release/issues/1134
 	filemode = false
 
