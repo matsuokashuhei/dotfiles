@@ -25,6 +25,7 @@
       "Bash(git pull:*)",
       "Bash(git show:*)",
       "Bash(git status:*)",
+      "Bash(grep:*)",
       "Bash(head:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
@@ -46,7 +47,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c 'import sys,json;print(json.load(sys.stdin).get(\"file_path\",\"\"))' 2>/dev/null) || true; case \"$FILE\" in \"$HOME\"/.config/git/*|\"$HOME\"/.config/ghostty/*|\"$HOME\"/.config/lazygit/*|\"$HOME\"/.config/nvim/*|\"$HOME\"/.config/starship.toml|\"$HOME\"/.claude/settings.json|\"$HOME\"/.claude/CLAUDE.md) echo 'BLOCK: Edit the source in ~/.dotfiles/ instead of the symlink target' >&2; exit 2;; esac"
+            "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c 'import sys,json;print(json.load(sys.stdin).get(\"file_path\",\"\"))' 2>/dev/null) || true; case \"$FILE\" in \"$HOME\"/.config/git/*|\"$HOME\"/.config/ghostty/*|\"$HOME\"/.config/lazygit/*|\"$HOME\"/.config/zed/*|\"$HOME\"/.config/nvim/*|\"$HOME\"/.config/starship.toml|\"$HOME\"/.claude/settings.json|\"$HOME\"/.claude/CLAUDE.md) echo 'BLOCK: Edit the source in ~/.dotfiles/ instead of the symlink target' >&2; exit 2;; esac"
           }
         ]
       },
@@ -100,5 +101,6 @@
   },
   "enabledPlugins": {},
   "extraKnownMarketplaces": {},
-  "language": "English and Japanese are displayed side by side"
+  "language": "English and Japanese are displayed side by side",
+  "effortLevel": "high"
 }
