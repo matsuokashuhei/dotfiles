@@ -10,9 +10,10 @@ mkdir -p $DEST_DIR
 
 for file in config ignore
 do
-  if [ -f $DEST_DIR/$file ]; then
+  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
     echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
   else
+    echo "installing $file to $DEST_DIR/"
     ln -s $SRC_DIR/$file $DEST_DIR/$file
   fi
 done
@@ -25,7 +26,7 @@ mkdir -p $DEST_DIR
 
 for file in config
 do
-  if [ -f $DEST_DIR/$file ]; then
+  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
     echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
   else
     echo "installing $file to $DEST_DIR/"
@@ -41,7 +42,7 @@ mkdir -p $DEST_DIR
 
 for file in config.yml
 do
-  if [ -f $DEST_DIR/$file ]; then
+  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
     echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
   else
     echo "installing $file to $DEST_DIR/"
@@ -53,7 +54,7 @@ done
 SRC_DIR=$DOTFILES_HOME/starship
 DEST=$HOME/.config/starship.toml
 
-if [ -f $DEST ]; then
+if [ -e $DEST ] || [ -L $DEST ]; then
   echo "$DEST already exists, aborting to avoid overwriting."
 else
   echo "installing starship.toml to ~/.config/"
@@ -68,7 +69,7 @@ mkdir -p $DEST_DIR
 
 for file in settings.json
 do
-  if [ -f $DEST_DIR/$file ]; then
+  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
     echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
   else
     echo "installing $file to $DEST_DIR/"
@@ -95,7 +96,7 @@ mkdir -p $DEST_DIR
 
 for file in settings.json CLAUDE.md
 do
-  if [ -f $DEST_DIR/$file ]; then
+  if [ -e $DEST_DIR/$file ] || [ -L $DEST_DIR/$file ]; then
     echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
   else
     echo "installing $file to $DEST_DIR/"
