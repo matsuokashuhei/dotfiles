@@ -30,7 +30,8 @@ Dotfiles repository for macOS development environment. Configuration files are m
 │   └── lua/
 │       ├── config/       # LazyVim core config (lazy, options, keymaps, autocmds)
 │       └── plugins/      # Plugin specs
-└── starship/starship.toml # Starship prompt config
+├── starship/starship.toml # Starship prompt config
+└── zed/settings.json     # Zed editor config
 ```
 
 ## Installation
@@ -56,6 +57,7 @@ $HOME/.dotfiles/install.sh
 | `lazygit/config.yml` | `~/.config/lazygit/config.yml` |
 | `nvim/` | `~/.config/nvim` |
 | `starship/starship.toml` | `~/.config/starship.toml` |
+| `zed/settings.json` | `~/.config/zed/settings.json` |
 
 Additionally, the following repositories are cloned to `~/.dotfiles/repos/` and their assets copied:
 
@@ -140,7 +142,7 @@ Configured in `claude/settings.json`:
 
 | Hook | Trigger | Action |
 |------|---------|--------|
-| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.config/lazygit/`, `~/.config/nvim/`, `~/.config/starship.toml`, `~/.claude/settings.json`, `~/.claude/CLAUDE.md`) |
+| PreToolUse | Edit/Write | Blocks edits to symlink targets (`~/.config/git/`, `~/.config/ghostty/`, `~/.config/lazygit/`, `~/.config/zed/`, `~/.config/nvim/`, `~/.config/starship.toml`, `~/.claude/settings.json`, `~/.claude/CLAUDE.md`) |
 | PreToolUse | Edit/Write | Security reminder hook (`claude/hooks/security_reminder_hook.py`) — warns about XSS, injection, unsafe patterns |
 | PostToolUse | Edit/Write | Runs `bash -n` syntax check on `.sh` files |
 | SessionStart | startup/resume/clear/compact | Injects superpowers using-superpowers skill as context (`claude/hooks/superpowers-session-start`) |

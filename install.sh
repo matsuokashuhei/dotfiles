@@ -60,6 +60,22 @@ else
   ln -s $SRC_DIR/starship.toml $DEST
 fi
 
+# Zed
+SRC_DIR=$DOTFILES_HOME/zed
+DEST_DIR=$HOME/.config/zed
+
+mkdir -p $DEST_DIR
+
+for file in settings.json
+do
+  if [ -f $DEST_DIR/$file ]; then
+    echo "$DEST_DIR/$file already exists, aborting to avoid overwriting."
+  else
+    echo "installing $file to $DEST_DIR/"
+    ln -s $SRC_DIR/$file $DEST_DIR/$file
+  fi
+done
+
 # Neovim (LazyVim)
 SRC_DIR=$DOTFILES_HOME/nvim
 DEST=$HOME/.config/nvim
