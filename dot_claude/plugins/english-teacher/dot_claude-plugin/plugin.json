@@ -1,0 +1,9 @@
+{
+  "name": "english-teacher",
+  "version": "0.1.0",
+  "description": "An English teacher for Japanese B1 learners. Explains English texts and corrects learner writing in Japanese, following Orwell's plain-language rules.",
+  "author": {
+    "name": "Shuhei Matsuoka"
+  },
+  "keywords": ["english", "japanese", "language-learning", "cefr"]
+}
