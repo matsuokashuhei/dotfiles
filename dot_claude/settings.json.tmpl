@@ -8,7 +8,9 @@
       "Bash(bash -n:*)",
       "Bash(brew bundle check:*)",
       "Bash(cat:*)",
+      "Bash(chezmoi diff:*)",
       "Bash(diff:*)",
+      "Bash(echo:*)",
       "Bash(find:*)",
       "Bash(gh issue view:*)",
       "Bash(gh repo view:*)",
@@ -22,6 +24,7 @@
       "Bash(git fetch:*)",
       "Bash(git log:*)",
       "Bash(git ls-files:*)",
+      "Bash(git mv:*)",
       "Bash(git pull:*)",
       "Bash(git show:*)",
       "Bash(git status:*)",
@@ -56,6 +59,7 @@
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
   },
+{{- if eq .machineType "personal" }}
   "enabledPlugins": {
     "everything-claude-code@everything-claude-code": true,
     "superpowers@claude-plugins-official": true,
@@ -93,5 +97,9 @@
       }
     }
   },
+{{- else }}
+  "enabledPlugins": {},
+  "extraKnownMarketplaces": {},
+{{- end }}
   "language": "English and Japanese side by side"
 }
