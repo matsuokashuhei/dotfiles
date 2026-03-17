@@ -1,11 +1,11 @@
 ---
-name: proofread
-description: Proofread and correct English sentences written by English learners.
+name: correct
+description: Correct English sentences written by English learners.
 ---
 
-# proofread
+# correct
 
-Proofread English text written by an English learner.
+Correct English text written by an English learner.
 
 ## Shared Guidelines
 
@@ -13,7 +13,7 @@ See [guidelines](../shared/guidelines.md) for common rules.
 
 ## Instructions
 
-1. Proofread the English text provided in `$ARGUMENTS`.
+1. Correct the English text provided in `$ARGUMENTS`.
 2. Output in the following format:
 
 ## 添削結果
