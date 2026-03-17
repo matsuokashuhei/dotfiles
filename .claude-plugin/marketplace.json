@@ -1,0 +1,11 @@
+{
+  "name": "matsuokashuhei-dotfiles",
+  "owner": { "name": "matsuokashuhei" },
+  "plugins": [
+    {
+      "name": "english",
+      "source": "./.claude-plugin/english",
+      "description": "English skills for Japanese learners (translate, interpret, proofread)"
+    }
+  ]
+}
