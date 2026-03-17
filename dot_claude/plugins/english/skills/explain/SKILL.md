@@ -1,9 +1,9 @@
 ---
-name: interpret
+name: explain
 description: Translate English to Japanese with grammar and vocabulary explanations.
 ---
 
-# interpret
+# explain
 
 Translate English text to Japanese with learning support.
 
