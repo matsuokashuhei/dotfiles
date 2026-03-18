@@ -16,6 +16,10 @@ See [guidelines](../shared/guidelines.md) for common rules.
 1. Correct the English text provided in `$ARGUMENTS`.
 2. Output in the following format:
 
+## 原文の意味
+
+(Japanese translation of the original English text as-is, showing how a native reader would interpret it.)
+
 ## 添削結果
 
 (Corrected English text here)
