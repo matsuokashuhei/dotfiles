@@ -15,7 +15,7 @@ macOS dotfiles managed by chezmoi. Config files are copied (not symlinked) to `$
 Partially managed. Only user-created files are tracked:
 - `CLAUDE.md` -- global instructions
 - `settings.json` -- preferences, permissions, hooks (template: `enabledPlugins` and `extraKnownMarketplaces` vary by `machineType`)
-- `skills/` -- user-created skills (translate, interpret)
+- `plugins/english/` -- english plugin with skills (translate, interpret, proofread)
 - `statusline.py` -- fetched from [usedhonda/statusline](https://github.com/usedhonda/statusline) via `.chezmoiexternal.toml` (refreshed weekly)
 
 NOT tracked: agents/, commands/, rules/, hooks/ (auto-installed by superpowers plugin), secrets, caches, session data.

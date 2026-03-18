@@ -1,17 +1,20 @@
 ---
-name: interpret
+name: explain
 description: Translate English to Japanese with grammar and vocabulary explanations.
 ---
 
-# interpret
+# explain
 
 Translate English text to Japanese with learning support.
+
+## Shared Guidelines
+
+See [guidelines](../shared/guidelines.md) for common rules.
 
 ## Instructions
 
 1. Translate the English text provided in `$ARGUMENTS` to Japanese.
-2. Keep technical terms (e.g., API, async, Docker, ActiveRecord) as-is.
-3. Output in the following format:
+2. Output in the following format:
 
 ## 翻訳
 
