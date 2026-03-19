@@ -84,8 +84,7 @@
     "explanatory-output-style@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true,
-    "english@matsuokashuhei-dotfiles": true
+    "swift-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
@@ -99,25 +98,12 @@
         "source": "github",
         "repo": "affaan-m/everything-claude-code"
       }
-    },
-    "matsuokashuhei-dotfiles": {
-      "source": {
-        "source": "github",
-        "repo": "matsuokashuhei/dotfiles"
-      }
     }
   },
 {{- else }}
   "enabledPlugins": {
-    "english@matsuokashuhei-dotfiles": true
   },
   "extraKnownMarketplaces": {
-    "matsuokashuhei-dotfiles": {
-      "source": {
-        "source": "github",
-        "repo": "matsuokashuhei/dotfiles"
-      }
-    }
   },
 {{- end }}
   "language": "English and Japanese side by side"
