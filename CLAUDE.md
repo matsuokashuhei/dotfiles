@@ -10,6 +10,7 @@ macOS dotfiles managed by chezmoi. Config files are copied (not symlinked) to `$
 
 # Template data
 - `machineType` (`"personal"` | `"work"`): controls Brewfile casks in `dot_Brewfile.tmpl` and Claude plugins/marketplaces in `dot_claude/settings.json.tmpl`
+
 # Claude Code config (`~/.claude/`)
 Partially managed. Only user-created files are tracked:
 - `CLAUDE.md` -- global instructions
@@ -28,7 +29,8 @@ To force-update statusline.py: `chezmoi apply --refresh-externals`
 When changing any file managed by chezmoi:
 1. Edit the chezmoi source file first (under `~/.local/share/chezmoi/`)
 2. Run `chezmoi diff` and verify only the intended changes appear
-3. Then run `chezmoi apply` to propagate changes to `$HOME`
+3. **Display the `chezmoi diff` output in the chat** before asking permission to run `chezmoi apply`
+4. Then run `chezmoi apply` to propagate changes to `$HOME`
 Never edit `$HOME/.claude/` files directly when they are tracked here.
 
 # What is NOT managed here
