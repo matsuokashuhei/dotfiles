@@ -1,3 +1,5 @@
+# Claude Code Global Instructions
+
 ## Workflow Orchestration
 
 ### 1. Plan Node Default
