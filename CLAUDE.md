@@ -16,7 +16,8 @@ macOS dotfiles managed by chezmoi.
 
 ## Deleting files
 
-Use `chezmoi remove` to delete managed files.
+- `chezmoi forget <target>` — remove from chezmoi tracking only (keeps the deployed file)
+- `chezmoi destroy --force <target>` — remove from tracking AND delete the deployed file
 
 ## Before `chezmoi apply`
 
