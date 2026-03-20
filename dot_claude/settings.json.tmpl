@@ -1,4 +1,5 @@
 {
+  "language": "English and Japanese side by side",
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
@@ -120,14 +121,9 @@
       }
     }
   },
+  "model": "opusplan"
 {{- else }}
-  "enabledPlugins": {
-  },
-  "extraKnownMarketplaces": {
-  },
+  "enabledPlugins": {},
+  "extraKnownMarketplaces": {}
 {{- end }}
-{{- if eq .machineType "personal" }}
-  "model": "opusplan",
-{{- end }}
-  "language": "English and Japanese side by side"
 }
