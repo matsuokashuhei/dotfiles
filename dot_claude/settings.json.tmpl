@@ -76,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command' | if grep -qE 'git\\s+-C\\s+\\S'; then echo \"Current directory: $(pwd)\"; echo \"Do not use 'git -C'. You are already in the correct directory. Run git commands without -C.\"; exit 2; fi"
+            "command": "python3 ~/.claude/hooks/guard_bash.py git-c"
           }
         ]
       },
@@ -85,7 +85,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command' | if grep -qE 'gh[[:space:]]+.*(-R[[:space:]]+|--repo[[:space:]=])'; then echo 'Do not use gh with -R or --repo flag. Run gh commands in the current repository context without specifying a different repo.'; exit 2; fi"
+            "command": "python3 ~/.claude/hooks/guard_bash.py gh-repo-flag"
           }
         ]
       },
@@ -94,7 +94,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "CMD=$(jq -r '.tool_input.command'); if echo \"$CMD\" | grep -qE '^[[:space:]]*(gh[[:space:]]+api|.*&&[[:space:]]*gh[[:space:]]+api|.*\\|\\|[[:space:]]*gh[[:space:]]+api)[[:space:]]+.*\\/repos\\/[a-zA-Z0-9_.-]+\\/' && ! echo \"$CMD\" | grep -qE '\\/repos\\/\\$\\('; then echo 'Do not hardcode a repository path in gh api. Use the current repo dynamically: gh api /repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/...'; exit 2; fi"
+            "command": "python3 ~/.claude/hooks/guard_bash.py gh-api-hardcoded-repo"
           }
         ]
       }
