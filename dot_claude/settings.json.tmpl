@@ -88,6 +88,15 @@
             "command": "jq -r '.tool_input.command' | if grep -qE 'gh[[:space:]]+.*(-R[[:space:]]+|--repo[[:space:]=])'; then echo 'Do not use gh with -R or --repo flag. Run gh commands in the current repository context without specifying a different repo.'; exit 2; fi"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(jq -r '.tool_input.command'); if echo \"$CMD\" | grep -qE '^[[:space:]]*(gh[[:space:]]+api|.*&&[[:space:]]*gh[[:space:]]+api|.*\\|\\|[[:space:]]*gh[[:space:]]+api)[[:space:]]+.*\\/repos\\/[a-zA-Z0-9_.-]+\\/' && ! echo \"$CMD\" | grep -qE '\\/repos\\/\\$\\('; then echo 'Do not hardcode a repository path in gh api. Use the current repo dynamically: gh api /repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/...'; exit 2; fi"
+          }
+        ]
       }
     ],
     "PostToolUse": [
