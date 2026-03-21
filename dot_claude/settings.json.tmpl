@@ -10,6 +10,8 @@
       "Bash(cat:*)",
       "Bash(chezmoi diff:*)",
       "Bash(diff:*)",
+      "Bash(docker:*)",
+      "Bash(docker compose:*)",
       "Bash(echo:*)",
       "Bash(find:*)",
       "Bash(gh issue view:*)",
@@ -28,6 +30,7 @@
       "Bash(git pull:*)",
       "Bash(git show:*)",
       "Bash(git status:*)",
+      "Bash(git worktree:*)",
       "Bash(grep:*)",
       "Bash(head:*)",
       "Bash(ls:*)",
@@ -67,22 +70,13 @@
         ]
       }
     ],
-    "SessionEnd": [
+    "PreToolUse": [
       {
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/suggest-claude-md-hook.sh"
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/suggest-claude-md-hook.sh"
+            "command": "jq -r '.tool_input.command' | if grep -qE 'git\\s+-C\\s+\\S'; then echo \"Current directory: $(pwd)\"; echo \"Do not use 'git -C'. You are already in the correct directory. Run git commands without -C.\"; exit 2; fi"
           }
         ]
       }
@@ -118,6 +112,9 @@
     "claude-code-setup@claude-plugins-official": true,
     "explanatory-output-style@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "remember@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true
   },
@@ -126,13 +123,15 @@
       "source": {
         "source": "github",
         "repo": "anthropics/claude-plugins-official"
-      }
+      },
+      "autoUpdate": true
     },
     "everything-claude-code": {
       "source": {
         "source": "github",
         "repo": "affaan-m/everything-claude-code"
-      }
+      },
+      "autoUpdate": true
     }
   },
 {{- else }}
