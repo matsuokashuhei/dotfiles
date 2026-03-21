@@ -10,10 +10,10 @@ if [ "${SUGGEST_CLAUDE_MD_RUNNING:-}" = "1" ]; then
   exit 0
 fi
 
-LOG_FILE="/tmp/suggest-claude-md-$(date +%Y%m%d-%H%M%S).log"
+LOG_FILE="$HOME/.claude/logs/suggest-claude-md-$(date +%Y%m%d-%H%M%S).log"
 
 log() {
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >> "$LOG_FILE"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >>"$LOG_FILE"
 }
 
 log "Hook started"
@@ -26,9 +26,9 @@ if [ ! -d "$CONVERSATION_DIR" ]; then
 fi
 
 # Get the most recent JSONL file
-LATEST_JSONL=$(find "$CONVERSATION_DIR" -name "*.jsonl" -type f -print0 2>/dev/null \
-  | xargs -0 ls -t 2>/dev/null \
-  | head -1)
+LATEST_JSONL=$(find "$CONVERSATION_DIR" -name "*.jsonl" -type f -print0 2>/dev/null |
+  xargs -0 ls -t 2>/dev/null |
+  head -1)
 
 if [ -z "$LATEST_JSONL" ]; then
   log "No JSONL conversation files found"
@@ -70,7 +70,7 @@ log "Extracted conversation summary ($(echo "$CONVERSATION_SUMMARY" | wc -l | tr
 
 # Write conversation summary to a temp file for Claude to read
 TEMP_CONTEXT="/tmp/suggest-claude-md-context-$$.txt"
-echo "$CONVERSATION_SUMMARY" > "$TEMP_CONTEXT"
+echo "$CONVERSATION_SUMMARY" >"$TEMP_CONTEXT"
 
 # Launch Claude in a new Terminal window to analyze
 osascript -e "
@@ -78,7 +78,7 @@ tell application \"Terminal\"
   do script \"SUGGEST_CLAUDE_MD_RUNNING=1 claude -p 'Read the file $TEMP_CONTEXT which contains a conversation summary. Then run /suggest-claude-md to analyze it and suggest CLAUDE.md improvements. After you are done, clean up by deleting $TEMP_CONTEXT.' 2>&1 | tee -a $LOG_FILE; rm -f $TEMP_CONTEXT\"
   activate
 end tell
-" >> "$LOG_FILE" 2>&1
+" >>"$LOG_FILE" 2>&1
 
 log "Launched Claude analysis in new Terminal window"
 log "Hook completed"
