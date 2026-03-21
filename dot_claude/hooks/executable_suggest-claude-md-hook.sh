@@ -10,6 +10,12 @@ if [ "${SUGGEST_CLAUDE_MD_RUNNING:-}" = "1" ]; then
   exit 0
 fi
 
+# Ask user for confirmation via macOS dialog
+RESPONSE=$(osascript -e 'display dialog "Run suggest-claude-md to analyze this conversation?" buttons {"No", "Yes"} default button "No" with title "Claude Code Hook"' 2>/dev/null || echo "button returned:No")
+if [[ "$RESPONSE" != *"Yes"* ]]; then
+  exit 0
+fi
+
 mkdir -p "$HOME/.claude/tmp" "$HOME/.claude/logs"
 
 LOG_FILE="$HOME/.claude/logs/suggest-claude-md-$(date +%Y%m%d-%H%M%S).log"
