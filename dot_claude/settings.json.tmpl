@@ -79,6 +79,15 @@
             "command": "jq -r '.tool_input.command' | if grep -qE 'git\\s+-C\\s+\\S'; then echo \"Current directory: $(pwd)\"; echo \"Do not use 'git -C'. You are already in the correct directory. Run git commands without -C.\"; exit 2; fi"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command' | if grep -qE 'gh[[:space:]]+.*(-R[[:space:]]+|--repo[[:space:]=])'; then echo 'Do not use gh with -R or --repo flag. Run gh commands in the current repository context without specifying a different repo.'; exit 2; fi"
+          }
+        ]
       }
     ],
     "PostToolUse": [
