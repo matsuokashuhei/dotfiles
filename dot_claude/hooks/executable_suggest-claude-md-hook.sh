@@ -10,6 +10,8 @@ if [ "${SUGGEST_CLAUDE_MD_RUNNING:-}" = "1" ]; then
   exit 0
 fi
 
+mkdir -p "$HOME/.claude/tmp" "$HOME/.claude/logs"
+
 LOG_FILE="$HOME/.claude/logs/suggest-claude-md-$(date +%Y%m%d-%H%M%S).log"
 
 log() {
@@ -69,13 +71,13 @@ fi
 log "Extracted conversation summary ($(echo "$CONVERSATION_SUMMARY" | wc -l | tr -d ' ') lines)"
 
 # Write conversation summary to a temp file for Claude to read
-TEMP_CONTEXT="/tmp/suggest-claude-md-context-$$.txt"
+TEMP_CONTEXT="$HOME/.claude/tmp/suggest-claude-md-context-$$.txt"
 echo "$CONVERSATION_SUMMARY" >"$TEMP_CONTEXT"
 
 # Launch Claude in a new Terminal window to analyze
 osascript -e "
 tell application \"Terminal\"
-  do script \"SUGGEST_CLAUDE_MD_RUNNING=1 claude -p 'Read the file $TEMP_CONTEXT which contains a conversation summary. Then run /suggest-claude-md to analyze it and suggest CLAUDE.md improvements. After you are done, clean up by deleting $TEMP_CONTEXT.' 2>&1 | tee -a $LOG_FILE; rm -f $TEMP_CONTEXT\"
+  do script \"SUGGEST_CLAUDE_MD_RUNNING=1 claude --no-session-persistence -p 'Read the file $TEMP_CONTEXT which contains a conversation summary. Then run /suggest-claude-md to analyze it and suggest CLAUDE.md improvements. After you are done, clean up by deleting $TEMP_CONTEXT.' 2>&1 | tee -a $LOG_FILE; rm -f $TEMP_CONTEXT\"
   activate
 end tell
 " >>"$LOG_FILE" 2>&1
