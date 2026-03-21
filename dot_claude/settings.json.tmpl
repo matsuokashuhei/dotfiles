@@ -84,6 +84,18 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command' | grep -q 'gh pr create' && gh pr view --web 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
