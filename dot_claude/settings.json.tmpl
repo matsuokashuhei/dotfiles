@@ -1,5 +1,4 @@
 {
-  "language": "English and Japanese side by side",
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
@@ -44,6 +43,9 @@
     ],
     "defaultMode": "plan"
   },
+{{- if eq .machineType "personal" }}
+  "model": "opusplan",
+{{- end }}
   "hooks": {
     "Notification": [
       {
@@ -133,9 +135,10 @@
       }
     }
   },
-  "model": "opusplan"
 {{- else }}
   "enabledPlugins": {},
-  "extraKnownMarketplaces": {}
+  "extraKnownMarketplaces": {},
 {{- end }}
+  "language": "English and Japanese side by side",
+  "voiceEnabled": true
 }
