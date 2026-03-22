@@ -46,9 +46,6 @@
     ],
     "defaultMode": "plan"
   },
-{{- if eq .machineType "personal" }}
-  "model": "opusplan",
-{{- end }}
   "hooks": {
     "Notification": [
       {
@@ -97,7 +94,7 @@
             "command": "python3 ~/.claude/hooks/guard_bash.py gh-api-hardcoded-repo"
           }
         ]
-      },
+      }
     ],
     "PostToolUse": [
       {
