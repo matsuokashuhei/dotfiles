@@ -37,6 +37,20 @@ def check_gh_repo_flag(cmd: str) -> Optional[str]:
     return None
 
 
+def check_python_json_parse(cmd: str) -> Optional[str]:
+    if re.search(r"python3?\s+.*-c\s+['\"].*import\s+json", cmd) or re.search(
+        r"python3?\s+-c\s+['\"].*import\s+json", cmd
+    ):
+        return (
+            "Do not use Python to parse JSON. Use jq instead.\n"
+            "Examples:\n"
+            "  jq '.key' file.json\n"
+            "  cat file.json | jq '.key'\n"
+            "  jq -r '.array[]' file.json"
+        )
+    return None
+
+
 def check_gh_api_hardcoded_repo(cmd: str) -> Optional[str]:
     has_hardcoded = re.search(
         r"(?:^|\s)(?:gh\s+api|.*&&\s*gh\s+api|.*\|\|\s*gh\s+api)"
@@ -57,6 +71,7 @@ CHECKS = {
     "git-c": check_git_c,
     "gh-repo-flag": check_gh_repo_flag,
     "gh-api-hardcoded-repo": check_gh_api_hardcoded_repo,
+    "python-json-parse": check_python_json_parse,
 }
 
 
