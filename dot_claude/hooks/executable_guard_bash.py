@@ -8,6 +8,7 @@ Checks:
   git-c                   Block 'git -C <path>' usage
   gh-repo-flag            Block 'gh -R' or 'gh --repo' flag usage
   gh-api-hardcoded-repo   Block hardcoded repo paths in 'gh api'
+  cd-worktree             Block 'cd <worktree> && <command>' chaining
 """
 
 import json
@@ -53,10 +54,21 @@ def check_gh_api_hardcoded_repo(cmd: str) -> Optional[str]:
     return None
 
 
+def check_cd_worktree(cmd: str) -> Optional[str]:
+    if re.search(r"cd\s+\S*\.worktrees/\S+\s*&&", cmd):
+        return (
+            "Do not chain 'cd <worktree> && <command>'. "
+            "The working directory persists between Bash calls. "
+            "Run 'cd <path>' alone first, then run subsequent commands without cd."
+        )
+    return None
+
+
 CHECKS = {
     "git-c": check_git_c,
     "gh-repo-flag": check_gh_repo_flag,
     "gh-api-hardcoded-repo": check_gh_api_hardcoded_repo,
+    "cd-worktree": check_cd_worktree,
 }
 
 
