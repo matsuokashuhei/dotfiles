@@ -55,11 +55,11 @@ def check_gh_api_hardcoded_repo(cmd: str) -> Optional[str]:
 
 
 def check_cd_worktree(cmd: str) -> Optional[str]:
-    if re.search(r"cd\s+\S*\.worktrees/\S+\s*&&", cmd):
+    if re.search(r"cd\s+\S+\s*&&\s*git\s", cmd):
         return (
-            "Do not chain 'cd <worktree> && <command>'. "
+            "Do not chain 'cd <path> && git <command>'. "
             "The working directory persists between Bash calls. "
-            "Run 'cd <path>' alone first, then run subsequent commands without cd."
+            "Run 'cd <path>' alone first, then run git commands separately."
         )
     return None
 
