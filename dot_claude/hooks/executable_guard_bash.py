@@ -8,11 +8,13 @@ Checks:
   git-c                   Block 'git -C <path>' usage
   gh-repo-flag            Block 'gh -R' or 'gh --repo' flag usage
   gh-api-hardcoded-repo   Block hardcoded repo paths in 'gh api'
+  gh-api-wrong-repo       Block 'gh api' targeting a repo other than the current one
 """
 
 import json
 import os
 import re
+import subprocess
 import sys
 from typing import Optional
 
@@ -67,10 +69,42 @@ def check_gh_api_hardcoded_repo(cmd: str) -> Optional[str]:
     return None
 
 
+def check_gh_api_wrong_repo(cmd: str) -> Optional[str]:
+    # Only inspect commands that contain 'gh api'
+    if not re.search(r"gh\s+api", cmd):
+        return None
+    # Find /repos/{owner}/{repo} path segment
+    match = re.search(r"/repos/([a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+)", cmd)
+    if not match:
+        # No specific repo path (e.g., /user, /search, /rate_limit) — allow
+        return None
+    # Dynamic substitution like /repos/$(...) — allow (checked by gh-api-hardcoded-repo)
+    if re.search(r"/repos/\$\(", cmd):
+        return None
+    target_repo = match.group(1)
+    result = subprocess.run(
+        ["gh", "repo", "view", "--json", "nameWithOwner", "-q", ".nameWithOwner"],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        # Can't determine current repo — allow rather than false-block
+        return None
+    current_repo = result.stdout.strip()
+    if target_repo.lower() != current_repo.lower():
+        return (
+            f"Blocked: gh api targets '{target_repo}' but the current repo is '{current_repo}'. "
+            "Use the current repo dynamically: "
+            "gh api /repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/..."
+        )
+    return None
+
+
 CHECKS = {
     "git-c": check_git_c,
     "gh-repo-flag": check_gh_repo_flag,
     "gh-api-hardcoded-repo": check_gh_api_hardcoded_repo,
+    "gh-api-wrong-repo": check_gh_api_wrong_repo,
     "python-json-parse": check_python_json_parse,
 }
 
