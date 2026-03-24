@@ -4,7 +4,7 @@ theme = tokyonight
 # Font
 font-family = "IBM Plex Mono"
 # font-family = "IBM Plex Sans JP"
-font-size = 13
+font-size = 12
 font-thicken = true
 
 # Background transparency
