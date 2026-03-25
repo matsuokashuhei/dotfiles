@@ -1,9 +1,9 @@
 ---
-name: translate-ja
+name: translate-en
 description: Use when the user provides Japanese text and wants it translated to English, even if they don't explicitly say "translate".
 ---
 
-# translate-ja
+# translate-en
 
 Translate Japanese to English optimized for non-native communication.
 
