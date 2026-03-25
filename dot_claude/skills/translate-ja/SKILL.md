@@ -53,10 +53,10 @@ I had a small concern, so I cancelled the release once. Then I released it again
 
 ### Words and Phrases
 
-- concern - 「心配なこと、懸念」。"worry" よりビジネス寄りの表現。
-- cancelled - 「キャンセルした」。イギリス英語では "cancelled"、アメリカ英語では "canceled" と綴ります。
-- once - ここでは「一度」の意味。「以前」の意味でも使えるので文脈に注意。
-- released it again - 「再びリリースした」。"re-released" とも言えます。
+- **concern** - 「心配なこと、懸念」。`worry` よりビジネス寄りの表現。
+- **cancelled** - 「キャンセルした」。イギリス英語では `cancelled`、アメリカ英語では `canceled` と綴ります。
+- **once** - ここでは「一度」の意味。「以前」の意味でも使えるので文脈に注意。
+- **released it again** - 「再びリリースした」。`re-released` とも言えます。
 
 ### Alternatives
 
@@ -64,13 +64,13 @@ I had a small concern, so I cancelled the release once. Then I released it again
 
 I had a small concern, so I rolled back the release. Then I re-deployed.
 
-- "rolled back" = 「ロールバックした」。デプロイの取り消しに使う技術的な定番表現。
-- "re-deployed" = 「再デプロイした」。リリース文脈ではより自然。
+- **rolled back** - 「ロールバックした」。デプロイの取り消しに使う技術的な定番表現。
+- **re-deployed** - 「再デプロイした」。リリース文脈ではより自然。
 
 #### Formal
 
 Due to a minor concern, I cancelled the deployment once. After confirming it was safe, I proceeded with the release again.
 
-- "Due to" = 「〜のため」。"because" よりフォーマル。
-- "proceeded with" = 「〜を進めた」。ビジネス文書でよく使います。
+- **Due to** = 「〜のため」。`because` よりフォーマル。
+- **proceeded with** = 「〜を進めた」。ビジネス文書でよく使います。
 ```

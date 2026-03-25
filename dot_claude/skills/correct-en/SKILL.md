@@ -19,6 +19,7 @@ Correct English text written by an English learner.
 1. Correct the English text provided in `$ARGUMENTS`.
 2. Output in the following format:
 
+```
 ## Meaning of the Original
 
 (Japanese translation of the original English text as-is, to show what a native speaker would understand.)
@@ -34,3 +35,4 @@ Correct English text written by an English learner.
 ## Advice
 
 (One or two short tips in Japanese to help the learner improve. Focus on the most important pattern from their mistakes.)
+```
