@@ -1,76 +1,51 @@
 ---
 name: translate-ja
-description: Translate Japanese to English with vocabulary, casual and formal alternatives. Use this skill whenever the user provides Japanese text and wants it translated to English, even if they don't explicitly say "translate".
+description: Use when the user provides Japanese text and wants it translated to English, even if they don't explicitly say "translate".
 ---
 
 # translate-ja
 
-Translate Japanese text to English with learning support.
+Translate Japanese to English optimized for non-native communication.
 
 ## Guidelines
 
-- Target audience: Japanese English learners
 - Input: text provided via `$ARGUMENTS`
-- Technical terms: keep as-is (e.g., API, async, Docker, ActiveRecord, Git, CI/CD)
-- English level: CEFR B1–B2 — clear, concise, common vocabulary; short sentences; avoid long or difficult expressions
+- Technical terms: keep as-is (e.g., API, async, Docker, Git, CI/CD)
+- English style: CEFR B1–B2 — clear, concise, common vocabulary; short sentences
+- Formatting: wrap English words in backticks within Japanese text
+- Vocabulary notes: explain only words that differ from Translation or are notable. Do not repeat explanations already given.
 
 ## Instructions
 
-1. Translate the Japanese text provided in `$ARGUMENTS` to English.
+1. Translate `$ARGUMENTS` to English.
 2. Output in the following format:
 
     ```markdown
     ## Translation
 
-    (English translation here. Preserve the original tone — casual or formal.)
+    (English translation. Preserve original tone.)
 
-    ## Words and Phrases
-
-    (List key words and phrases with their meanings and usage. Be concise.)
+    (Vocabulary notes for key words. Be concise.)
 
     ## Alternatives
 
     ### Casual
 
-    (Rewrite the translation in a more casual, conversational tone. Be concise.)
+    (Casual rewrite. Be concise.)
+
+    (Vocabulary notes for words differing from Translation.)
 
     ### Formal
 
-    (Rewrite the translation in a more formal, professional tone. Be concise.)
+    (Formal rewrite. Be concise.)
+
+    (Vocabulary notes for words differing from Translation.)
+
+    ### Globish
+
+    (Globish rewrite. If Translation already follows Globish, write 「Translation と同じです。」)
+
+    Globish rules: 1,500-word core vocabulary; max 15 words per sentence; active voice; present and past tense only; no idioms, metaphors, slang, or cultural references; no negative questions.
+
+    (Vocabulary notes: explain Globish word choices vs Translation.)
     ```
-
-## Example
-**Input:**
-```
-少し心配なことをがあったから一度キャンセルしました。そして再びリリースしました。
-```
-
-**Output:**
-```markdown
-### Translation
-
-I had a small concern, so I cancelled the release once. Then I released it again.
-
-### Words and Phrases
-
-- **concern** - 「心配なこと、懸念」。`worry` よりビジネス寄りの表現。
-- **cancelled** - 「キャンセルした」。イギリス英語では `cancelled`、アメリカ英語では `canceled` と綴ります。
-- **once** - ここでは「一度」の意味。「以前」の意味でも使えるので文脈に注意。
-- **released it again** - 「再びリリースした」。`re-released` とも言えます。
-
-### Alternatives
-
-#### Casual
-
-I had a small concern, so I rolled back the release. Then I re-deployed.
-
-- **rolled back** - 「ロールバックした」。デプロイの取り消しに使う技術的な定番表現。
-- **re-deployed** - 「再デプロイした」。リリース文脈ではより自然。
-
-#### Formal
-
-Due to a minor concern, I cancelled the deployment once. After confirming it was safe, I proceeded with the release again.
-
-- **Due to** = 「〜のため」。`because` よりフォーマル。
-- **proceeded with** = 「〜を進めた」。ビジネス文書でよく使います。
-```
