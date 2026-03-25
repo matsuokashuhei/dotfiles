@@ -12,31 +12,70 @@ Explain English text in Japanese with vocabulary, grammar, and interpretation su
 - Input: text provided via `$ARGUMENTS`
 - Technical terms: do not translate (e.g., API, async, Docker, Git, CI/CD)
 - Formatting: wrap English words in backticks within Japanese text
-- Interpretation awareness: when a phrase can be translated in multiple ways, note which interpretation was chosen and list other possible readings
+- Interpretation awareness: when an English phrase can be read in multiple ways, explain each English reading and show the corresponding Japanese translation
 
 ## Instructions
 
-1. Translate `$ARGUMENTS` to Japanese.
-2. Output in the following format:
+Translate `$ARGUMENTS` to Japanese.
 
-    ```markdown
-    ## Translation
+## Output
 
-    (Japanese translation)
+```markdown
+## Translation
 
-    ## Words and Phrases
+(Japanese translation)
 
-    (Key words and phrases with meanings and usage. Be concise.)
+### Words and Phrases
 
-    ## Grammar
+(Key words and phrases with meanings and usage. Be concise.)
 
-    (Grammar points found in the text. Be concise.)
+### Grammar
 
-    ## Interpretation Notes
+(Grammar points found in the text. Be concise.)
 
-    (If any phrase can be translated multiple ways, list interpretations. Omit if only one natural reading.)
+## Interpretation Notes
 
-    - **[phrase]**
-      - ● [interpretation used in translation]
-      - ○ [other possible reading(s)]
-    ```
+(If any English phrase can be read multiple ways, list interpretations. Omit if only one natural reading.)
+
+- **[English phrase]**
+  - ● [English meaning used] → [Japanese translation chosen]
+  - ○ [other English reading] → [alternative Japanese translation]
+```
+
+## Alternatives
+
+(Casual rewrite. Be concise.)
+
+### Casual
+
+#### Words and Phrases
+
+(Vocabulary notes for key words. Be concise.)
+
+#### Grammar
+
+(Grammar points found in the text. Be concise.)
+
+### Formal
+
+(Formal rewrite. Be concise.)
+
+#### Words and Phrases
+
+(Vocabulary notes for key words. Be concise.)
+
+#### Grammar
+
+(Grammar points found in the text. Be concise.)
+
+### Globish
+
+(Globish rewrite. Be concise.)
+
+#### Words and Phrases
+
+(Vocabulary notes for key words. Be concise.)
+
+#### Grammar
+
+(Grammar points found in the text. Be concise.)
