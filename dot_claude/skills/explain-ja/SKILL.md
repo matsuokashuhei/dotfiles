@@ -1,9 +1,9 @@
 ---
-name: explain-en
+name: explain-ja
 description: Use when the user provides English text and wants to understand it in Japanese, including vocabulary and grammar breakdowns.
 ---
 
-# explain-en
+# explain-ja
 
 Explain English text in Japanese with vocabulary, grammar, and interpretation support.
 
