@@ -1,6 +1,6 @@
 ---
 name: translate-ja
-description: Translate Japanese to English with vocabulary, casual and formal alternatives. Use this skill whenever the user provides Japanese text and wants it translated to English, even if they don't explicitly say "translate".
+description: Translate Japanese to English with vocabulary, casual, formal, and Globish alternatives. Use this skill whenever the user provides Japanese text and wants it translated to English, even if they don't explicitly say "translate".
 ---
 
 # translate-ja
@@ -38,4 +38,8 @@ Translate Japanese text to English with learning support.
     ### Formal
 
     (Rewrite the translation in a more formal, professional tone. Be concise.)
+
+    ### Globish
+
+    (Rewrite the translation following Globish rules. Be concise. Globish rules: use only high-frequency vocabulary from the 1,500-word core; maximum 15 words per sentence; active voice; simple tenses — present and past; no idioms, metaphors, slang, or culturally specific references; no negative questions. If the Translation already follows Globish, write 「Translation と同じです。」)
     ```
