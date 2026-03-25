@@ -25,8 +25,6 @@ Translate Japanese text to English with learning support.
 
     (English translation here. Preserve the original tone — casual or formal.)
 
-    ## Words and Phrases
-
     (List key words and phrases with their meanings and usage. Be concise.)
 
     ## Alternatives
@@ -35,11 +33,17 @@ Translate Japanese text to English with learning support.
 
     (Rewrite the translation in a more casual, conversational tone. Be concise.)
 
+    (List key words and phrases with their meanings and usage. Be concise.)
+
     ### Formal
 
     (Rewrite the translation in a more formal, professional tone. Be concise.)
 
+    (List key words and phrases with their meanings and usage. Be concise.)
+
     ### Globish
 
     (Rewrite the translation following Globish rules. Be concise. Globish rules: use only high-frequency vocabulary from the 1,500-word core; maximum 15 words per sentence; active voice; simple tenses — present and past; no idioms, metaphors, slang, or culturally specific references; no negative questions. If the Translation already follows Globish, write 「Translation と同じです。」)
+
+    (List key words and phrases with their meanings and usage. Be concise.)
     ```
