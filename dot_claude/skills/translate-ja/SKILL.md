@@ -1,49 +1,51 @@
 ---
 name: translate-ja
-description: Translate Japanese to English with vocabulary, casual, formal, and Globish alternatives. Use this skill whenever the user provides Japanese text and wants it translated to English, even if they don't explicitly say "translate".
+description: Use when the user provides Japanese text and wants it translated to English, even if they don't explicitly say "translate".
 ---
 
 # translate-ja
 
-Translate Japanese text to English with learning support.
+Translate Japanese to English optimized for non-native communication.
 
 ## Guidelines
 
-- Target audience: Japanese English learners
 - Input: text provided via `$ARGUMENTS`
-- Technical terms: keep as-is (e.g., API, async, Docker, ActiveRecord, Git, CI/CD)
-- English level: CEFR B1–B2 — clear, concise, common vocabulary; short sentences; avoid long or difficult expressions
-- Formatting: when writing English words within Japanese text, wrap them in backticks (e.g., `concern` は「懸念」)
+- Technical terms: keep as-is (e.g., API, async, Docker, Git, CI/CD)
+- English style: CEFR B1–B2 — clear, concise, common vocabulary; short sentences
+- Formatting: wrap English words in backticks within Japanese text
+- Vocabulary notes: explain only words that differ from Translation or are notable. Do not repeat explanations already given.
 
 ## Instructions
 
-1. Translate the Japanese text provided in `$ARGUMENTS` to English.
+1. Translate `$ARGUMENTS` to English.
 2. Output in the following format:
 
     ```markdown
     ## Translation
 
-    (English translation here. Preserve the original tone — casual or formal.)
+    (English translation. Preserve original tone.)
 
-    (List key words and phrases with their meanings and usage. Be concise.)
+    (Vocabulary notes for key words. Be concise.)
 
     ## Alternatives
 
     ### Casual
 
-    (Rewrite the translation in a more casual, conversational tone. Be concise.)
+    (Casual rewrite. Be concise.)
 
-    (List key words and phrases with their meanings and usage. Be concise.)
+    (Vocabulary notes for words differing from Translation.)
 
     ### Formal
 
-    (Rewrite the translation in a more formal, professional tone. Be concise.)
+    (Formal rewrite. Be concise.)
 
-    (List key words and phrases with their meanings and usage. Be concise.)
+    (Vocabulary notes for words differing from Translation.)
 
     ### Globish
 
-    (Rewrite the translation following Globish rules. Be concise. Globish rules: use only high-frequency vocabulary from the 1,500-word core; maximum 15 words per sentence; active voice; simple tenses — present and past; no idioms, metaphors, slang, or culturally specific references; no negative questions. If the Translation already follows Globish, write 「Translation と同じです。」)
+    (Globish rewrite. If Translation already follows Globish, write 「Translation と同じです。」)
 
-    (List key words and phrases with their meanings and usage. Be concise.)
+    Globish rules: 1,500-word core vocabulary; max 15 words per sentence; active voice; present and past tense only; no idioms, metaphors, slang, or cultural references; no negative questions.
+
+    (Vocabulary notes: explain Globish word choices vs Translation.)
     ```
