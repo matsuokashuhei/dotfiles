@@ -1,6 +1,6 @@
 ---
 name: translate
-description: Use when the user provides Japanese or English text and wants it translated to the other language, especially when they don't specify a translation direction.
+description: Use only when explicitly invoked via /translate.
 ---
 
 # translate
@@ -9,10 +9,11 @@ Auto-detect input language and translate between Japanese and English.
 
 ## Guidelines
 
+- Target audience: Japanese users — vocabulary notes and grammar explanations should be in Japanese
 - Input: text provided via `$ARGUMENTS`
 - Language detection: if input contains hiragana, katakana, or kanji, translate to English; otherwise translate to Japanese
 - Technical terms: keep as-is (e.g., API, async, Docker, Git, CI/CD)
-- Formatting: wrap English words in backticks within Japanese text
+- Formatting: wrap English words in backticks within Japanese text; in vocabulary lists, use bold (**word**) instead of backticks
 - Vocabulary notes: explain only words that differ from Translation or are notable. Do not repeat explanations already given.
 
 ## Instructions
@@ -23,7 +24,9 @@ Auto-detect input language and translate between Japanese and English.
 
 ### Japanese to English
 
-English style: CEFR B2 — clear, well-structured, natural vocabulary.
+English style: CEFR B1–B2 — clear, concise, common vocabulary; short sentences.
+
+Globish rules: 1,500-word core vocabulary; max 15 words per sentence; active voice; present and past tense only; no idioms, metaphors, slang, or cultural references; no negative questions.
 
 Output:
 
@@ -32,7 +35,7 @@ Output:
 
     (English translation. Preserve original tone.)
 
-    (Vocabulary notes for words differing from Translation.)
+    (Vocabulary notes: list English words/phrases and explain each in Japanese.)
 
     ## Alternatives
 
@@ -40,19 +43,19 @@ Output:
 
     (Casual rewrite. Be concise.)
 
-    (Vocabulary notes for words differing from Translation.)
+    (Vocabulary notes: list English words/phrases and explain each in Japanese.)
 
     ### Formal
 
     (Formal rewrite. Be concise.)
 
-    (Vocabulary notes for words differing from Translation.)
+    (Vocabulary notes: list English words/phrases and explain each in Japanese.)
 
     ### Globish
 
     (Globish rewrite. If Translation already follows Globish, write 「Translation と同じです。」)
 
-    (Vocabulary notes: explain Globish word choices vs Translation.)
+    (Vocabulary notes: explain Globish English word choices vs Translation, in Japanese.)
     ```
 
 ### English to Japanese
@@ -71,4 +74,5 @@ Output:
     ## Grammar
 
     (Grammar points found in the text. Be concise.)
+
     ```
