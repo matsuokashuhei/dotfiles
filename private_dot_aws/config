@@ -1,0 +1,14 @@
+[default]
+region=ap-northeast-1
+
+[profile personal]
+sso_start_url=https://d-9567554c74.awsapps.com/start
+sso_region=ap-northeast-1
+sso_account_id=967026628831
+sso_role_name=AdministratorAccess
+
+[profile babefood]
+sso_start_url=https://rowls.awsapps.com/start
+sso_region=ap-northeast-1
+sso_account_id=730194728544
+sso_role_name=AdministratorAccess
