@@ -19,10 +19,16 @@ Auto-detect input language and translate between Japanese and English.
 ## Instructions
 
 1. Detect the language of `$ARGUMENTS`.
-2. If Japanese, follow **Japanese to English** below.
-3. If English, follow **English to Japanese** below.
+2. Determine if the input is a **word/phrase** or a **sentence**:
+   - English: 3 words or fewer → word/phrase mode
+   - Japanese: short expression without verb conjugation or particles (e.g. 「先入観」「腹落ちする」) → word/phrase mode
+   - Otherwise → sentence mode
+3. If Japanese, follow **Japanese to English** below.
+4. If English, follow **English to Japanese** below.
 
 ### Japanese to English
+
+#### Sentence mode
 
 English style: CEFR B1–B2 — clear, concise, common vocabulary; short sentences.
 
@@ -58,7 +64,31 @@ Output:
     (Vocabulary notes: explain Globish English word choices vs Translation, in Japanese.)
     ```
 
+#### Word/phrase mode
+
+Output:
+
+    ```markdown
+    ## English Equivalents
+
+    (Multiple English equivalents with nuance differences for each — in Japanese)
+
+    ## Example Sentences
+
+    (Example sentences for each English equivalent, with Japanese translation. Do not use quotation marks around English sentences or Japanese brackets around translations.)
+
+    ## Synonyms & Antonyms
+
+    (English synonyms and antonyms with nuance differences — in Japanese)
+
+    ## Collocations
+
+    (Common English collocations for each equivalent — in Japanese)
+    ```
+
 ### English to Japanese
+
+#### Sentence mode
 
 Output:
 
@@ -75,4 +105,30 @@ Output:
 
     (Grammar points found in the text. Be concise.)
 
+    ```
+
+#### Word/phrase mode
+
+Output:
+
+    ```markdown
+    ## Translation
+
+    (Japanese translation)
+
+    ## Meanings & Nuances
+
+    (Multiple meanings, nuance differences, usage context — in Japanese)
+
+    ## Example Sentences
+
+    (2-3 example sentences using the word/phrase, with Japanese translation. Do not use quotation marks around English sentences or Japanese brackets around translations.)
+
+    ## Synonyms & Antonyms
+
+    (Synonyms and antonyms with nuance differences — in Japanese)
+
+    ## Collocations
+
+    (Common collocations/word combinations — in Japanese)
     ```
