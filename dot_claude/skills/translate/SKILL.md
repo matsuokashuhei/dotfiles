@@ -1,6 +1,6 @@
 ---
 name: translate
-description: Use only when explicitly invoked via /translate.
+description: ONLY invoke via /translate slash command. NEVER invoke for Japanese text, language questions, or translation-related topics in normal conversation.
 ---
 
 # translate
