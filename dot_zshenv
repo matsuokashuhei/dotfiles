@@ -1,0 +1,3 @@
+# ~/.zshenv - environment variables for all shell sessions
+
+export PATH="$HOME/.local/bin:$PATH"
