@@ -1,3 +1,20 @@
+# Starship
+eval "$(starship init zsh)"
+
+# zsh-completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=({{ .chezmoi.homeDir }}/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
 # alias
 alias ls="ls -GF"
 alias ll="ls -l"
@@ -9,14 +26,3 @@ alias la="ll -a"
 alias gcloud='docker run -ti --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable gcloud'
 alias bq='docker run -ti --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable bq'
 {{ end -}}
-
-# Starship
-eval "$(starship init zsh)"
-
-{{ if eq .machineType "work" -}}
-# Docker CLI completions
-fpath=({{ .chezmoi.homeDir }}/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-{{ end -}}
-

@@ -25,6 +25,13 @@ Auto-detect input language and translate between Japanese and English.
    - Otherwise → sentence mode
 3. If Japanese, follow **Japanese to English** below.
 4. If English, follow **English to Japanese** below.
+5. For sentence mode only: after producing the Translation, run **back-translation verification** (internal loop, not shown in output):
+   - Back-translate the Translation into the original language.
+   - Compare the back-translation with the original input **word by word and expression by expression** — not just overall meaning.
+   - Check: do key words, prepositions, tense, and grammatical structures match? If the back-translation uses different words or expressions (e.g., "been to" instead of "been in"), treat it as a mismatch.
+   - If everything matches → OK, proceed to output.
+   - If any mismatch is found → identify which part of the Translation caused the drift, re-translate with that nuance corrected, and back-translate again.
+   - Repeat up to 5 times total. Use the best result if still not OK after 5 attempts.
 
 ### Japanese to English
 
