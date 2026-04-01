@@ -3,6 +3,13 @@ alias ls="ls -GF"
 alias ll="ls -l"
 alias la="ll -a"
 
+{{ if eq .machineType "work" -}}
+# GCP
+#alias gcloud='docker run -ti --name gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable gcloud'
+alias gcloud='docker run -ti --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable gcloud'
+alias bq='docker run -ti --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable bq'
+{{ end -}}
+
 # Starship
 eval "$(starship init zsh)"
 
@@ -11,8 +18,5 @@ eval "$(starship init zsh)"
 fpath=({{ .chezmoi.homeDir }}/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
-
-# GCP
-alias gcloud='docker run -ti --name gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable gcloud'
-alias bq='docker run --rm -v ~/.config:/root/.config google/cloud-sdk:stable bq'
 {{ end -}}
+
