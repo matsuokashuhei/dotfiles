@@ -45,8 +45,11 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebSearch"
     ],
-    "defaultMode": "plan"
   },
+  "defaultMode": "plan",
+{{- if eq .machineType "personal" }}
+  "model": "opusplan"
+{{- end }}
   "hooks": {
     "Notification": [
       {
