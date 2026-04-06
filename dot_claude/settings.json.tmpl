@@ -138,7 +138,6 @@
   },
 {{- if eq .machineType "personal" }}
   "enabledPlugins": {
-    "everything-claude-code@everything-claude-code": true,
     "superpowers@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
@@ -154,7 +153,9 @@
     "typescript-lsp@claude-plugins-official": true,
     "remember@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true
+    "swift-lsp@claude-plugins-official": true,
+    "agent-skills@addy-agent-skills": true,
+    "ecc@everything-claude-code": true
   },
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
@@ -164,10 +165,10 @@
       },
       "autoUpdate": true
     },
-    "everything-claude-code": {
+    "ecc": {
       "source": {
-        "source": "github",
-        "repo": "affaan-m/everything-claude-code"
+        "source": "git",
+        "url": "https://github.com/affaan-m/everything-claude-code.git"
       },
       "autoUpdate": true
     },
@@ -175,7 +176,15 @@
       "source": {
         "source": "github",
         "repo": "awslabs/agent-plugins"
-      }
+      },
+      "autoUpdate": true
+    },
+    "addy-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/agent-skills"
+      },
+      "autoUpdate": true
     }
   },
 {{- else }}
