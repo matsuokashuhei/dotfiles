@@ -153,7 +153,8 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "agent-skills@addy-agent-skills": true,
-    "ecc@everything-claude-code": true
+    "ecc@everything-claude-code": true,
+    "caveman@caveman": true
   },
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
@@ -183,6 +184,13 @@
         "repo": "addyosmani/agent-skills"
       },
       "autoUpdate": true
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      },
+      "autoUpdate": true
     }
   },
 {{- else }}
@@ -190,5 +198,6 @@
   "extraKnownMarketplaces": {},
 {{- end }}
   "language": "English and Japanese side by side",
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "advisorModel": "opus"
 }
