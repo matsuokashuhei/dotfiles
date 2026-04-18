@@ -24,6 +24,6 @@ export NVM_DIR="$HOME/.nvm"
 {{ if eq .machineType "work" -}}
 # GCP
 #alias gcloud='docker run -ti --name gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable gcloud'
-alias gcloud='docker run -ti --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable gcloud'
-alias bq='docker run -ti --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable bq'
+alias gcloud='docker run -i --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable gcloud'
+alias bq='docker run -i --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable bq'
 {{ end -}}
