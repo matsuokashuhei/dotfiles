@@ -1,15 +1,14 @@
 {
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "effortLevel": "high",
   "includeCoAuthoredBy": true,
   "permissions": {
     "allow": [
       "Bash(bash -n:*)",
       "Bash(brew bundle check:*)",
       "Bash(cat:*)",
+      "Bash(cargo:*)",
       "Bash(chezmoi diff:*)",
       "Bash(diff:*)",
       "Bash(docker:*)",
@@ -153,9 +152,9 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "agent-skills@addy-agent-skills": true,
-    "ecc@everything-claude-code": true,
+    "everything-claude-code@everything-claude-code": true,
     "caveman@caveman": true,
-    "doc-coauthoring@anthropics-skills": true
+    "doc-coauthoring@anthropic-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
@@ -165,7 +164,7 @@
       },
       "autoUpdate": true
     },
-    "ecc": {
+    "everything-claude-code": {
       "source": {
         "source": "git",
         "url": "https://github.com/affaan-m/everything-claude-code.git"
@@ -193,7 +192,7 @@
       },
       "autoUpdate": true
     },
-    "anthropics-skills": {
+    "anthropic-agent-skills": {
       "source": {
         "source": "github",
         "repo": "anthropics/skills"
@@ -206,6 +205,8 @@
   "extraKnownMarketplaces": {},
 {{- end }}
   "language": "English and Japanese side by side",
+  "effortLevel": "high",
+  "advisorModel": "opus",
   "voiceEnabled": true,
-  "advisorModel": "opus"
+  "skipAutoPermissionPrompt": true
 }

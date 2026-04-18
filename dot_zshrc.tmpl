@@ -15,6 +15,12 @@ alias ls="ls -GF"
 alias ll="ls -l"
 alias la="ll -a"
 
+{{ if eq .machineType "personal" -}}
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+{{ end -}}
+
 {{ if eq .machineType "work" -}}
 # GCP
 #alias gcloud='docker run -ti --name gcloud-config gcr.io/google.com/cloudsdktool/google-cloud-cli:stable gcloud'
