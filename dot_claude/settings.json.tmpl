@@ -124,6 +124,16 @@
             "command": "python3 ~/.claude/hooks/guard_bash.py python-json-parse"
           }
         ]
+      },
+      {
+        "matcher": "ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/plan-preview.sh",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "PostToolUse": [
