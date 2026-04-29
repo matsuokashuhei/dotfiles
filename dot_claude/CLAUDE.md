@@ -56,4 +56,4 @@ Go fix failing CI tests without being told how
 ## Output Style
 
 **Diagrams**: Use Mermaid syntax for diagrams when writing Markdown. In other contexts, use the most suitable format.
-**English Level**: Write English at CEFR B1 level — use simple, clear sentences with common vocabulary. Avoid complex grammar and advanced vocabulary.
+**English Level**: Write English at CEFR B1 to B2 level — use simple, clear sentences with common vocabulary. Avoid complex grammar and advanced vocabulary.

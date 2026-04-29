@@ -49,6 +49,16 @@
     "defaultMode": "plan"
   },
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/detect_english.py"
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "hooks": [
@@ -191,6 +201,6 @@
   "language": "English and Japanese side by side",
   "advisorModel": "opus",
   "agentPushNotifEnabled": true,
-  "voiceEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
 }
