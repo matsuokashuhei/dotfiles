@@ -8,7 +8,7 @@
   // cmux creates this template on launch when both settings file locations are missing.
   // ~/.config/cmux/settings.json takes precedence over the Application Support fallback.
 
-  //   "app" : {
+    "app" : {
   //     "appearance" : "system",
   //     "appIcon" : "automatic",
   //     "commandPaletteSearchesAllSurfaces" : false,
@@ -16,13 +16,13 @@
   //     "keepWorkspaceOpenWhenClosingLastSurface" : false,
   //     "language" : "system",
   //     "minimalMode" : false,
-  //     "newWorkspacePlacement" : "afterCurrent",
+      "newWorkspacePlacement" : "end",
   //     "preferredEditor" : "",
   //     "renameSelectsExistingName" : true,
-  //     "reorderOnNotification" : true,
+      "reorderOnNotification" : false,
   //     "sendAnonymousTelemetry" : true,
   //     "warnBeforeQuit" : true
-  //   },
+    },
 
   //   "notifications" : {
   //     "command" : "",
@@ -92,14 +92,14 @@
 
   //   "customCommands" : {
   //     "trustedDirectories" : [
-  // 
+  //
   //     ]
   //   },
 
   //   "browser" : {
   //     "defaultSearchEngine" : "google",
   //     "hostsToOpenInEmbeddedBrowser" : [
-  // 
+  //
   //     ],
   //     "insecureHttpHostsAllowedInEmbeddedBrowser" : [
   //       "localhost",
@@ -115,7 +115,7 @@
   //     "showSearchSuggestions" : true,
   //     "theme" : "system",
   //     "urlsToAlwaysOpenExternally" : [
-  // 
+  //
   //     ]
   //   },
 
