@@ -1,6 +1,6 @@
 ---
 name: translate
-description: ONLY invoke via /translate slash command. NEVER invoke for Japanese text, language questions, or translation-related topics in normal conversation.
+description: Auto-detect input language and translate between Japanese and English. Invoke via the /translate slash command, or via the japanese-translator subagent. Do NOT invoke directly during normal conversation — always go through one of those two entry points.
 ---
 
 # translate
