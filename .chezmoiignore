@@ -1,2 +1,15 @@
 tasks
 tasks/**
+
+# GitHub Copilot CLI — runtime state, not portable
+.copilot/config.json
+.copilot/command-history-state.json
+.copilot/session-store.db
+.copilot/session-store.db-shm
+.copilot/session-store.db-wal
+.copilot/session-state
+.copilot/logs
+.copilot/ide
+.copilot/restart
+.copilot/vscode.session.metadata.cache.json
+.copilot/permissions-config.json

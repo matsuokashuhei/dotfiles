@@ -1,0 +1,19 @@
+{
+  "firstLaunchAt": "2026-04-26T06:43:58.414Z",
+  "model": "gpt-5.5",
+  "allowedUrls": [
+{{- if eq .machineType "personal" }}
+    "https://async-graphql.github.io",
+    "https://www.sea-ql.org",
+    "https://docs.github.com",
+    "https://skills.sh",
+    "https://reactnative.dev"
+{{- end }}
+  ],
+  "trustedFolders": [
+{{- if eq .machineType "personal" }}
+    "/Users/matsuokashuhei/Development/walking-dog"
+{{- end }}
+  ],
+  "effortLevel": "xhigh"
+}

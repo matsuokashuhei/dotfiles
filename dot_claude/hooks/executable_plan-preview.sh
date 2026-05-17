@@ -5,10 +5,9 @@ if [[ -n "$PLAN" ]]; then
   TMPFILE="${TMPDIR:-/tmp}/claude-plan.$(date +%Y%m%d%H%M%S).md"
   printf '%s\n' "$PLAN" > "$TMPFILE"
   if [[ -n "$CMUX_BUNDLE_ID" ]]; then
-    MO_OPT="--no-open"
+    ( mo --no-open "$TMPFILE" >/dev/null 2>&1; sleep 0.3; "${CMUX_CLAUDE_HOOK_CMUX_BIN:-cmux}" browser open http://localhost:6275 >/dev/null 2>&1 ) &
   else
-    MO_OPT="--open"
+    ( mo --open "$TMPFILE" >/dev/null 2>&1 & )
   fi
-  ( mo "$MO_OPT" "$TMPFILE" >/dev/null 2>&1 & )
 fi
 exit 0

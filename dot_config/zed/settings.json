@@ -7,32 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "project_panel": {
-    "dock": "right"
-  },
-  "outline_panel": {
-    "dock": "right"
-  },
-  "collaboration_panel": {
-    "dock": "right"
-  },
-  "agent": {
-    "dock": "left",
-    "favorite_models": [],
-    "model_parameters": []
-  },
-  "git_panel": {
-    "dock": "right"
-  },
   "terminal": {
     "font_family": "BlexMono Nerd Font Mono",
   },
-  "buffer_font_size": 13.0,
+  "buffer_font_size": 11.0,
   "buffer_font_family": "IBM Plex Mono",
   "vim_mode": true,
   "theme": {
     "mode": "system",
     "light": "One Dark",
-    "dark": "One Dark",
-  },
+    "dark": "One Dark"
+  }
 }

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "hooks": {
+    "agentStop": [
+      {
+        "type": "command",
+        "bash": "afplay /System/Library/Sounds/Tink.aiff"
+      }
+    ],
+    "errorOccurred": [
+      {
+        "type": "command",
+        "bash": "afplay /System/Library/Sounds/Tink.aiff"
+      }
+    ],
+    "permissionRequest": [
+      {
+        "type": "command",
+        "bash": "afplay /System/Library/Sounds/Tink.aiff"
+      }
+    ],
+    "postToolUseFailure": [
+      {
+        "type": "command",
+        "bash": "afplay /System/Library/Sounds/Tink.aiff"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "type": "command",
+        "bash": "afplay /System/Library/Sounds/Tink.aiff"
+      }
+    ]
+  }
+}
