@@ -13,3 +13,25 @@ tasks/**
 .copilot/restart
 .copilot/vscode.session.metadata.cache.json
 .copilot/permissions-config.json
+
+# Codex — runtime state, credentials, and generated caches
+.codex/auth.json
+.codex/.codex-global-state.json
+.codex/.codex-global-state.json.bak
+.codex/.tmp/**
+.codex/ambient-suggestions/**
+.codex/archived_sessions/**
+.codex/cache/**
+.codex/goals_*.sqlite*
+.codex/logs_*.sqlite*
+.codex/models_cache.json
+.codex/session_index.jsonl
+.codex/sessions/**
+.codex/shell_snapshots/**
+.codex/sqlite/**
+.codex/state_*.sqlite*
+.codex/transcription-history.jsonl
+.codex/vendor_imports/**
+.codex/plugins/cache/**
+.codex/skills/.system/**
+.codex/skills/codex-primary-runtime/**
