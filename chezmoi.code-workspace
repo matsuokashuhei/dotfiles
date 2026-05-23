@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../../../.claude"
+		},
+		{
+			"path": "../../../.copilot"
+		},
+		{
+			"path": "../../../.codex"
+		},
+		{
+			"path": "../../../.opencode"
+		},
+		{
+			"path": "."
+		}
+	]
+}
