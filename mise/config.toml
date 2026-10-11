@@ -1,5 +1,5 @@
 [bootstrap.repos]
-"~/.dotfiles" = { url = "git@github.com:matsuokashuhei/dotfiles.git", ref = "main" }
+"~/.dotfiles" = { url = "git@github.com:matsuokashuhei/dotfiles.git", ref = "mise-2" }
 
 [dotfiles]
 "~/.config/mise" = { source = "~/.dotfiles/mise" }
@@ -7,21 +7,56 @@
 "~/.config/ghostty" = { source = "~/.dotfiles/ghostty" }
 "~/.config/git" = { source = "~/.dotfiles/git" }
 "~/.config/starship.toml" = { source = "~/.dotfiles/starship.toml" }
-
-[bootstrap.macos.defaults]
-"com.apple.dock" = { autohide = true }
-"com.microsoft.VSCode" = { ApplePressAndHoldEnabled = false }
-
-[bootstrap.macos.keyboard]
-key_repeat = 2
-initial_key_repeat = 15
-press_and_hold = false
-
-[bootstrap.macos.trackpad]
-tap_to_click = true
+"~/Library/Application Support/Rectangle/RectangleConfig.json" = { source = "~/.dotfiles/RectangleConfig.json", mode = "copy" }
 
 [shell_alias]
 ls = "ls -GF"
 ll = "ls -l"
 la = "ll -a"
 pod = "docker run --rm -it -v $PWD:/app cocoapods pod"
+
+[bootstrap.macos.defaults]
+"com.apple.dock" = { autohide = true }
+"com.apple.inputmethod.Kotoeri" = { JIMPrefLiveConversionKey = false }
+"com.microsoft.VSCode" = { ApplePressAndHoldEnabled = false }
+"NSGlobalDomain" = { AppleKeyboardUIMode = 3 }
+
+[bootstrap.macos.keyboard]
+key_repeat = 2
+initial_key_repeat = 15
+press_and_hold = false
+automatic_capitalization = false
+automatic_spelling_correction = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
+
+[bootstrap.packages]
+"brew:awscli" = "latest"
+"brew:gh" = "latest"
+"brew:ghq" = "latest"
+"brew:git" = "latest"
+"brew:jq" = "latest"
+"brew:mas" = "latest"
+"brew:mise" = "latest"
+"brew:mole" = "latest"
+"brew:starship" = "latest"
+"brew:zsh-completions" = "latest"
+"brew-cask:1password-cli" = "latest"
+"brew-cask:brave-browser" = "latest"
+"brew-cask:chatgpt" = "latest"
+"brew-cask:cursor" = "latest"
+"brew-cask:docker-desktop" = "latest"
+"brew-cask:devin-desktop" = "latest"
+"brew-cask:font-blex-mono-nerd-font" = "latest"
+"brew-cask:font-ibm-plex-mono" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:raycast" = "latest"
+"brew-cask:rectangle" = "latest"
+"brew-cask:tablepro" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"brew-cask:yaak" = "latest"
+"brew-cask:zed" = "latest"
+
+[env]
+_.path = ["~/.codeium/windsurf/bin"]
