@@ -11,8 +11,6 @@ co = checkout
 br = branch
 ci = commit
 df = diff --ignore-all-space
-prune = fetch --prune
-undo = reset --soft HEAD^
 
 [color]
 ui = true
@@ -28,6 +26,12 @@ defaultBranch = main
 rebase = false
 autostash = true
 
+[push]
+autoSetupRemote = true
+
+[rebase]
+autoStash = true
+
 [ghq]
 root = ~/Development
 
@@ -38,6 +42,3 @@ helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 helper =
 helper = !/opt/homebrew/bin/gh auth git-credential
-
-[rebase]
-autoStash = true

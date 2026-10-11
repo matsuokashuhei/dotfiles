@@ -3,6 +3,7 @@
 
 [dotfiles]
 "~/.config/mise" = { source = "~/.dotfiles/mise" }
+"~/.zprofile" = { block = 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' }
 "~/.zshrc" = { source = "~/.dotfiles/zshrc" }
 "~/.config/ghostty" = { source = "~/.dotfiles/ghostty" }
 "~/.config/git" = { source = "~/.dotfiles/git" }
@@ -60,4 +61,4 @@ tap_to_click = true
 "brew-cask:zed" = "latest"
 
 [env]
-_.path = ["~/.codeium/windsurf/bin"]
+_.path = ["~/.codeium/windsurf/bin", "~/.docker/bin"]
