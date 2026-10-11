@@ -1,0 +1,27 @@
+[bootstrap.repos]
+"~/.dotfiles" = { url = "git@github.com:matsuokashuhei/dotfiles.git", ref = "main" }
+
+[dotfiles]
+"~/.config/mise" = { source = "~/.dotfiles/mise" }
+"~/.zshrc" = { source = "~/.dotfiles/zshrc" }
+"~/.config/ghossty" = { source = "~/.dotfiles/ghossty" }
+"~/.config/git" = { source = "~/.dotfiles/git" }
+"~/.config/starship.toml" = { source = "~/.dotfiles/config/" }
+
+[bootstrap.macos.defaults]
+"com.apple.dock" = { autohide = true }
+"com.microsoft.VSCode" = { ApplePressAndHoldEnabled = false }
+
+[bootstrap.macos.keyboard]
+key_repeat = 2
+initial_key_repeat = 15
+press_and_hold = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
+
+[shell_alias]
+ls = "ls -GF"
+ll = "ls -l"
+la = "ll -a"
+pod = "docker run --rm -it -v $PWD:/app cocoapods pod"
