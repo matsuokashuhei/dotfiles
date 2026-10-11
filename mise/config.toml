@@ -6,7 +6,7 @@
 "~/.zshrc" = { source = "~/.dotfiles/zshrc" }
 "~/.config/ghostty" = { source = "~/.dotfiles/ghostty" }
 "~/.config/git" = { source = "~/.dotfiles/git" }
-"~/.config/starship.toml" = { source = "~/.dotfiles/config/" }
+"~/.config/starship.toml" = { source = "~/.dotfiles/starship.toml" }
 
 [bootstrap.macos.defaults]
 "com.apple.dock" = { autohide = true }
