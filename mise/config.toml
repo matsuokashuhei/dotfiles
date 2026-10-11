@@ -1,5 +1,5 @@
 [bootstrap.repos]
-"~/.dotfiles" = { url = "git@github.com:matsuokashuhei/dotfiles.git", ref = "mise-2" }
+"~/.dotfiles" = { url = "git@github.com:matsuokashuhei/dotfiles.git", ref = "main" }
 
 [dotfiles]
 "~/.config/mise" = { source = "~/.dotfiles/mise" }
