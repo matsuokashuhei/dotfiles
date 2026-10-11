@@ -1,0 +1,33 @@
+# Theme
+theme = tokyonight
+
+# Font
+# font-family = "IBM Plex Mono"
+# font-family = "IBM Plex Sans JP"
+font-family = "SF Mono Powerline"
+font-size = 12
+font-thicken = true
+
+# Background transparency
+# background-opacity = 0.8
+# background-blur-radius = 20
+background-opacity = 0.5
+background-blur = macos-glass-regular
+macos-titlebar-style = transparent
+
+# Dim unfocused pane
+unfocused-split-opacity = 0.6
+
+# Cursor
+cursor-opacity = 0.8
+cursor-color = ffffff
+
+# Window
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+window-save-state = always
+
+# macOS settings
+macos-titlebar-style = tabs
+macos-option-as-alt = true

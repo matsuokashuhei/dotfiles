@@ -1,0 +1,43 @@
+[user]
+email = matsuokashuheiii@gmail.com
+name = matsuokashuhei
+
+[alias]
+st = status -s
+sh = show
+ft = fetch
+ad = add
+co = checkout
+br = branch
+ci = commit
+df = diff --ignore-all-space
+prune = fetch --prune
+undo = reset --soft HEAD^
+
+[color]
+ui = true
+
+[core]
+editor = vim -c "set fenc=utf-8"
+excludesfile = ~/.config/git/ignore
+
+[init]
+defaultBranch = main
+
+[pull]
+rebase = false
+autostash = true
+
+[ghq]
+root = ~/Development
+
+[credential "https://github.com"]
+helper =
+helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+helper =
+helper = !/opt/homebrew/bin/gh auth git-credential
+
+[rebase]
+autoStash = true
