@@ -53,6 +53,7 @@ tap_to_click = true
 "brew-cask:ghostty" = "latest"
 "brew-cask:raycast" = "latest"
 "brew-cask:rectangle" = "latest"
+"brew-cask:slack" = "latest"
 "brew-cask:tablepro" = "latest"
 "brew-cask:visual-studio-code" = "latest"
 "brew-cask:yaak" = "latest"
