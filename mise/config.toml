@@ -34,6 +34,7 @@ tap_to_click = true
 
 [bootstrap.packages]
 "brew:awscli" = "latest"
+"brew:fzf" = "latest"
 "brew:gh" = "latest"
 "brew:ghq" = "latest"
 "brew:git" = "latest"
