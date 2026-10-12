@@ -8,7 +8,8 @@
 "~/.config/ghostty" = { source = "~/.dotfiles/ghostty" }
 "~/.config/git" = { source = "~/.dotfiles/git" }
 "~/.config/starship.toml" = { source = "~/.dotfiles/starship.toml" }
-"~/Library/Application Support/Rectangle/RectangleConfig.json" = { source = "~/.dotfiles/RectangleConfig.json", mode = "copy" }
+"~/.config/zed/settings.json" = { source = "~/.dotfiles/zed/settings.json" }
+# "~/Library/Application Support/Rectangle/RectangleConfig.json" = { source = "~/.dotfiles/RectangleConfig.json", mode = "copy" }
 
 [shell_alias]
 ls = "ls -GF"
