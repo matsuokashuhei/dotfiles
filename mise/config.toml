@@ -54,6 +54,7 @@ tap_to_click = true
 "brew-cask:font-blex-mono-nerd-font" = "latest"
 "brew-cask:font-ibm-plex-mono" = "latest"
 "brew-cask:ghostty" = "latest"
+"brew-cask:opencode-desktop" = "latest"
 "brew-cask:raycast" = "latest"
 "brew-cask:rectangle" = "latest"
 "brew-cask:slack" = "latest"
@@ -61,6 +62,12 @@ tap_to_click = true
 "brew-cask:visual-studio-code" = "latest"
 "brew-cask:yaak" = "latest"
 "brew-cask:zed" = "latest"
+
+[tasks.gh-stack]
+run = [
+  "gh extension install github/gh-stack",
+  "gh skill install github/gh-stack",
+]
 
 [env]
 _.path = ["~/.codeium/windsurf/bin", "~/.docker/bin"]
