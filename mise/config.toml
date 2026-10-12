@@ -54,6 +54,7 @@ tap_to_click = true
 "brew-cask:font-blex-mono-nerd-font" = "latest"
 "brew-cask:font-ibm-plex-mono" = "latest"
 "brew-cask:ghostty" = "latest"
+"brew-cask:linear" = "latest"
 "brew-cask:opencode-desktop" = "latest"
 "brew-cask:raycast" = "latest"
 "brew-cask:rectangle" = "latest"
