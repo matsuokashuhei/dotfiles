@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "permissions": {
+    "allow": [
+      "Exec(diff)",
+      "Exec(find)",
+      "Exec(git status)",
+      "Exec(grep)",
+      "Exec(jq)",
+      "Exec(ls)",
+      "Fetch(domain:api.github.com)",
+      "Fetch(domain:mise.jdx.dev)",
+      "Fetch(domain:raw.githubusercontent.com)",
+      "Fetch(domain:open-vsx.org)"
+    ]
+  }
+}
