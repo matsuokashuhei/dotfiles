@@ -1,38 +1,4 @@
-[bootstrap.repos]
-"~/.dotfiles" = { url = "git@github.com:matsuokashuhei/dotfiles.git", ref = "main" }
-
-[dotfiles]
-"~/.config/mise" = { source = "~/.dotfiles/mise" }
-"~/.zprofile" = { source = "~/.dotfiles/zprofile" }
-"~/.zshrc" = { source = "~/.dotfiles/zshrc" }
-"~/.config/ghostty" = { source = "~/.dotfiles/ghostty" }
-"~/.config/git" = { source = "~/.dotfiles/git" }
-"~/.config/starship.toml" = { source = "~/.dotfiles/starship.toml" }
-"~/.config/zed/settings.json" = { source = "~/.dotfiles/zed/settings.json" }
-# "~/Library/Application Support/Rectangle/RectangleConfig.json" = { source = "~/.dotfiles/RectangleConfig.json", mode = "copy" }
-
-[shell_alias]
-ls = "ls -GF"
-ll = "ls -l"
-la = "ll -a"
-pod = "docker run --rm -it -v $PWD:/app cocoapods pod"
-
-[bootstrap.macos.defaults]
-"com.apple.dock" = { autohide = true }
-"com.apple.inputmethod.Kotoeri" = { JIMPrefLiveConversionKey = false }
-"com.microsoft.VSCode" = { ApplePressAndHoldEnabled = false }
-"NSGlobalDomain" = { AppleKeyboardUIMode = 3 }
-
-[bootstrap.macos.keyboard]
-key_repeat = 2
-initial_key_repeat = 15
-press_and_hold = false
-automatic_capitalization = false
-automatic_spelling_correction = false
-
-[bootstrap.macos.trackpad]
-tap_to_click = true
-
+# Bootstrap https://mise.jdx.dev/bootstrap.html
 [bootstrap.packages]
 "brew:awscli" = "latest"
 "brew:fzf" = "latest"
@@ -63,12 +29,51 @@ tap_to_click = true
 "brew-cask:visual-studio-code" = "latest"
 "brew-cask:yaak" = "latest"
 "brew-cask:zed" = "latest"
+"mas:1480933944" = "latest" # Vimari
+
+[bootstrap.repos]
+"~/.dotfiles" = { url = "git@github.com:matsuokashuhei/dotfiles.git", ref = "main" }
+
+[dotfiles]
+"~/.config/mise" = "~/.dotfiles/mise"
+"~/.zprofile" = "~/.dotfiles/zprofile"
+"~/.zshrc" = "~/.dotfiles/zshrc"
+"~/.config/devin/config.json" = "~/.dotfiles/devin/config.json"
+"~/.config/ghostty" = "~/.dotfiles/ghostty"
+"~/.config/git" = "~/.dotfiles/git"
+"~/.config/starship.toml" = "~/.dotfiles/starship.toml"
+"~/.config/zed/settings.json" = "~/.dotfiles/zed/settings.json"
+# "~/Library/Application Support/Rectangle/RectangleConfig.json" = "~/.dotfiles/RectangleConfig.json"
+
+[bootstrap.macos.defaults]
+"com.apple.dock" = { autohide = true }
+"com.apple.inputmethod.Kotoeri" = { JIMPrefLiveConversionKey = false }
+"com.microsoft.VSCode" = { ApplePressAndHoldEnabled = false }
+"NSGlobalDomain" = { AppleKeyboardUIMode = 3 }
+
+[bootstrap.macos.keyboard]
+key_repeat = 2
+initial_key_repeat = 15
+press_and_hold = false
+automatic_capitalization = false
+automatic_spelling_correction = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
+
+# Environment variables https://mise.jdx.dev/environments/
+[env]
+_.path = ["~/.codeium/windsurf/bin", "~/.docker/bin"]
+
+# Shell aliases https://mise.jdx.dev/shell-aliases.html
+[shell_alias]
+ls = "ls -GF"
+ll = "ls -l"
+la = "ll -a"
+pod = "docker run --rm -it -v $PWD:/app cocoapods pod"
 
 [tasks.gh-stack]
 run = [
   "gh extension install github/gh-stack",
   "gh skill install github/gh-stack",
 ]
-
-[env]
-_.path = ["~/.codeium/windsurf/bin", "~/.docker/bin"]
