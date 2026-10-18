@@ -43,6 +43,7 @@
 "~/.config/git" = "~/.dotfiles/git"
 "~/.config/starship.toml" = "~/.dotfiles/starship.toml"
 "~/.config/zed/settings.json" = "~/.dotfiles/zed/settings.json"
+"~/Library/Application Support/Cursor/User/keybindings.json" = "~/.dotfiles/cursor/keybindings.json"
 # "~/Library/Application Support/Rectangle/RectangleConfig.json" = "~/.dotfiles/RectangleConfig.json"
 
 [bootstrap.macos.defaults]
@@ -63,7 +64,7 @@ tap_to_click = true
 
 # Environment variables https://mise.jdx.dev/environments/
 [env]
-_.path = ["~/.codeium/windsurf/bin", "~/.docker/bin"]
+_.path = ["~/.codeium/windsurf/bin", "~/.docker/bin", "~/.local/bin"]
 
 # Shell aliases https://mise.jdx.dev/shell-aliases.html
 [shell_alias]
