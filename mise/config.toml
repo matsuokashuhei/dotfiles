@@ -1,6 +1,7 @@
 # Bootstrap https://mise.jdx.dev/bootstrap.html
 [bootstrap.packages]
 "brew:awscli" = "latest"
+"brew:curl" = "latest"
 "brew:fzf" = "latest"
 "brew:gh" = "latest"
 "brew:ghq" = "latest"
@@ -29,6 +30,7 @@
 "brew-cask:visual-studio-code" = "latest"
 "brew-cask:yaak" = "latest"
 "brew-cask:zed" = "latest"
+"mas:497799835" = "latest" # Xcode
 "mas:1480933944" = "latest" # Vimari
 
 [bootstrap.repos]
@@ -64,7 +66,7 @@ tap_to_click = true
 
 # Environment variables https://mise.jdx.dev/environments/
 [env]
-_.path = ["~/.codeium/windsurf/bin", "~/.docker/bin", "~/.local/bin"]
+_.path = ["~/.codeium/windsurf/bin", "~/.docker/bin", "~/.local/bin", "/opt/homebrew/opt/curl/bin"]
 
 # Shell aliases https://mise.jdx.dev/shell-aliases.html
 [shell_alias]
