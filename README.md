@@ -20,7 +20,7 @@
 
     ```
     cd $HOME/.dotfiles
-    mise bootstrap
+    mise bootstrap --force-dotfiles
     ```
 
 # Tips

@@ -10,6 +10,7 @@
 "brew:mas" = "latest"
 "brew:mise" = "latest"
 "brew:mole" = "latest"
+"brew:ripgrep" = "latest"
 "brew:starship" = "latest"
 "brew:zsh-completions" = "latest"
 "brew-cask:1password-cli" = "latest"
@@ -18,15 +19,20 @@
 "brew-cask:cursor" = "latest"
 "brew-cask:docker-desktop" = "latest"
 "brew-cask:devin-desktop" = "latest"
+"brew-cask:finetune" = "latest"
 "brew-cask:font-blex-mono-nerd-font" = "latest"
 "brew-cask:font-ibm-plex-mono" = "latest"
+"brew-cask:font-jetbrains-mono" = "latest"
+"brew-cask:font-source-code-pro" = "latest"
 "brew-cask:ghostty" = "latest"
 "brew-cask:linear" = "latest"
 "brew-cask:opencode-desktop" = "latest"
 "brew-cask:rectangle" = "latest"
 "brew-cask:slack" = "latest"
 "brew-cask:tablepro" = "latest"
+"brew-cask:utm" = "latest"
 "brew-cask:visual-studio-code" = "latest"
+"brew-cask:vlc" = "latest"
 "brew-cask:yaak" = "latest"
 "brew-cask:zed" = "latest"
 "mas:497799835" = "latest" # Xcode
@@ -47,20 +53,29 @@
 "~/Library/Application Support/Cursor/User/keybindings.json" = "~/.dotfiles/cursor/keybindings.json"
 # "~/Library/Application Support/Rectangle/RectangleConfig.json" = "~/.dotfiles/RectangleConfig.json"
 
-[bootstrap.macos.defaults]
+[bootstrap.settings.macos.defaults]
 "com.apple.dock" = { autohide = true }
 "com.apple.inputmethod.Kotoeri" = { JIMPrefLiveConversionKey = false }
+"com.exafunction.windsurf" = { ApplePressAndHoldEnabled = false }
 "com.microsoft.VSCode" = { ApplePressAndHoldEnabled = false }
 "NSGlobalDomain" = { AppleKeyboardUIMode = 3 }
 
-[bootstrap.macos.keyboard]
+[bootstrap.settings.macos.dock]
+autohide = true
+
+[bootstrap.settings.macos.finder]
+show_all_files = false
+show_pathbar = false
+preferred_view_style = "list"
+
+[bootstrap.settings.macos.keyboard]
 key_repeat = 2
 initial_key_repeat = 15
 press_and_hold = false
 automatic_capitalization = false
 automatic_spelling_correction = false
 
-[bootstrap.macos.trackpad]
+[bootstrap.settings.macos.trackpad]
 tap_to_click = true
 
 # Environment variables https://mise.jdx.dev/environments/
