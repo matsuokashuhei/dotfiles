@@ -10,6 +10,8 @@
 "brew:mas" = "latest"
 "brew:mise" = "latest"
 "brew:mole" = "latest"
+"brew:mpv" = "latest"
+"brew:raycast" = "latest"
 "brew:ripgrep" = "latest"
 "brew:starship" = "latest"
 "brew:zsh-completions" = "latest"
