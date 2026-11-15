@@ -24,6 +24,7 @@
 "brew-cask:font-ibm-plex-mono" = "latest"
 "brew-cask:font-jetbrains-mono" = "latest"
 "brew-cask:font-source-code-pro" = "latest"
+"brew-cask:google-chrome" = "latest"
 "brew-cask:ghostty" = "latest"
 "brew-cask:linear" = "latest"
 "brew-cask:opencode-desktop" = "latest"
