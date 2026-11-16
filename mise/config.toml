@@ -11,7 +11,6 @@
 "brew:mise" = "latest"
 "brew:mole" = "latest"
 "brew:mpv" = "latest"
-"brew:raycast" = "latest"
 "brew:ripgrep" = "latest"
 "brew:starship" = "latest"
 "brew:zsh-completions" = "latest"
@@ -29,7 +28,9 @@
 "brew-cask:google-chrome" = "latest"
 "brew-cask:ghostty" = "latest"
 "brew-cask:linear" = "latest"
+"brew-cask:notion" = "latest"
 "brew-cask:opencode-desktop" = "latest"
+"brew-cask:raycast" = "latest"
 "brew-cask:rectangle" = "latest"
 "brew-cask:slack" = "latest"
 "brew-cask:tablepro" = "latest"
@@ -38,6 +39,7 @@
 "brew-cask:vlc" = "latest"
 "brew-cask:yaak" = "latest"
 "brew-cask:zed" = "latest"
+"mas:302584613" = "latest" # Kindle
 "mas:497799835" = "latest" # Xcode
 "mas:1480933944" = "latest" # Vimari
 
